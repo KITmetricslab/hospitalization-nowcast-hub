@@ -1,0 +1,1 @@
+# hospitalization-nowcast-hub
