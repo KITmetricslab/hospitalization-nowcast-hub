@@ -24,8 +24,8 @@ rki_to_fips = {0: 'GM',
 
 def process_data(df):
     df['location'] = df.Bundesland_Id.replace(rki_to_fips)
-    df.drop(columns = ['Bundesland', 'Bundesland_Id', '7T_Hospitalisierung_Faelle'], inplace = True, errors = 'ignore')
-    df.rename({'Datum': 'date', 'Altersgruppe': 'age_group','7T_Hospitalisierung_Inzidenz': 'value'}, 
+    df.drop(columns = ['Bundesland', 'Bundesland_Id', '7T_Hospitalisierung_Inzidenz'], inplace = True, errors = 'ignore')
+    df.rename({'Datum': 'date', 'Altersgruppe': 'age_group','7T_Hospitalisierung_Faelle': 'value'}, 
           axis = 'columns', inplace = True)
     df = df[['date', 'location', 'age_group', 'value']]
     return df
