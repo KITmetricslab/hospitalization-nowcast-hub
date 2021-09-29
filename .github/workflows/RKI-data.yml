@@ -22,7 +22,7 @@ jobs:
 
     - name: Install requirenments
       run: |
-        # pip3 install -r github-actions/pr_requirements.txt
+        pip3 install -r .github/workflows/python_requirements.txt
     - name: Download RKI data
       run: |
         cd ./code
