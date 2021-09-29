@@ -44,7 +44,7 @@ df_files['date'] = df_files.filename.apply(lambda f: f.split('/')[1][:10])
 df_files.date = pd.to_datetime(df_files.date)
 
 # only consider files that have not been downloaded before
-path = Path('../data-truth/COVID-19/')
+path = Path('../data-truth/COVID-19/rolling-sum')
 existing_dates = pd.unique([f.name[:10] for f in path.glob('**/*') if f.name.endswith('.csv')])
 df_files = df_files[df_files.date > max(existing_dates)]
 
@@ -53,5 +53,5 @@ for _, row in tqdm(df_files.iterrows(), total=df_files.shape[0]):
     df = pd.read_csv('https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/raw/master/' + 
                           row['filename'])
     df = process_data(df)
-    df.to_csv(f'../data-truth/COVID-19/{row.date.date()}_COVID-19_hospitalization.csv', index = False)
+    df.to_csv(f'../data-truth/COVID-19/rolling-sum/{row.date.date()}_COVID-19_hospitalization.csv', index = False)
     
