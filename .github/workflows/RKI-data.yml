@@ -27,7 +27,7 @@ jobs:
       run: |
         cd ./code
         python3 ./get_rki_hospitalization_data.py
-        python3 ./deconvolute_rolling_sum.py
+        # python3 ./deconvolute_rolling_sum.py
         cd ../        
         
     - name: Commit files
@@ -37,7 +37,7 @@ jobs:
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action - RKI Update"
         git remote rm origin
-        git remote add origin https://${AUTH}@github.com/KITmetricslab/covid19-forecast-hub-de.git > /dev/null 2>&1
+        git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
         git pull origin master
         git add --all
         git commit -m "Daily RKI update"
