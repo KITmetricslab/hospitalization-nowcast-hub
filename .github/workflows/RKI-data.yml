@@ -26,7 +26,7 @@ jobs:
     - name: Download RKI data
       run: |
         cd ./code
-        python3 ./get_rki_hospitalization_data.py.py
+        python3 ./get_rki_hospitalization_data.py
         python3 ./deconvolute_rolling_sum.py
         cd ../        
         
