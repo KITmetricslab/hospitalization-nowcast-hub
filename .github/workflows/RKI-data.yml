@@ -49,7 +49,7 @@ jobs:
         git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
         git pull origin main
         git add --all
-        git commit -m "Daily RKI update"
+        git commit --allow-empty -m "Daily RKI update"
         
     - name: Push changes
       run: |
