@@ -25,17 +25,13 @@ jobs:
         pip3 install -r .github/workflows/python_requirements.txt
         
     - name: Download RKI data
-      run: |
-        cd ./code
-        python3 ./get_rki_hospitalization_data.py
+      run:  python3 code/get_rki_hospitalization_data.py
         
     - name: Deconvolute data
-      run: python3 ./deconvolute_rolling_sum.py
+      run:  python3 code/deconvolute_rolling_sum.py
       
     - name: Create reporting triangle
-      run: |
-        python3 ./create_reporting_triangle.py
-        cd ../        
+      run:  python3 code/create_reporting_triangle.py
         
     - name: Commit files
       env:
