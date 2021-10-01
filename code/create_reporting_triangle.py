@@ -40,5 +40,7 @@ df.iloc[:, 4:] = df.iloc[:, 3:].diff(axis=1).iloc[:, 1:]
 value_cols = [c for c in df.columns if 'value' in c]
 for col in value_cols:
     df[col] = df[col].astype('Int64')
+    
+df.sort_values(['location', 'age_group', 'date'], inplace = True)
 
 df.to_csv('../data-truth/COVID-19/COVID-19_hospitalizations.csv', index = False)
