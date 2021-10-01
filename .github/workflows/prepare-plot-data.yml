@@ -1,4 +1,4 @@
-name: "RKI-data"
+name: "prepare-plot-data"
 on:
   workflow_dispatch:
   schedule:
@@ -24,20 +24,10 @@ jobs:
       run: |
         pip3 install -r .github/workflows/python_requirements.txt
         
-    - name: Download RKI data
+    - name: Prepare forecast data
       run:  |
-        cd ./code
-        python3 ./get_rki_hospitalization_data.py
-        
-    - name: Deconvolute data
-      run:  |
-        cd ./code
-        python3 ./deconvolute_rolling_sum.py
-      
-    - name: Create reporting triangle
-      run:  |
-        cd ./code
-        python3 ./create_reporting_triangle.py
+        cd ./viz
+        python3 ./prepare_forecast_data.py
         
     - name: Commit files
       env:
@@ -49,7 +39,7 @@ jobs:
         git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
         git pull origin main
         git add --all
-        git commit --allow-empty -m "Daily RKI update"
+        git commit --allow-empty -m "Daily plot update"
         
     - name: Push changes
       run: |
