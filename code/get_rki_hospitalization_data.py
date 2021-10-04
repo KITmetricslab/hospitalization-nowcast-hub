@@ -4,26 +4,26 @@ from pathlib import Path
 from tqdm.auto import tqdm
 tqdm.pandas()
 
-rki_to_fips = {0: 'GM',
-               1: 'GM10',
-               2: 'GM04',
-               3: 'GM06',
-               4: 'GM03',
-               5: 'GM07',
-               6: 'GM05',
-               7: 'GM08',
-               8: 'GM01',
-               9: 'GM02',
-               10: 'GM09',
-               11: 'GM16',
-               12: 'GM11',
-               13: 'GM12',
-               14: 'GM13',
-               15: 'GM14',
-               16: 'GM15'}
+rki_to_iso = {0: 'DE',
+              1: 'DE-SH',
+              2: 'DE-HH',
+              3: 'DE-NI',
+              4: 'DE-HB',
+              5: 'DE-NW',
+              6: 'DE-HE',
+              7: 'DE-RP',
+              8: 'DE-BW',
+              9: 'DE-BY',
+              10: 'DE-SL',
+              11: 'DE-BE',
+              12: 'DE-BB',
+              13: 'DE-MV',
+              14: 'DE-SN',
+              15: 'DE-ST',
+              16: 'DE-TH'}
 
 def process_data(df):
-    df['location'] = df.Bundesland_Id.replace(rki_to_fips)
+    df['location'] = df.Bundesland_Id.replace(rki_to_iso)
     df.drop(columns = ['Bundesland', 'Bundesland_Id', '7T_Hospitalisierung_Inzidenz'], inplace = True, errors = 'ignore')
     df.rename({'Datum': 'date', 'Altersgruppe': 'age_group','7T_Hospitalisierung_Faelle': 'value'}, 
           axis = 'columns', inplace = True)
