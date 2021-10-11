@@ -26,7 +26,7 @@ jobs:
         
     - name: Prepare forecast data
       run:  |
-        cd ./viz
+        cd ./nowcast_viz_de
         python3 ./prepare_forecast_data.py
         
     - name: Commit files
