@@ -6,10 +6,6 @@ tqdm.pandas()
 
 def deconvolute(y):
     y = y.to_numpy()
-    start = np.repeat(y[0]//7, 6)
-    if y[0]%7 != 0:
-        start += np.append(np.repeat(0, 7 - y[0]%7), np.repeat(1, y[0]%7 -1))
-    y = np.append(start, y)
     n = len(y)
     
     A = np.eye(n, n)
@@ -22,7 +18,6 @@ def deconvolute(y):
     
     A_inv = np.linalg.inv(A) 
     x = np.dot(A_inv,y)
-    x = x[6:]
     
     return x
 
@@ -35,10 +30,15 @@ path2 = Path('../data-truth/COVID-19/deconvoluted/')
 existing_dates = pd.unique([f.name[:10] for f in path2.glob('**/*')])
 files = [f for f in files if f[:10] not in existing_dates]
 
+df_init = pd.read_csv('../data-truth/COVID-19/initial_values.csv')
+
 for f in tqdm(files, total = len(files)):
     df = pd.read_csv(path/f)
     df.dropna(inplace = True)
+    df = df[df.date >= '2020-03-12']
+    df = pd.concat([df, df_init])
     df.sort_values(['location', 'age_group', 'date'], inplace = True)
-    df.value = df.groupby(['location', 'age_group'])['value'].transform(deconvolute)
+    df.reset_index(drop = True, inplace = True)
+    df.value = df.groupby(['location', 'age_group'])['value'].transform(deconvolute).astype(int)
     df.to_csv('../data-truth/COVID-19/deconvoluted/' + f.replace('.csv', '_deconvoluted.csv'), index = False)
     
