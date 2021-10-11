@@ -19,7 +19,7 @@ df.date = pd.to_datetime(df.date)
 dates = pd.Series(df.date.unique())
 df.rename(columns = {'value': 'value_0d'}, inplace = True)
 
-for delay in tqdm(range(1, 51), total = 50):
+for delay in tqdm(range(1, 81), total = 80):
     dfs_delayed = []
     for date in dates:
         date_delayed = (date + pd.Timedelta(days = delay)).date()
@@ -32,7 +32,7 @@ for delay in tqdm(range(1, 51), total = 50):
     df = df.merge(df_delayed, how = 'left')
     
 df_latest = pd.read_csv(path/files[-1], parse_dates = ['date'])
-df_latest.rename(columns = {'value': f'value_>50d'}, inplace = True)
+df_latest.rename(columns = {'value': f'value_>80d'}, inplace = True)
 df = df.merge(df_latest, how = 'left')
     
 df.iloc[:, 4:] = df.iloc[:, 3:].diff(axis=1).iloc[:, 1:]
