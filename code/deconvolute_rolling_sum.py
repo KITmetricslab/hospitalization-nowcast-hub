@@ -30,7 +30,7 @@ path2 = Path('../data-truth/COVID-19/deconvoluted/')
 existing_dates = pd.unique([f.name[:10] for f in path2.glob('**/*')])
 files = [f for f in files if f[:10] not in existing_dates]
 
-df_init = pd.read_csv('../data-truth/COVID-19/initial_values.csv')
+df_init = pd.read_csv('resources/initial_values.csv')
 
 for f in tqdm(files, total = len(files)):
     df = pd.read_csv(path/f)
