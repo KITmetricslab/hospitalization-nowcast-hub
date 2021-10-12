@@ -6,9 +6,9 @@
 
 ## Purpose
 
-This repository assembles nowcasts of hospitalizations due to COVID-19 in Germany in a standardized format. The repository is run by members of the [Chair of Econometrics and Statistics at Karlsruhe Institute of Technology](https://statistik.econ.kit.edu/index.php) and the [Computational Statistics Group at Heidelberg Institute for Theoretical Studies](https://www.h-its.org/research/cst/), see [below](#forecast-hub-team).
+This repository assembles nowcasts of the seven-day hospitalization incidence due to COVID-19 in Germany in a standardized format. The repository is run by members of the [Chair of Econometrics and Statistics at Karlsruhe Institute of Technology](https://statistik.econ.kit.edu/index.php) and the [Computational Statistics Group at Heidelberg Institute for Theoretical Studies](https://www.h-its.org/research/cst/), see [below](#forecast-hub-team). It is based on [data](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki/Truth-data) from Robert Koch Institute which we have processed for the purpose of nowcasting.
 
-An **interactive visualization** and additional information on our project can be found on our website soon.
+A darft version of an **interactive dashboard** can be found [here](https://jobrac.shinyapps.io/nowcast_viz_de/).
 
 ## Contents of the repository
 
@@ -20,8 +20,4 @@ The main contents of the repository are currently the following:
 
 ## Guide to submission
 
-Submission for actively contributing teams is based on pull requests. Our wiki contains a detailed [guide to submission](https://github.com/KITmetricslab/covid19-forecast-hub-de/wiki/Preparing-your-submission). **Nowcasts should be updated in a weekly rhythm. If possible, new nowcasts should be uploaded on Mondays.**
-
-## Data format
-
-We store point and quantile predictions in a long format, including information on location and age groups.
+This is a collaborative project which is open for contributions. If you are interested in contributing please check our [wiki](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki), in particular the page on [submissions](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki/Submission). Submission is based on pull requests. **The exact definition of targets and submission rhythm is not yet finalized and subject to discussion with participating teams (see [here](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki/Targets)).**
