@@ -35,7 +35,7 @@ for date in sorted(df_files.date.unique()):
     missing = [m for m in all_models if m not in df_temp.model.unique()]
     
     for m in missing:
-        df_old = df_files[(df_files.model == m) & (df_files.date.between(d - pd.Timedelta(days = 7), d))]
+        df_old = df_files[(df_files.model == m) & (df_files.date.between(date - pd.Timedelta(days = 7), date))]
         df_old = df_old[df_old.date == df_old.date.max()]
         df_temp = df_temp.append(df_old)
     
