@@ -56,6 +56,6 @@ for _, row in tqdm(df_files.iterrows(), total=df_files.shape[0]):
     df.to_csv(f'../data-truth/COVID-19/rolling-sum/{row.date.date()}_COVID-19_hospitalization.csv', index = False)
 
 # update available_dates.csv
-available_dates = pd.DataFrame({'date': [f.name[:10] for f in path.glob('**/*.csv')]})
+available_dates = pd.DataFrame({'date': sorted([f.name[:10] for f in path.glob('**/*.csv')])})
 available_dates.to_csv('../nowcast_viz_de/plot_data/available_dates.csv', index = False)
     
