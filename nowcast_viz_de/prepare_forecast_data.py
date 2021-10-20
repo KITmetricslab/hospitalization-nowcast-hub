@@ -2,12 +2,12 @@ import pandas as pd
 from pathlib import Path
 
 def process_forecasts(df):
-    df = df[df.type=='quantile'].reset_index(drop=True)
+    df.loc[df.type == 'quantile', 'quantile'] = 'q' + df.loc[df.type == 'quantile', 'quantile'].astype(str)
 
-    df['quantile'] = 'q' + df['quantile'].astype(str)
+    df.loc[df.type == 'mean', 'quantile'] = 'mean'
 
     df = df.pivot(index = ['location', 'age_group', 'forecast_date', 'target_end_date', 'target',
-           'type', 'pathogen', 'model'], values='value', columns='quantile')
+                           'pathogen', 'model'], values='value', columns='quantile')
 
     df.columns.name = None
 
