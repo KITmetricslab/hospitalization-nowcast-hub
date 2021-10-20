@@ -50,7 +50,7 @@ for date in sorted(df_files.date.unique()):
     df = df[df.target_end_date >= date - pd.Timedelta(days = 28)]
 
     df = process_forecasts(df)
-    df.to_csv(f'plot_data/{date}_forecast_data.csv', index=False)
+    df.to_csv(f'plot_data/{str(date)[:10]}_forecast_data.csv', index=False)
 
 # save list of available teams
 df_models = pd.DataFrame({'model': all_models})
