@@ -17,8 +17,8 @@ def process_forecasts(df):
 
     df.drop(columns=['forecast_date', 'type', 'target'], inplace = True, errors = 'ignore')
 
-    df = df[['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen', 
-           'q0.025', 'q0.1', 'q0.25', 'q0.5', 'q0.75', 'q0.9', 'q0.975']]
+    cols = ['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen']
+    df = df[cols + [c for c in df.columns if c not in cols]]
 
     df.sort_values(['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen'], inplace=True)
     
