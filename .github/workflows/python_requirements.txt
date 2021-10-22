@@ -1,5 +1,4 @@
 pandas
 numpy
 requests
-pathlib
 tqdm
