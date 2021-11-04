@@ -17,6 +17,21 @@ truth_as_of <- function(dat_truth, age_group = "00+", location = "DE", date){
              value = c(rep(NA, 6), rollapply(rowSums(matr), 7, sum)))
 }
 
+truth_by_reporting <- function(dat_truth, age_group = "00+", location = "DE"){
+  subs <- dat_truth[dat_truth$age_group == age_group &
+                      dat_truth$location == location, ]
+  matr <- subs[, grepl("value_", colnames(subs))]
+  nr <- nrow(matr)
+  for(i in 1:ncol(matr)){
+    matr[, i] <- c(rep(0, i - 1), head(matr[, i], nr - i + 1))
+  }
+  data.frame(date = subs$date,
+             value = c(rep(NA, 6), rollapply(rowSums(matr), 7, sum)))
+}
+
+a <- truth_by_reporting(dat_truth)
+plot(a$date, a$value, type = "l")
+
 # get Monday closest to a given date:
 closest_monday <- function(date){
   wk <- date + (-3:3)

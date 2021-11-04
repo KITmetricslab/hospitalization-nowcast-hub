@@ -151,6 +151,7 @@ shinyServer(function(input, output, session) {
     plot_data <- reactiveValues()
     observe({
         # scaling factor for population:
+        print(input$select_state)
         pop_factor <-
             if(input$select_scale == "per 100.000"){
                 100000/subset(pop, location == input$select_state & age_group == input$select_age)$population
@@ -276,7 +277,7 @@ shinyServer(function(input, output, session) {
                 add_lines(x = plot_data$truth_by_reporting$x, # trace for data by reporting date
                           y = plot_data$truth_by_reporting$y,
                           name = paste("data by appearance\n in RKI data"),
-                          line = list(color = 'rgb(0, 0, 0)', dash = "dot")) %>%
+                          line = list(color = 'rgb(0, 0, 0)', dash = "dash")) %>%
                 event_register(event = "plotly_click") # enable clicking to select date
             
             # add nowcasts: run through models
