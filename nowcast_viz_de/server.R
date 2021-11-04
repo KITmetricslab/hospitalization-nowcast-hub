@@ -7,18 +7,23 @@
 #    http://shiny.rstudio.com/
 #
 
+local <- FALSE
+
 library(shiny)
 library(plotly)
 library(zoo)
 Sys.setlocale(category = "LC_TIME", locale = "en_US.UTF8")
 
 source("functions.R")
-# setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub/viz/app")
+# setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub/nowcast_viz_de")
 
 
 # get vector of model names:
 dat_models <- read.csv("plot_data/list_teams.csv")
 models <- dat_models$model
+
+# get population sizes:
+pop <- read.csv("plot_data/population_sizes.csv")
 
 # assign colors:
 cols <- c('rgb(31, 119, 180)',
@@ -37,12 +42,15 @@ cols_transp <- gsub("rgb", "rgba", cols, fixed = TRUE)
 cols_transp <- gsub(")", ", 0.5)", cols_transp, fixed = TRUE)
 
 # get truth data in format which allows for re-construction of old data versions
-dat_truth <- read.csv("../data-truth/COVID-19/COVID-19_hospitalizations.csv",
+path_truth <- ifelse(local,
+                     "../data-truth/COVID-19/COVID-19_hospitalizations.csv",
+                     "https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/data-truth/COVID-19/COVID-19_hospitalizations.csv")
+dat_truth <- read.csv(path_truth,
                       colClasses = c(date = "Date"))
 dat_truth <- dat_truth[order(dat_truth$date), ]
 
 # vector of Mondays available in truth data:
-mondays <- unique(dat_truth$date[weekdays(dat_truth$date) == "Monday"])
+available_dates <- sort(as.Date(read.csv("plot_data/available_dates.csv")$date))
 
 # the most recent date in the truth data:
 current_date <- max(dat_truth$date)
@@ -61,13 +69,29 @@ shinyServer(function(input, output, session) {
     
     # listen to clicks in plot for date selection:
     observe({
-        date <- closest_monday(as.Date(event_data("plotly_click", source = "tsplot")$x[1]))
+        date <- as.Date(event_data("plotly_click", source = "tsplot")$x[1])
         # only use if actually available and contained in selection options 
         if(length(date) > 0){
-            if(date %in% mondays){
+            if(date %in% available_dates){
                 updateSelectInput(session = session, inputId = "select_date", 
                                   selected = as.character(date))
             }
+        }
+    })
+    
+    # set age_group to "00+" if state != "DE"
+    observe({
+        if(input$select_stratification == "state"){
+            updateSelectInput(session = session, inputId = "select_age", 
+                              selected = "00+")
+        }
+    })
+    
+    # set state to "DE" if age_group != "00+"
+    observe({
+        if(input$select_stratification == "age"){
+            updateSelectInput(session = session, inputId = "select_state", 
+                              selected = "DE")
         }
     })
     
@@ -76,8 +100,8 @@ shinyServer(function(input, output, session) {
         input$skip_backward
         isolate({
             if(!is.null(input$select_date) & input$skip_backward > 0){
-                new_date <- as.Date(input$select_date) - 7
-                if(new_date %in% dat_truth$date){
+                new_date <- as.Date(input$select_date) - 1
+                if(new_date %in% available_dates){
                     updateSelectInput(session = session, inputId = "select_date", 
                                       selected = as.character(new_date))
                 }
@@ -90,8 +114,8 @@ shinyServer(function(input, output, session) {
         input$skip_forward
         isolate({
             if(!is.null(input$select_date) & input$skip_forward > 0){
-                new_date <- as.Date(input$select_date) + 7
-                if(new_date %in% dat_truth$date){
+                new_date <- as.Date(input$select_date) + 1
+                if(new_date %in% available_dates){
                     updateSelectInput(session = session, inputId = "select_date", 
                                       selected = as.character(new_date))
                 }
@@ -106,15 +130,19 @@ shinyServer(function(input, output, session) {
     observe({
         # only read in if not already read in:
         if(is.null(forecast_data[[paste0(input$select_date)]])){
-            # read in file if available, set NULL otherwise
-            file_name <- paste0(input$select_date, "_forecast_data.csv")
-            if(file_name %in% list.files("plot_data")){
-                temp <- read.csv(paste0("plot_data/", file_name))
-            }else{
-                temp <- NULL
-            }
-            if(!is.null(input$select_date)){
-                forecast_data[[paste0(input$select_date)]] <- temp
+            dats <- as.character(as.Date(input$select_date) + (-2:2))
+            for (dat in dats) {
+                # read in file if available, set NULL otherwise
+                file_name <- paste0(dat, "_forecast_data.csv")
+                if(file_name %in% list.files("plot_data")){
+                    temp <- read.csv(paste0("plot_data/", file_name))
+                    temp$q0.5[is.na(temp$q0.5)] <- temp$mean[is.na(temp$q0.5)]
+                }else{
+                    temp <- NULL
+                }
+                if(!is.null(input$select_date)){
+                    forecast_data[[dat]] <- temp
+                }
             }
         }
     })
@@ -122,22 +150,35 @@ shinyServer(function(input, output, session) {
     # prepare data for plotting:
     plot_data <- reactiveValues()
     observe({
+        # scaling factor for population:
+        print(input$select_state)
+        pop_factor <-
+            if(input$select_scale == "per 100.000"){
+                100000/subset(pop, location == input$select_state & age_group == input$select_age)$population
+            }else{
+                1
+            }
+
         # a mapping to determine which trace corresponds to what (needed to replace things below)
-        temp <- list("selected_date" = 0,
-                     "old_truth" = 1,
-                     "current_truth" = 2)
-        for(i in seq_along(models)) temp[[models[i]]] <- 2*i + 2 - 1:0
+        temp <- list("selected_date" = 1, # 0 is grey area
+                     "old_truth" = 2,
+                     "current_truth" = 3)
+        for(i in seq_along(models)) temp[[models[i]]] <- 2*i + 3 - 1:0
         plot_data$mapping <- temp
         
         # truth data as of selected date:
-        old_truth <- truth_as_of(dat_truth = dat_truth, age_group = input$select_age,
+        old_truth <- truth_as_of(dat_truth = dat_truth, 
+                                 age_group = input$select_age,
+                                 location = input$select_state,
                                  date = input$select_date)
-        plot_data$old_truth <- data.frame(x = old_truth$date, y = old_truth$value)
+        plot_data$old_truth <- data.frame(x = old_truth$date, y = round(old_truth$value*pop_factor, 2))
         
         # most recent truth data:
-        current_truth <- truth_as_of(dat_truth = dat_truth, age_group = input$select_age,
+        current_truth <- truth_as_of(dat_truth = dat_truth, 
+                                     age_group = input$select_age,
+                                     location = input$select_state,
                                      date = current_date)
-        plot_data$current_truth <- data.frame(x = current_truth$date, y = current_truth$value)
+        plot_data$current_truth <- data.frame(x = current_truth$date, y = round(current_truth$value*pop_factor, 2))
         
         # y axis limit
         plot_data$ylim <- c(0, 1.1*max(plot_data$current_truth$y, na.rm = TRUE))
@@ -152,16 +193,37 @@ shinyServer(function(input, output, session) {
                     subs <- subset(forecast_data[[input$select_date]],
                                    age_group == input$select_age &
                                        model == mod &
-                                       location == "DE" &
+                                       location == input$select_state &
                                        pathogen == "COVID-19")
-                    # prepare list of simple data frames for plotting:
-                    points <- subs[, c("target_end_date", "q0.5")]
-                    lower <- subs[, c("target_end_date", "q0.025")]
-                    upper <- subs[, c("target_end_date", "q0.975")]
-                    colnames(points) <- colnames(lower) <- colnames(upper) <- c("x", "y")
-                    intervals <- rbind(lower, upper[nrow(upper):1, ])
                     
-                    plot_data[[mod]] <- list(points = points, intervals = intervals)
+                    if(nrow(subs) > 0){
+                        # prepare list of simple data frames for plotting:
+                        points <- subs[, c("target_end_date", "q0.5")]
+                        if(input$select_interval == "none"){
+                            lower <- subs[, c("target_end_date", "q0.5")]
+                            upper <- subs[, c("target_end_date", "q0.5")]
+                        }
+                        if(input$select_interval == "50%"){
+                            lower <- subs[, c("target_end_date", "q0.25")]
+                            upper <- subs[, c("target_end_date", "q0.75")]
+                        }
+                        if(input$select_interval == "95%"){
+                            lower <- subs[, c("target_end_date", "q0.025")]
+                            upper <- subs[, c("target_end_date", "q0.975")]
+                        }
+                        
+                        colnames(points) <- colnames(lower) <- colnames(upper) <- c("x", "y")
+                        intervals <- rbind(lower, upper[nrow(upper):1, ])
+                        
+                        # take population factor into account (switch between absolute numbers and per 100,000)
+                        points$y <- round(points$y*pop_factor, 2)
+                        intervals$y <- round(intervals$y*pop_factor, 2)
+                        
+                        # store:
+                        plot_data[[mod]] <- list(points = points, intervals = intervals)
+                    }else{
+                        plot_data[[mod]] <- NULL
+                    }
                 }else{
                     plot_data[[mod]] <- NULL
                 }
@@ -177,28 +239,32 @@ shinyServer(function(input, output, session) {
         isolate({
             
             # get truth curves:
-            old_truth <- truth_as_of(dat_truth = dat_truth, age_group = input$select_age,
-                                     date = max(mondays))
+            old_truth <- truth_as_of(dat_truth = dat_truth, 
+                                     age_group = input$select_age,
+                                     location = input$select_state,
+                                     date = max(available_dates))
             
-            current_truth <- truth_as_of(dat_truth = dat_truth, age_group = input$select_age,
+            current_truth <- truth_as_of(dat_truth = dat_truth,
+                                         age_group = input$select_age,
+                                         location = input$select_state,
                                          date = current_date)
             
             
-            # initlize plot:
+            # initialize plot:
             p <- plot_ly(mode = "lines", hovertemplate = '%{y}', source = "tsplot") %>% # last argument ensures labels are completely visible
                 layout(yaxis = list(title = '7-day hospitalization incidence'), # axis + legend settings
-                       xaxis = list(title = "time"),
+                       xaxis = list(title = "time (Meldedatum)"),
                        hovermode = "x unified") %>%
                 add_polygons(x = c(min(dat_truth$date), as.Date(input$select_date), # grey shade to separate past and future
-                                       as.Date(input$select_date), min(dat_truth$date)),
+                                   as.Date(input$select_date), min(dat_truth$date)),
                              y = rep(plot_data$ylim, each = 2),
                              fillcolor = "rgba(0.9, 0.9, 0.9, 0.5)",
                              line = list(width = 0),
                              showlegend = FALSE) %>%
-                # add_lines(x = rep(current_date, 2), # vertical line for selected date
-                #           y = 0:1, 
-                #           line = list(color = 'rgb(0.5, 0.5, 0.5)', dash = "dot"),
-                #           showlegend = FALSE) %>%
+                add_lines(x = rep(input$select_date, 2), # vertical line for selected date
+                          y = plot_data$ylim,
+                          line = list(color = 'rgb(0.5, 0.5, 0.5)', dash = "dot"),
+                          showlegend = FALSE) %>%
                 # layout(xaxis = list(rangeslider = list(type = "date", thickness = 0.08))) %>%
                 add_lines(x = old_truth$date, # trace for truth data as of selected date
                           y = old_truth$value,
@@ -236,12 +302,10 @@ shinyServer(function(input, output, session) {
                 p <- p %>% add_trace(x = x, y = y,
                                      name = mod,
                                      type = "scatter",
-                                     mode = "lines+markers",
+                                     mode = "lines",
                                      line = list(dash = "dot", 
-                                                 width = 1, 
+                                                 width = 2, 
                                                  color = cols[mod]),
-                                     marker = list(symbol = "circle",
-                                                   size = s),
                                      legendgroup = mod)
             }
             p
@@ -253,11 +317,11 @@ shinyServer(function(input, output, session) {
     
     # update shaded area to mark selected date:
     observe({
-        # plotlyProxyInvoke(myPlotProxy, "restyle", list(x = list(rep(as.Date(input$select_date), 2)),
-        #                                                y = list(plot_data$ylim)),
-        #                   list(0))
+        plotlyProxyInvoke(myPlotProxy, "restyle", list(x = list(rep(as.Date(input$select_date), 2)),
+                                                       y = list(plot_data$ylim)),
+                          list(1))
         plotlyProxyInvoke(myPlotProxy, "restyle", list(x = list(c(min(dat_truth$date), as.Date(input$select_date),
-                                                             as.Date(input$select_date), min(dat_truth$date))),
+                                                                  as.Date(input$select_date), min(dat_truth$date))),
                                                        y = list(rep(plot_data$ylim, each = 2))),
                           list(0))
     })
@@ -303,10 +367,20 @@ shinyServer(function(input, output, session) {
             # point nowcasts:
             plotlyProxyInvoke(myPlotProxy, "restyle",
                               list(x = list(x),
-                                   y = list(y), 
-                                   marker = list(size = s)),
+                                   y = list(y)),
                               list(plot_data$mapping[[mod]][2]))
         }
+        
+        # update log vs natural:
+        observe({
+            if(input$select_log == "log scale"){
+                plotlyProxyInvoke(myPlotProxy, "relayout",
+                                  list(yaxis = list(type = "log")))
+            }else{
+                plotlyProxyInvoke(myPlotProxy, "relayout",
+                                  list(yaxis = list(type = "linear")))
+            }
+        })
     })
     
 })

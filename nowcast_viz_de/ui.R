@@ -1,7 +1,24 @@
 library(shiny)
 library(plotly)
 
-mondays <- read.csv("plot_data/mondays.csv")$date
+available_dates <- sort(read.csv("plot_data/available_dates.csv")$date)
+bundeslaender <- c("All (Germany)" = "DE",
+                   "Baden-Württemberg" = "DE-BW", 	
+                   "Bayern" = "DE-BY", 	
+                   "Berlin" = "DE-BE", 	
+                   "Brandenburg" = "DE-BB", 	
+                   "Bremen" = "DE-HB", 	
+                   "Hamburg" = "DE-HH", 	
+                   "Hessen" = "DE-HE", 	
+                   "Mecklenburg-Vorpommern" = "DE-MV", 	
+                   "Niedersachsen" = "DE-NI", 	
+                   "Nordrhein-Westfalen" = "DE-NW", 	
+                   "Rheinland-Pfalz" = "DE-RP", 	
+                   "Saarland" = "DE-SL", 	
+                   "Sachsen" = "DE-SN",
+                   "Sachsen-Anhalt" = "DE-ST",
+                   "Schleswig-Holstein" = "DE-SH", 	
+                   "Thüringen" = "DE-TH")
 
 # Define UI for application
 shinyUI(fluidPage(
@@ -18,17 +35,24 @@ shinyUI(fluidPage(
             div(style="display: inline-block;vertical-align:top;width:200px", 
                 selectizeInput("select_date", 
                                label = NULL, 
-                               choices = rev(mondays))),
+                               choices = rev(available_dates))),
             div(style="display: inline-block;vertical-align:top;", actionButton("skip_forward", ">")),
-            selectizeInput("select_age",
-                           label = "Age group",
-                           choices = c("All" = "00+",
-                                       "Age 0 - 4" = "00-04",
-                                       "Age 5 - 14" = "05-14",
-                                       "Age 15 - 34" = "15-34",
-                                       "Age 35 - 59" = "35-59",
-                                       "Age 60 - 79" = "60-79",
-                                       "Age 80 and above" = "80+"), width = "200px"),
+            radioButtons("select_stratification", label = "Stratify by",
+                         choices = c("Age group" = "age", "Bundesland" = "state"), inline = TRUE),
+            conditionalPanel("input.select_stratification == 'age'",
+                             selectizeInput("select_age",
+                                            label = "Age group",
+                                            choices = c("All" = "00+",
+                                                        "Age 0 - 4" = "00-04",
+                                                        "Age 5 - 14" = "05-14",
+                                                        "Age 15 - 34" = "15-34",
+                                                        "Age 35 - 59" = "35-59",
+                                                        "Age 60 - 79" = "60-79",
+                                                        "Age 80 and above" = "80+"), width = "200px")),
+            conditionalPanel("input.select_stratification == 'state'",
+                             selectizeInput("select_state",
+                                            label = "Bundesland",
+                                            choices = bundeslaender, width = "200px")),
             radioButtons("select_interval", label = "Show prediction interval:", 
                          choices = c("95%", "50%", "none"), selected = "95%", inline = TRUE),
             radioButtons("select_scale", label = "Show as:", 
@@ -51,6 +75,7 @@ shinyUI(fluidPage(
               (nowcasthub-ensemble) are shown."),
             p("This project is currently still in development and the
               reliability of results has not yet been assessed systematically."),
+            p("Note: testmodel1 and testmodel2 only serve to test the visualization dashboard and are not actual nowcasts!"),
             plotlyOutput("tsplot"),
             p(),
             p("Raw forecast data and more information can be found in our",
