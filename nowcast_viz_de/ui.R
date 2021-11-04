@@ -58,7 +58,8 @@ shinyUI(fluidPage(
             radioButtons("select_scale", label = "Show as:", 
                          choices = c("absolute counts", "per 100.000"), selected = "absolute counts", inline = TRUE),
             radioButtons("select_log", label = NULL, 
-                         choices = c("natural scale", "log scale"), selected = "natural scale", inline = TRUE)
+                         choices = c("natural scale", "log scale"), selected = "natural scale", inline = TRUE),
+            checkboxInput("show_truth_by_reporting", label = "Show time series by appearance in RKI data", value = FALSE)
         ),
         
         # Show a plot of the generated distribution

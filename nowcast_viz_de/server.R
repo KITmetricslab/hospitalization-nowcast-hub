@@ -151,7 +151,6 @@ shinyServer(function(input, output, session) {
     plot_data <- reactiveValues()
     observe({
         # scaling factor for population:
-        print(input$select_state)
         pop_factor <-
             if(input$select_scale == "per 100.000"){
                 100000/subset(pop, location == input$select_state & age_group == input$select_age)$population
@@ -162,8 +161,9 @@ shinyServer(function(input, output, session) {
         # a mapping to determine which trace corresponds to what (needed to replace things below)
         temp <- list("selected_date" = 1, # 0 is grey area
                      "old_truth" = 2,
-                     "current_truth" = 3)
-        for(i in seq_along(models)) temp[[models[i]]] <- 2*i + 3 - 1:0
+                     "current_truth" = 3,
+                     "truth_by_reporting" = 4)
+        for(i in seq_along(models)) temp[[models[i]]] <- 2*i + 4 - 1:0
         plot_data$mapping <- temp
         
         # truth data as of selected date:
@@ -179,6 +179,17 @@ shinyServer(function(input, output, session) {
                                      location = input$select_state,
                                      date = current_date)
         plot_data$current_truth <- data.frame(x = current_truth$date, y = round(current_truth$value*pop_factor, 2))
+        
+        # truth by reporting:
+        if(input$show_truth_by_reporting){
+            truth_by_rep <- truth_by_reporting(dat_truth = dat_truth,
+                                               age_group = input$select_age,
+                                               location = input$select_state)
+        }else{
+            truth_by_rep <- data.frame(date = as.Date("2021-04-12"),
+                                       value = 0)
+        }
+        plot_data$truth_by_reporting <- data.frame(x = truth_by_rep$date, y = round(truth_by_rep$value*pop_factor, 2))
         
         # y axis limit
         plot_data$ylim <- c(0, 1.1*max(plot_data$current_truth$y, na.rm = TRUE))
@@ -238,18 +249,6 @@ shinyServer(function(input, output, session) {
         # only run at start of app, rest is done in updates below
         isolate({
             
-            # get truth curves:
-            old_truth <- truth_as_of(dat_truth = dat_truth, 
-                                     age_group = input$select_age,
-                                     location = input$select_state,
-                                     date = max(available_dates))
-            
-            current_truth <- truth_as_of(dat_truth = dat_truth,
-                                         age_group = input$select_age,
-                                         location = input$select_state,
-                                         date = current_date)
-            
-            
             # initialize plot:
             p <- plot_ly(mode = "lines", hovertemplate = '%{y}', source = "tsplot") %>% # last argument ensures labels are completely visible
                 layout(yaxis = list(title = '7-day hospitalization incidence'), # axis + legend settings
@@ -266,14 +265,18 @@ shinyServer(function(input, output, session) {
                           line = list(color = 'rgb(0.5, 0.5, 0.5)', dash = "dot"),
                           showlegend = FALSE) %>%
                 # layout(xaxis = list(rangeslider = list(type = "date", thickness = 0.08))) %>%
-                add_lines(x = old_truth$date, # trace for truth data as of selected date
-                          y = old_truth$value,
+                add_lines(x = plot_data$old_truth$x, # trace for truth data as of selected date
+                          y = plot_data$old_truth$y,
                           name = paste("data as of", current_date),
                           line = list(color = 'rgb(0.5, 0.5, 0.5)')) %>%
-                add_lines(x = current_truth$date, # trace for most current truth data
-                          y = current_truth$value,
+                add_lines(x = plot_data$current_truth$x, # trace for most current truth data
+                          y = plot_data$current_truth$y,
                           name = paste("data as of", current_date),
                           line = list(color = 'rgb(0, 0, 0)')) %>%
+                add_lines(x = plot_data$truth_by_reporting$x, # trace for data by reporting date
+                          y = plot_data$truth_by_reporting$y,
+                          name = paste("data by appearance\n in RKI data"),
+                          line = list(color = 'rgb(0, 0, 0)', dash = "dot")) %>%
                 event_register(event = "plotly_click") # enable clicking to select date
             
             # add nowcasts: run through models
@@ -339,6 +342,13 @@ shinyServer(function(input, output, session) {
                                                        y = list(plot_data$old_truth$y),
                                                        name = paste("data as of", input$select_date)),
                           list(plot_data$mapping$old_truth))
+    })
+    
+    # update truth by reporting date:
+    observe({
+        plotlyProxyInvoke(myPlotProxy, "restyle", list(x = list(plot_data$truth_by_reporting$x),
+                                                       y = list(plot_data$truth_by_reporting$y)),
+                          list(plot_data$mapping$truth_by_reporting))
     })
     
     # update nowcasts:
