@@ -29,8 +29,9 @@ df_files['date'] = pd.to_datetime(df_files.file.str[:10])
 df_files['model'] = df_files.file.str[11:-4]
 
 all_models = df_files.model.unique()
+dates = pd.date_range(df_files.date.min(), pd.to_datetime('today'))
 
-for date in sorted(df_files.date.unique()):
+for date in dates:
     df_temp = df_files[df_files.date == date]
     missing = [m for m in all_models if m not in df_temp.model.unique()]
     
