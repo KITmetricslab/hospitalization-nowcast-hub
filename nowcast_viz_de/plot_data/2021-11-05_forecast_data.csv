@@ -1,5 +1,4 @@
 model,target_type,target_end_date,location,age_group,pathogen,mean,q0.025,q0.975
-RKI-weekly_report,hosp,2021-10-07,DE,00+,COVID-19,2389.0,2389.0,2389.0
 RKI-weekly_report,hosp,2021-10-08,DE,00+,COVID-19,2444.0,2444.0,2444.0
 RKI-weekly_report,hosp,2021-10-09,DE,00+,COVID-19,2519.0,2519.0,2519.0
 RKI-weekly_report,hosp,2021-10-10,DE,00+,COVID-19,2560.0,2560.0,2560.0
