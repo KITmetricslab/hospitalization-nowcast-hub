@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 from pathlib import Path
 
@@ -15,9 +16,15 @@ def process_forecasts(df):
     df['target_type'] = 'hosp'
 
     df.drop(columns=['forecast_date', 'type', 'target'], inplace = True, errors = 'ignore')
+    
+    # add columns for quantiles if they are not present in submissions
+    required_quantiles = ['q0.025', 'q0.1', 'q0.25', 'q0.5', 'q0.75', 'q0.9', 'q0.975']
+    missing_quantiles = [q for q in required_quantiles if q not in df.columns]
+    for q in missing_quantiles:
+        df[q] = np.nan
 
-    cols = ['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen']
-    df = df[cols + [c for c in df.columns if c not in cols]]
+    df = df[['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen', 'mean', 
+             'q0.025', 'q0.1', 'q0.25', 'q0.5', 'q0.75', 'q0.9', 'q0.975']]
 
     df.sort_values(['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen'], inplace=True)
     
