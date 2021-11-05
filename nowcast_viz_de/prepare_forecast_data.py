@@ -45,13 +45,14 @@ for date in dates:
         df_temp2 = pd.read_csv(f'../data-processed/{row.model}/{row.file}', parse_dates = ['target_end_date'])
         df_temp2['model'] = row.model
         dfs.append(df_temp2)
+        
+    if len(dfs) > 0:
+        df = pd.concat(dfs)
 
-    df = pd.concat(dfs)
-    
-    df = df[df.target_end_date >= date - pd.Timedelta(days = 28)]
+        df = df[df.target_end_date >= date - pd.Timedelta(days = 28)]
 
-    df = process_forecasts(df)
-    df.to_csv(f'plot_data/{str(date)[:10]}_forecast_data.csv', index=False)
+        df = process_forecasts(df)
+        df.to_csv(f'plot_data/{str(date)[:10]}_forecast_data.csv', index=False)
 
 # save list of available teams
 df_models = pd.DataFrame({'model': all_models})
