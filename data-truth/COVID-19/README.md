@@ -8,6 +8,6 @@ The folder `deconvoluted` contains a deconvoluted version of the data, represent
 
 The file `COVID-19_hospitalizations.csv` is in "reporting triangle" format. Each row shows the initially reported count for a given *Meldedatum* and the reported changes (to the previous day) for the following 80 days. Note that due to reporting irregularities these can occasionally be negative. The row sum correspond to the most recent total hospitalizations reported for each *Meldedatum*.
 
-The file `COVID-19_hospitalizations_preprocessed.csv` is a processed version of `COVID-19_hospitalizations.csv` where negaative values have been re-distributed to the previous observation(s).
+The file `COVID-19_hospitalizations_preprocessed.csv` is a processed version of `COVID-19_hospitalizations.csv` where negative values have been re-distributed to the previous observation(s).
 
 See the wiki entry on [truth data](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki/Truth-data) for more details.
