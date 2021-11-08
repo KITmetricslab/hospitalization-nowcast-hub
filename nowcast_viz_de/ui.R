@@ -1,7 +1,12 @@
 library(shiny)
 library(plotly)
 
-available_dates <- sort(read.csv("plot_data/available_dates.csv")$date)
+local <- FALSE
+if(local){
+    available_dates <- sort(read.csv("plot_data/available_dates.csv")$date)
+}else{
+    available_dates <- sort(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv")$date)
+}
 bundeslaender <- c("All (Germany)" = "DE",
                    "Baden-Württemberg" = "DE-BW", 	
                    "Bayern" = "DE-BY", 	
@@ -42,20 +47,20 @@ shinyUI(fluidPage(
             conditionalPanel("input.select_stratification == 'age'",
                              selectizeInput("select_age",
                                             label = "Altersgruppe / age group",
-                                            choices = c("All" = "00+",
-                                                        "Age 0 - 4" = "00-04",
-                                                        "Age 5 - 14" = "05-14",
-                                                        "Age 15 - 34" = "15-34",
-                                                        "Age 35 - 59" = "35-59",
-                                                        "Age 60 - 79" = "60-79",
-                                                        "Age 80 and above" = "80+"), width = "200px")),
+                                            choices = c("Alle / all" = "00+",
+                                                        "0 - 4" = "00-04",
+                                                        "5 - 14" = "05-14",
+                                                        "15 - 34" = "15-34",
+                                                        "35 - 59" = "35-59",
+                                                        "60 - 79" = "60-79",
+                                                        "80+" = "80+"), width = "200px")),
             conditionalPanel("input.select_stratification == 'state'",
                              selectizeInput("select_state",
                                             label = "Bundesland",
                                             choices = bundeslaender, width = "200px")),
-            radioButtons("select_interval", label = "Show prediction interval:", 
+            radioButtons("select_interval", label = "Vorhersageintervall / prediction interval:", 
                          choices = c("95%", "50%", "none"), selected = "95%", inline = TRUE),
-            radioButtons("select_scale", label = "Show as:", 
+            radioButtons("select_scale", label = "Anzeige / Show as:", 
                          choices = c("absolute Zahlen / absolute counts" = "absolute counts",
                                      "pro / per 100.000" = "per 100.000"),
                          selected = "absolute counts", inline = TRUE),
@@ -64,6 +69,10 @@ shinyUI(fluidPage(
                                      "log-Skala / log scale"  ="log scale"), 
                          selected = "natural scale", inline = TRUE),
             checkboxInput("show_truth_by_reporting", label = "Zeitreihe nach Erscheinen in RKI-Daten / time series by appearance in RKI data", 
+                          value = FALSE),
+            checkboxInput("show_last_two_days", label = "Zeige letzte zwei Tage / show two most recent days", 
+                          value = FALSE),
+            checkboxInput("show_retrospective_nowcasts", label = "Nachträglich erstellte Nowcasts zeigen / show retrospective nowcasts", 
                           value = FALSE),
             radioButtons("select_language", label = "Sprache / Language",
                          choices = c("Deutsch" = "DE", "Englisch" = "EN"))

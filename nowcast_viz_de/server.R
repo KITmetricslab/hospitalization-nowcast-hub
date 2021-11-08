@@ -7,23 +7,42 @@
 #    http://shiny.rstudio.com/
 #
 
-local <- FALSE
+local <- TRUE
 
 library(shiny)
 library(plotly)
 library(zoo)
+library(httr)
+
 Sys.setlocale(category = "LC_TIME", locale = "en_US.UTF8")
 
 source("functions.R")
 # setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub/nowcast_viz_de")
 
-
-# get vector of model names:
-dat_models <- read.csv("plot_data/list_teams.csv")
+# check which forecast files are available:
+if(local){
+    forecast_files <- list.files("plot_data")
+    # get vector of model names:
+    dat_models <- read.csv("plot_data/list_teams.csv")
+    # get population sizes:
+    pop <- read.csv("plot_data/population_sizes.csv")
+    # vector of Mondays available in truth data:
+    available_dates <- sort(as.Date(read.csv("plot_data/available_dates.csv")$date))
+}else{
+    req <- GET("https://api.github.com/repos/KITmetricslab/hospitalization-nowcast-hub/git/trees/main?recursive=1")
+    stop_for_status(req)
+    filelist <- unlist(lapply(content(req)$tree, "[", "path"), use.names = F)
+    forecast_files <- grep("forecast_data.csv", filelist, value = TRUE, fixed = TRUE)
+    forecast_files <- basename(grep("nowcast_viz_de/plot_data/20", forecast_files, value = TRUE, fixed = TRUE))
+    # get vector of model names:
+    dat_models <- read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/list_teams.csv")
+    # get population sizes:
+    pop <- read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/population_sizes.csv")
+    # vector of Mondays available in truth data:
+    available_dates <- sort(as.Date(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv")$date))
+}
 models <- dat_models$model
 
-# get population sizes:
-pop <- read.csv("plot_data/population_sizes.csv")
 
 # assign colors:
 cols <- c('rgb(31, 119, 180)',
@@ -49,8 +68,7 @@ dat_truth <- read.csv(path_truth,
                       colClasses = c(date = "Date"))
 dat_truth <- dat_truth[order(dat_truth$date), ]
 
-# vector of Mondays available in truth data:
-available_dates <- sort(as.Date(read.csv("plot_data/available_dates.csv")$date))
+
 
 # the most recent date in the truth data:
 current_date <- max(dat_truth$date)
@@ -134,8 +152,16 @@ shinyServer(function(input, output, session) {
             for (dat in dats) {
                 # read in file if available, set NULL otherwise
                 file_name <- paste0(dat, "_forecast_data.csv")
-                if(file_name %in% list.files("plot_data")){
-                    temp <- read.csv(paste0("plot_data/", file_name))
+                if(file_name %in% forecast_files){
+                    if(local){
+                        path_forecast_files <- "plot_data/"
+                    }else{
+                        path_forecast_files <- "https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/"
+                    }
+                    temp <- read.csv(paste0(path_forecast_files, file_name), 
+                                     colClasses = c("retrospective" = "logical",
+                                                    "forecast_date" = "Date",
+                                                    "target_end_date" = "Date"))
                     temp$q0.5[is.na(temp$q0.5)] <- temp$mean[is.na(temp$q0.5)]
                 }else{
                     temp <- NULL
@@ -151,7 +177,6 @@ shinyServer(function(input, output, session) {
     plot_data <- reactiveValues()
     observe({
         # scaling factor for population:
-        print(input$select_state)
         pop_factor <-
             if(input$select_scale == "per 100.000"){
                 100000/subset(pop, location == input$select_state & age_group == input$select_age)$population
@@ -207,6 +232,18 @@ shinyServer(function(input, output, session) {
                                        model == mod &
                                        location == input$select_state &
                                        pathogen == "COVID-19")
+                    
+                    # remove retrospective if requested:
+                    if(!input$show_retrospective_nowcasts){
+                        subs <- subset(subs, !retrospective)
+                    }
+                    
+                    # remove last two days if requested:
+                    if(!input$show_last_two_days){
+                        print(subs$target_end_date)
+                        subs <- subs[subs$target_end_date <= (subs$forecast_date - 2), ]
+                    }
+                    
                     
                     if(nrow(subs) > 0){
                         # prepare list of simple data frames for plotting:

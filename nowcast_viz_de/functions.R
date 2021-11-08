@@ -29,9 +29,6 @@ truth_by_reporting <- function(dat_truth, age_group = "00+", location = "DE"){
              value = c(rep(NA, 6), rollapply(rowSums(matr), 7, sum)))
 }
 
-a <- truth_by_reporting(dat_truth)
-plot(a$date, a$value, type = "l")
-
 # get Monday closest to a given date:
 closest_monday <- function(date){
   wk <- date + (-3:3)
