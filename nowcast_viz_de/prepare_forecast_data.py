@@ -15,7 +15,7 @@ def process_forecasts(df):
 
     df['target_type'] = 'hosp'
 
-    df.drop(columns=['forecast_date', 'type', 'target'], inplace = True, errors = 'ignore')
+    df.drop(columns=['type', 'target'], inplace = True, errors = 'ignore')
     
     # add columns for quantiles if they are not present in submissions
     required_quantiles = ['q0.025', 'q0.1', 'q0.25', 'q0.5', 'q0.75', 'q0.9', 'q0.975']
@@ -26,7 +26,7 @@ def process_forecasts(df):
     df = df[['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen', 'mean', 
              'q0.025', 'q0.1', 'q0.25', 'q0.5', 'q0.75', 'q0.9', 'q0.975', 'retrospective']]
 
-    df.sort_values(['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen'], inplace=True)
+    df.sort_values(['model', 'target_type', 'forecast_date', 'target_end_date', 'location', 'age_group', 'pathogen'], inplace=True)
     
     return(df)
 
