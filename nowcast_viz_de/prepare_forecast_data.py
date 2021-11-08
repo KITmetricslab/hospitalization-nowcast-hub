@@ -8,7 +8,7 @@ def process_forecasts(df):
     df.loc[df.type == 'mean', 'quantile'] = 'mean'
 
     df = df.pivot(index = ['location', 'age_group', 'forecast_date', 'target_end_date', 'target',
-                           'pathogen', 'model'], values='value', columns='quantile')
+                           'pathogen', 'model', 'retrospective'], values='value', columns='quantile')
 
     df.columns.name = None
     df.reset_index(inplace=True)
@@ -24,16 +24,25 @@ def process_forecasts(df):
         df[q] = np.nan
 
     df = df[['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen', 'mean', 
-             'q0.025', 'q0.1', 'q0.25', 'q0.5', 'q0.75', 'q0.9', 'q0.975']]
+             'q0.025', 'q0.1', 'q0.25', 'q0.5', 'q0.75', 'q0.9', 'q0.975', 'retrospective']]
 
     df.sort_values(['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen'], inplace=True)
     
     return(df)
 
-path = Path('../data-processed')
-df_files = pd.DataFrame({'file': [f.name for f in path.glob('**/*') if f.name.endswith('.csv')]})
+path1 = Path('../data-processed')
+df1 = pd.DataFrame({'file': [f.name for f in path1.glob('**/*.csv')]})
+df1['path'] = [str(f) for f in path1.glob('**/*.csv')]
+
+path2 = Path('../data-processed_retrospective')
+df2 = pd.DataFrame({'file': [f.name for f in path2.glob('**/*.csv')]})
+df2['path'] = [str(f) for f in path2.glob('**/*.csv')]
+
+df_files = pd.concat([df1, df2], ignore_index = True)
+
 df_files['date'] = pd.to_datetime(df_files.file.str[:10])
 df_files['model'] = df_files.file.str[11:-4]
+df_files['retrospective'] = df_files.path.str.contains('retrospective')
 
 all_models = df_files.model.unique()
 dates = pd.date_range(df_files.date.min(), pd.to_datetime('today'))
@@ -49,8 +58,10 @@ for date in dates:
     
     dfs = []
     for _, row in df_temp.iterrows():
-        df_temp2 = pd.read_csv(f'../data-processed/{row.model}/{row.file}', parse_dates = ['target_end_date'])
+        df_temp2 = pd.read_csv(f'../data-processed{"_retrospective" if row.retrospective else ""}/{row.model}/{row.file}', 
+                               parse_dates = ['target_end_date'])
         df_temp2['model'] = row.model
+        df_temp2['retrospective'] = row.retrospective
         dfs.append(df_temp2)
         
     if len(dfs) > 0:
