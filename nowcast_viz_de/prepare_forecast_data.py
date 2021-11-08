@@ -23,7 +23,7 @@ def process_forecasts(df):
     for q in missing_quantiles:
         df[q] = np.nan
 
-    df = df[['model', 'target_type', 'target_end_date', 'location', 'age_group', 'pathogen', 'mean', 
+    df = df[['model', 'target_type', 'forecast_date', 'target_end_date', 'location', 'age_group', 'pathogen', 'mean', 
              'q0.025', 'q0.1', 'q0.25', 'q0.5', 'q0.75', 'q0.9', 'q0.975', 'retrospective']]
 
     df.sort_values(['model', 'target_type', 'forecast_date', 'target_end_date', 'location', 'age_group', 'pathogen'], inplace=True)
