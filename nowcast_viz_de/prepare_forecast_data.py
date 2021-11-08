@@ -75,3 +75,7 @@ for date in dates:
 # save list of available teams
 df_models = pd.DataFrame({'model': all_models})
 df_models.to_csv('plot_data/list_teams.csv', index = False)
+
+# save list of all plot data files
+df_plot_data = pd.DataFrame({'file': [f.name for f in Path('plot_data').glob('**/*forecast_data.csv')]})
+df_plot_data.to_csv('plot_data/list_plot_data.csv', index = False)
