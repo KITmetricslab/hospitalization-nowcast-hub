@@ -1,11 +1,11 @@
-setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub/baseline")
+setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub/code/baseline")
 source("functions.R")
-source("../code/check_nowcast_submission/plot_functions.R")
+source("../check_nowcast_submission/plot_functions.R")
 
 library(zoo)
 
 # read truth data:
-observed0 <- read.csv("../data-truth/COVID-19/COVID-19_hospitalizations_preprocessed.csv",
+observed0 <- read.csv("../../data-truth/COVID-19/COVID-19_hospitalizations_preprocessed.csv",
                      colClasses = c("date" = "Date"))
 observed0 <- subset(observed0, location == "DE" & age_group == "00+")
 # prepare for plotting:
@@ -30,14 +30,14 @@ for(i in seq_along(forecast_dates)){
                         max_horizon = 28)
   
   # truth data as of forecast_date for plot:
-  dat_truth_temp <- truth_as_of(dat_truth, age_group = "00+",
+  dat_truth_temp <- truth_as_of(observed0, age_group = "00+",
                                              location = "DE",
                                              date = forecast_date)
   
   # generate a plot:
   plot_forecast(forecasts = nc,
                 location = "DE", age_group = "00+",
-                truth = truth_inc, target_type = paste("inc hosp"),
+                truth = observed_for_plot, target_type = paste("inc hosp"),
                 levels_coverage = c(0.5, 0.95),
                 start = as.Date(forecast_date) - 35,
                 end = as.Date(forecast_date) + 28,
