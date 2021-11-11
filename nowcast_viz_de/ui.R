@@ -1,7 +1,9 @@
 library(shiny)
 library(plotly)
+library(shinyhelper)
+library(magrittr)
 
-local <- FALSE
+local <- TRUE
 if(local){
     available_dates <- sort(read.csv("plot_data/available_dates.csv")$date)
 }else{
@@ -25,11 +27,15 @@ bundeslaender <- c("All (Germany)" = "DE",
                    "Schleswig-Holstein" = "DE-SH", 	
                    "Thüringen" = "DE-TH")
 
+style_explanation <- "font-size:13px;"
+
 # Define UI for application
 shinyUI(fluidPage(
     
     # Application title
     titlePanel("Nowcasts der Hospitalisierungsinzidenz in Deutschland (COVID-19)"),
+    
+    br(),
     
     # Sidebar with a slider input for number of bins
     sidebarLayout(
@@ -59,8 +65,8 @@ shinyUI(fluidPage(
                                             label = "Bundesland",
                                             choices = bundeslaender, width = "200px")),
             radioButtons("select_interval", label = "Vorhersageintervall / prediction interval:", 
-                         choices = c("95%", "50%", "none"), selected = "95%", inline = TRUE),
-            radioButtons("select_scale", label = "Anzeige / Show as:", 
+                         choices = c("95%" = "95%", "50%" = "50%", "keines / none" = "none"), selected = "95%", inline = TRUE),
+            radioButtons("select_scale", label = "Anzeige / show as:", 
                          choices = c("absolute Zahlen / absolute counts" = "absolute counts",
                                      "pro / per 100.000" = "per 100.000"),
                          selected = "absolute counts", inline = TRUE),
@@ -74,52 +80,57 @@ shinyUI(fluidPage(
                           value = FALSE),
             checkboxInput("show_retrospective_nowcasts", label = "Nachträglich erstellte Nowcasts zeigen / show retrospective nowcasts", 
                           value = FALSE),
-            radioButtons("select_language", label = "Sprache / Language",
-                         choices = c("Deutsch" = "DE", "Englisch" = "EN"))
+            radioButtons("select_language", label = "Sprache / language",
+                         choices = c("Deutsch" = "DE", "Englisch" = "EN")),
+            conditionalPanel("input.select_language == 'DE'",
+                             helper(strong("Erklärung der Kontrollelemente"),
+                                    content = "erklaerung",
+                                    type = "markdown",
+                                    size = "m")),
+            conditionalPanel("input.select_language == 'EN'",
+                             helper(strong("Explanation of control elements"),
+                                    type = "markdown",
+                                    content = "explanation",
+                                    size = "m")),
         ),
         
         mainPanel(
             conditionalPanel("input.select_language == 'DE'",
-                             p("Sieben-Tages-Hospitalisierungsinzidenzen (wie ",  
-                               a("vom RKI berichtet", href = "https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland"),
-                               "sind einer der Hauptindikatoren für die Pandemielage in Deutschland. Durch ", 
-                               a("Meldeverzüge", href = "https://www.rki.de/SharedDocs/FAQ/NCOV2019/FAQ_Liste_Epidemiologie.html"), 
-                               "sind die Daten für die letzten Tage stets unvollständig und unterschätzen die wahre Zahl an Hospitalisierungen. 
-              Dieses Dashboard fasst de Ergebnisse verschiedener Nowcassting-Modelle zusammen, d.h. statistischer Korrekturverfahren
-              um die Meldeverzüge zu berücksichtigen."),
-                             p("Dieses Projekt befindet sich noch im Aufbau und die Verlässlichkeit der Ergebnisse ist noch nicht systematisch evaluiert worden."),
-                             p("Wichtig: testmodel1 und testmodel2 dienen nur zum Test der Webseite und sind keine tatsächlichen Nowcasts!")
+                             p("Diese Plattform vereint Nowcasts der COVID19-7-Tages-Hospitalisierungsinzidenz in Deutschland basierend auf verschiedenen Methoden, mit dem Ziel einer verlässlichen Einschätzung aktueller Trends."),
             ),
             conditionalPanel("input.select_language == 'EN'",
-                             p("Seven-day hospitalization incidences (as ",  
-                               a("reported by RKI", href = "https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland"),
-                               "have become one of the main indicators for the
-              spread of COVID-19 in Germany. However, due to ", 
-                               a("reporting lags", href = "https://www.rki.de/SharedDocs/FAQ/NCOV2019/FAQ_Liste_Epidemiologie.html"), 
-                               ", the most recent data points
-              are incomplete and tend to underestimate the true number of hospitalization. This dashboard
-              summarizes outputs from different nowcasting models, i.e. statistical methods to correct
-              for reporting delays."),
-                             p("This project is currently still in development and the
-              reliability of results has not yet been assessed systematically."),
-                             p("Note: testmodel1 and testmodel2 only serve to test the visualization dashboard and are not actual nowcasts!")
+                             p("This platform unites nowcasts of the COVID-19 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends."),
             ),
             plotlyOutput("tsplot"),
             p(),
             conditionalPanel("input.select_language == 'DE'",
-                             p("Rohdaten und detailliertere Informationen sind in unserem",
-                               a("GitHub-Repository.", href = "https://github.com/KITmetricslab/hospitalization-nowcast-hub"),
-                               "verfügbar."),
-                             p("Diese Plattform wird von Mitgliedern des ",
-                               a("Lehrstuhls für Ökonometrie und Statistik", href = "https://statistik.econ.kit.edu/index.php"),
-                               "am Karlsruher Institut für Technologie betrieben. Kontakt: forecasthub@econ.kit.edu")
+                             p("Das Wichtigste in Kürze"),
+                             p("- Die 7-Tages-Hospitalisierungsinzidenz ist einer der Leitindikatoren für die COVID-19 Pandemie in Deutschland.", style = style_explanation),
+                             p("- Aufgrund von Verzögerungen sind die für die letzten Tage angegebenen Werte stets zu niedrig. Dadurch kann der Eindruck einer fallenden Tendenz entstehen, selbst wenn die Hospitalisierungen tatsächlich ansteigen.", style = style_explanation),
+                             p("- Nowcasts helfen, diese Werte zu korrigieren und eine realistischere Einschätzung der aktuellen Entwicklung zu erhalten.", style = style_explanation),
+                             p("- Es gibt unterschiedliche Nowcasting-Verfahren. Diese vergleichen wir hier systematisch und kombinieren sie in einem sogenannten Ensemble-Nowcast.", style = style_explanation),
+                             strong("Dieses Projekt befindet sich noch im Aufbau und die Verlässlichkeit der Ergebnisse ist noch nicht eingehend evaluiert worden.", style = style_explanation)
             ),
             conditionalPanel("input.select_language == 'EN'",
-                             p("Raw forecast data and more information can be found in our",
-                               a("GitHub repository.", href = "https://github.com/KITmetricslab/hospitalization-nowcast-hub")),
-                             p("This platform is run by members of the ",
-                               a("Chair of Statistics and Econometrics", href = "https://statistik.econ.kit.edu/index.php"),
-                               "at Karlsruhe Institute of Technology. Contact: forecasthub@econ.kit.edu")
+                             p("Short summary"),
+                             p("- The 7-day hospitalization incidence is one of the main indicators for the assessment of the COVID-19 pandemic in Germany.", style = style_explanation),
+                             p("- Due to delays recent values are biased downward. This can create the impression of a downward trend even if hospitalizations are actually increasing.", style = style_explanation),
+                             p("- Nowcasts can help to correct these values and obtain a more realistic assessment of recent developments.", style = style_explanation),
+                             p("- A variety of nowcasting methods exist. We systematically compile results based on different methods and combine them into so-called ensemble nowcasts.", style = style_explanation),
+                             strong("This project is currently still in development and the reliability of results has not yet been assessed systematically.", style = style_explanation)
+            ),
+            p(),
+            conditionalPanel("input.select_language == 'DE'",
+                             p("Die interaktive Visualisierung funktioniert am besten unter Google Chrome.", style = style_explanation)
+                             # p("Diese Plattform wird von Mitgliedern des ",
+                             #   a("Lehrstuhls für Ökonometrie und Statistik", href = "https://statistik.econ.kit.edu/index.php"),
+                             #   "am Karlsruher Institut für Technologie betrieben. Kontakt: forecasthub@econ.kit.edu")
+            ),
+            conditionalPanel("input.select_language == 'EN'",
+                             p("The interactive visualization works best under Google Chrome.", style = style_explanation)
+                             # p("This platform is run by members of the ",
+                             #   a("Chair of Statistics and Econometrics", href = "https://statistik.econ.kit.edu/index.php"),
+                             #   "at Karlsruhe Institute of Technology. Contact: forecasthub@econ.kit.edu")
                              )
             
         )

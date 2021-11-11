@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-local <- TRUE
+local <- FALSE
 
 library(shiny)
 library(plotly)
@@ -75,6 +75,8 @@ current_date <- max(dat_truth$date)
 
 # Define server logic:
 shinyServer(function(input, output, session) {
+    
+    observe_helpers(withMathJax = TRUE)
     
     ##### UI handling
     
@@ -240,7 +242,6 @@ shinyServer(function(input, output, session) {
                     
                     # remove last two days if requested:
                     if(!input$show_last_two_days){
-                        print(subs$target_end_date)
                         subs <- subs[subs$target_end_date <= (subs$forecast_date - 2), ]
                     }
                     
@@ -289,8 +290,8 @@ shinyServer(function(input, output, session) {
             
             # initialize plot:
             p <- plot_ly(mode = "lines", hovertemplate = '%{y}', source = "tsplot") %>% # last argument ensures labels are completely visible
-                layout(yaxis = list(title = '7-day hospitalization incidence'), # axis + legend settings
-                       xaxis = list(title = "time (Meldedatum)"),
+                layout(yaxis = list(title = '7-Tage Hospitalisierungsinzidenz'), # axis + legend settings
+                       xaxis = list(title = "Meldedatum"),
                        hovermode = "x unified") %>%
                 add_polygons(x = c(min(dat_truth$date), as.Date(input$select_date), # grey shade to separate past and future
                                    as.Date(input$select_date), min(dat_truth$date)),
@@ -305,16 +306,17 @@ shinyServer(function(input, output, session) {
                 # layout(xaxis = list(rangeslider = list(type = "date", thickness = 0.08))) %>%
                 add_lines(x = plot_data$old_truth$x, # trace for truth data as of selected date
                           y = plot_data$old_truth$y,
-                          name = paste("data as of", current_date),
+                          name = paste("Datenstand", current_date),
                           line = list(color = 'rgb(0.5, 0.5, 0.5)')) %>%
                 add_lines(x = plot_data$current_truth$x, # trace for most current truth data
                           y = plot_data$current_truth$y,
-                          name = paste("data as of", current_date),
+                          name = paste("Datenstand", current_date),
                           line = list(color = 'rgb(0, 0, 0)')) %>%
                 add_lines(x = plot_data$truth_by_reporting$x, # trace for data by reporting date
                           y = plot_data$truth_by_reporting$y,
-                          name = paste("data by appearance\n in RKI data"),
-                          line = list(color = 'rgb(0, 0, 0)', dash = "dash")) %>%
+                          name = paste("Zeitreihe nach Erscheinen\n in RKI Daten"),
+                          line = list(color = 'rgb(0, 0, 0)', dash = "dash"),
+                          showlegend = input$show_truth_by_reporting) %>%
                 event_register(event = "plotly_click") # enable clicking to select date
             
             # add nowcasts: run through models
@@ -378,7 +380,9 @@ shinyServer(function(input, output, session) {
     observe({
         plotlyProxyInvoke(myPlotProxy, "restyle", list(x = list(plot_data$old_truth$x),
                                                        y = list(plot_data$old_truth$y),
-                                                       name = paste("data as of", input$select_date)),
+                                                       name = ifelse(input$select_language == "DE",
+                                                                     paste("Datenstand", input$select_date),
+                                                                     paste("data as of", input$select_date))),
                           list(plot_data$mapping$old_truth))
     })
     
@@ -429,6 +433,33 @@ shinyServer(function(input, output, session) {
                                   list(yaxis = list(type = "linear")))
             }
         })
+        
+        # update time series by reporting date:
+        observe({
+            plotlyProxyInvoke(myPlotProxy, "restyle",
+                              list(showlegend = input$show_truth_by_reporting,
+                                   name = ifelse(input$select_language == "DE",
+                                                 "nach Erscheinen in RKI Daten",
+                                                 "by appearance in RKI data")),
+                              list(plot_data$mapping[["truth_by_reporting"]]))
+
+        })
+        
+        # change language in label of old truth:
+        observe({
+            plotlyProxyInvoke(myPlotProxy, "restyle",
+                              list(name = ifelse(input$select_language == "DE",
+                                                 paste("Datenstand", current_date),
+                                                 paste("data as of", current_date))),
+                              list(plot_data$mapping[["current_truth"]]))
+        })
+        
+        # change language in y-label:
+        observe({
+            plotlyProxyInvoke(myPlotProxy, "relayout",
+                              list(yaxis = list(title = ifelse(input$select_language == "DE",
+                                                               "7-Tages-Hospitalisierungsinzidenz",
+                                                               '7-day hospitalization incidence'))))
+        })
     })
-    
 })
