@@ -1,0 +1,13 @@
+team_name: LMU_StaBLab
+model_name: GAM_nowcast
+model_abbr: LMU_StaBLab-GAM_nowcast
+model_contributors: Maximilian Weigert <maximilian.weigert@stat.uni-muenchen.de>, Diellë Syliqi <diella.syliqi@stablab.stat.uni-muenchen.de>, Helmut Küchenhoff <kuechenhoff@stat.uni-muenchen.de>
+website_url: https://corona.stat.uni-muenchen.de/
+license: cc-by-4.0
+team_model_designation: primary
+methods: Nowcasts are based on a generalized additive model and the sequential multinomial structure of the time delay. 
+repo_url: 
+twitter_handles: 
+data_inputs: 
+methods_long: Details of the underlying methodology for nowcasting fatal infections can be found in Schneble et al. (2020). The model is slightly adapted for hospitalizations. 
+
