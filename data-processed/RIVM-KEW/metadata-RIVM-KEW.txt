@@ -1,0 +1,14 @@
+team_name: RIVM
+model_name: van de Kassteele, Eilers and Wallinga
+model_abbr: RIVM-KEW
+model_contributors: Jan van de Kassteele (RIVM) <jan.van.de.kassteele@rivm.nl>, Paul Eilers (Erasmus MC) <p.eilers@erasmusmc.nl>, Jacco Wallinga (RIVM) jacco.wallinga@rivm.nl>
+website_url: https://github.com/kassteele/Nowcast-hub
+license: cc-by-4.0
+team_model_designation: primary
+methods: Counts inside the reporting triangle are modelled by a two-dimensional P-spline surface and other covariates. This surface is extrapolated for all dates and delays outsite the reporting triangle
+team_funding: National Institute for Public Health and the Environment - RIVM
+institution_affil: National Institute for Public Health and the Environment - RIVM, Bilthoven, NL, Erasmus University Medical Centre, Rotterdam, NL
+repo_url: https://github.com/kassteele
+data_inputs: https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki/Truth-data
+citation: doi: 10.1097/EDE.0000000000001050
+methods_long: This model is a simplified version of the model presented by van de Kassteele, Eilers and Wallinga (Epidemiology, 2019). The reported counts by date and delay are described by a negative binomial distribution. The expected values are modelled by a two-dimensional P-spline surface and other covariates. This surface is extrapolated for all dates and delays outside the reporting triangle. The nowcast is obtained by summing all counts over the delays by date. Prediction intervals are obtained by Monte Carlo simulation from the predictive distribution. This simplified model is without the calender time x delay interaction, the unimodality and boundary constraints. Model fitting is done efficiently using the mgcv package in R.
