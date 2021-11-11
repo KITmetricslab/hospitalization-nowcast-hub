@@ -3,7 +3,7 @@ library(plotly)
 library(shinyhelper)
 library(magrittr)
 
-local <- TRUE
+local <- FALSE
 if(local){
     available_dates <- sort(read.csv("plot_data/available_dates.csv")$date)
 }else{
@@ -65,7 +65,7 @@ shinyUI(fluidPage(
                                             label = "Bundesland",
                                             choices = bundeslaender, width = "200px")),
             radioButtons("select_interval", label = "Vorhersageintervall / prediction interval:", 
-                         choices = c("95%" = "95%", "50%" = "50%", "keines / none" = "none"), selected = "95%", inline = TRUE),
+                         choices = c("95%" = "95%", "50%" = "50%", "nur Median / only median" = "none"), selected = "95%", inline = TRUE),
             radioButtons("select_scale", label = "Anzeige / show as:", 
                          choices = c("absolute Zahlen / absolute counts" = "absolute counts",
                                      "pro / per 100.000" = "per 100.000"),
