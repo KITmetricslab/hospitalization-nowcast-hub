@@ -125,23 +125,39 @@ shinyServer(function(input, output, session) {
 
       # print(truth_inc)
       
-      par(mfrow = c(2, 4))
+      par(mfrow = c(6, 4))
       
       if(any(grepl("inc", dat$forecasts$target))){
         
         print(unique(dat$forecasts$age_group))
         for(ag in unique(dat$forecasts$age_group)){
           truth_inc <- truth_as_of(dat_truth, age_group = ag,
-                                   location = input$select_location,
+                                   location = "DE",
                                    date = Sys.Date())
           
           plot_forecast(dat$forecasts, forecast_date = forecast_date,
-                        location = input$select_location, age_group = ag,
+                        location = "DE", age_group = ag,
                         truth = truth_inc, target_type = paste("inc", target_type),
                         levels_coverage = c(0.5, 0.95),
                         start = as.Date(forecast_date) - 35,
                         end = as.Date(forecast_date) + 28)
-          title(paste0("Incident ", target_type, " - ", input$select_location, " - ", ag))
+          title(paste0("Incident ", target_type, " - ", "DE", " - ", ag))
+          legend("topright", legend = c("50%PI", "95% PI"), col = cols_legend, pch = 15, bty = "n")
+        }
+
+        print(unique(dat$forecasts$location))
+        for(loc in unique(dat$forecasts$location)){
+          truth_inc <- truth_as_of(dat_truth, age_group = "00+",
+                                   location = loc,
+                                   date = Sys.Date())
+
+          plot_forecast(dat$forecasts, forecast_date = forecast_date,
+                        location = loc, age_group = "00+",
+                        truth = truth_inc, target_type = paste("inc", target_type),
+                        levels_coverage = c(0.5, 0.95),
+                        start = as.Date(forecast_date) - 35,
+                        end = as.Date(forecast_date) + 28)
+          title(paste0("Incident ", target_type, " - ", loc, " - ", "00+"))
           legend("topright", legend = c("50%PI", "95% PI"), col = cols_legend, pch = 15, bty = "n")
         }
         
@@ -153,7 +169,7 @@ shinyServer(function(input, output, session) {
       
     }else{
       plot(NULL, xlim = 0:1, ylim = 0:1, xlab = "", ylab = "", axes = FALSE)
-      text(0.5, 0.5, "Please select file.")
+      text(0.5, 0.85, "Please select file.")
     }
   })
   

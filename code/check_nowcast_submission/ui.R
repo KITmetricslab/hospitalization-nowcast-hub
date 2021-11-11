@@ -21,7 +21,7 @@ shinyUI(fluidPage(
       fileInput("file", "Choose file to upload", accept = ".csv"),
       textInput("path", "Or paste a URL to a csv file (the raw csv, not github preview)."),
       # uiOutput("inp_select_age_group"),
-      uiOutput("inp_select_location") #,
+      # uiOutput("inp_select_location") #,
       # actionButton("run_checks", "Run submission checks")
     ),
     
@@ -31,17 +31,18 @@ shinyUI(fluidPage(
                font-family:'Courier New';
                display:block; }"),
       
+      h6("Even if your files are displayed correctly here it is possible that they fail on the github platform.",
+         "The formal evaluation checks are not run on this site, it serves solely for visualization.",
+         "Information on how to run local validation checks can be found in the Wiki of or github repository."
+      ),
+      
       h4("Nowcast visualization:"),
-      plotOutput("plot"),
+      plotOutput("plot", height = "1200px"),
       tags$div(
         tags$span(style="color:white", ".")
       ),
       # h4("Result of format checks:"),
       # textOutput("result_checks"),
-      h6("Even if your files are displayed correctly here it is possible that they fail on the github platform.",
-         "The formal evaluation checks are not run on this site, it serves solely for visualization.",
-         "Information on how to run local validation checks can be found in the Wiki of or github repository."
-      ),
       tags$div(
         tags$span(style="color:white", ".")
       )
