@@ -131,7 +131,7 @@ draw_truths <- function(truth, location){
 # ylim: the y limits of the plot. If NULL chosen automatically.
 # cols: a vector of colors of the same length as levels_coverage
 plot_forecast <- function(forecasts,
-                          target_type = "cum death",
+                          target_type = "inc hosp",
                           horizon = NULL,
                           forecast_date = NULL,
                           location,
