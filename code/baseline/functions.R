@@ -86,7 +86,7 @@ compute_nowcast <- function(observed, location = "DE", age_group = "00+",
                             max_delay = 40, n_history_expectations = 60, n_history_dispersion = 60){
   
   # subset to location and age group:
-  observed <- subset(observed, location == "DE" & age_group == "00+")
+  observed <- subset(observed, location == location & age_group == age_group)
   
   # reporting triangle as matrix
   matr_observed <- as.matrix(observed[, grepl("value", colnames(observed))])
@@ -134,7 +134,7 @@ compute_nowcast <- function(observed, location = "DE", age_group = "00+",
   size_params <- numeric(max_horizon +1)
   for(i in min_horizon:max_horizon){
     size_params[i + 1] <- fit_nb(x = to_add_already_observed[, i + 1], 
-                                 mu = expectation_to_add_already_observed[, i + 1])
+                                 mu = expectation_to_add_already_observed[, i + 1] + 0.1)
   }
   
   
@@ -150,8 +150,8 @@ compute_nowcast <- function(observed, location = "DE", age_group = "00+",
     already_observed <- sum(matr_observed[nrow(matr_observed) - ((d + 6):d), ], na.rm = TRUE)
     
     # data frame for expecations:
-    df_mean <- data.frame(location = "DE",
-                          age_group = "00+",
+    df_mean <- data.frame(location = location,
+                          age_group = age_group,
                           forecast_date = forecast_date,
                           target_end_date = forecast_date - d,
                           target = paste0(-d, " day ahead inc hosp"),
@@ -166,8 +166,8 @@ compute_nowcast <- function(observed, location = "DE", age_group = "00+",
     # shift them up by already oberved values
     qtls <- qtls0 + already_observed
     # data.frame for quantiles:
-    df_qtls <- data.frame(location = "DE",
-                          age_group = "00+",
+    df_qtls <- data.frame(location = location,
+                          age_group = age_group,
                           forecast_date = forecast_date,
                           target_end_date = forecast_date - d,
                           target = paste0(-d, " day ahead inc hosp"),

@@ -6,50 +6,113 @@ library(zoo)
 
 # read truth data:
 observed0 <- read.csv("../../data-truth/COVID-19/COVID-19_hospitalizations_preprocessed.csv",
-                     colClasses = c("date" = "Date"))
-observed0 <- subset(observed0, location == "DE" & age_group == "00+")
-# prepare for plotting:
-observed_for_plot <- truth_as_of(observed0, age_group = "00+",
-                         location = "DE",
-                         date = Sys.Date() - 3)
+                      colClasses = c("date" = "Date"))
+
 
 # dates for which to produce nowcasts:
 forecast_dates <- Sys.Date() # seq(from = as.Date("2021-11-08"), to = as.Date("2021-11-08"), by = 1)
 
-# generate nowcasts:
 for(i in seq_along(forecast_dates)){
-  # generate truth data as of forecast_date
-  forecast_date <- forecast_dates[i]
-  observed <- back_in_time_df(observed0, date = forecast_date)
+  all_nc <- NULL
   
-  # compute nowcast:
-  nc <- compute_nowcast(observed = observed, 
-                        location = "DE", 
-                        age_group = "00+",
-                        min_horizon = 0,
-                        max_horizon = 28)
+  # generate nowcasts for age groups:
+  for(ag in c("00+", "00-04", "05-14", "15-34", "35-59", "60-79", "80+")){
+    
+    forecast_date <- forecast_dates[i]
+    
+    observed_temp <- subset(observed0, location == "DE" & age_group == ag)
+    # prepare for plotting:
+    observed_for_plot <- truth_as_of(observed_temp, age_group = ag,
+                                     location = "DE",
+                                     date = Sys.Date())
+    
+    # truth data as of forecast_date for plot:
+    observed_for_plot_old <- truth_as_of(observed_temp, age_group = ag,
+                                         location = "DE",
+                                         date = forecast_date)
+    
+    # generate truth data as of forecast_date
+    observed_temp <- back_in_time_df(observed_temp, date = forecast_date)
+    
+    # compute nowcast:
+    # undebug(compute_nowcast)
+    nc <- compute_nowcast(observed = observed_temp, 
+                          location = "DE", 
+                          age_group = ag,
+                          min_horizon = 0,
+                          max_horizon = 28)
+    
+    # generate a plot:
+    plot_forecast(forecasts = nc,
+                  location = "DE", age_group = ag,
+                  truth = observed_for_plot, target_type = paste("inc hosp"),
+                  levels_coverage = c(0.5, 0.95),
+                  start = as.Date(forecast_date) - 35,
+                  end = as.Date(forecast_date) + 28,
+                  forecast_date = forecast_date)
+    # axis(1)
+    title(paste(forecast_date, "-", ag))
+    lines(observed_for_plot_old$date, observed_for_plot_old$value, col = "darkgrey", lty  ="dashed")
+    
+    if(is.null(all_nc)){
+      all_nc <- nc
+    }else{
+      all_nc <- rbind(all_nc, nc)
+    }
+  }
   
-  # truth data as of forecast_date for plot:
-  dat_truth_temp <- truth_as_of(observed0, age_group = "00+",
-                                             location = "DE",
-                                             date = forecast_date)
-  
-  # generate a plot:
-  plot_forecast(forecasts = nc,
-                location = "DE", age_group = "00+",
-                truth = observed_for_plot, target_type = paste("inc hosp"),
-                levels_coverage = c(0.5, 0.95),
-                start = as.Date(forecast_date) - 35,
-                end = as.Date(forecast_date) + 28,
-                forecast_date = forecast_date)
-  axis(1)
-  title(forecast_date)
-  lines(dat_truth_temp$date, dat_truth_temp$value, col = "darkgrey", lty  ="dashed")
+  # generate nowcasts for federal states:
+  for(loc in c("DE-BB", "DE-BE", "DE-BW", "DE-BY",
+               "DE-HB", "DE-HE", "DE-HH", "DE-MV", 
+               "DE-NI", "DE-NW", "DE-RP", "DE-SH", 
+               "DE-SL", "DE-SN", "DE-ST", "DE-TH")){
+    
+    forecast_date <- forecast_dates[i]
+    
+    observed_temp <- subset(observed0, location == loc & age_group == "00+")
+    # prepare for plotting:
+    observed_for_plot <- truth_as_of(observed_temp, age_group = "00+",
+                                     location = loc,
+                                     date = Sys.Date())
+    
+    # truth data as of forecast_date for plot:
+    observed_for_plot_old <- truth_as_of(observed_temp, age_group = "00+",
+                                         location = loc,
+                                         date = forecast_date)
+    
+    # generate truth data as of forecast_date
+    observed_temp <- back_in_time_df(observed_temp, date = forecast_date)
+    
+    # compute nowcast:
+    # undebug(compute_nowcast)
+    nc <- compute_nowcast(observed = observed_temp, 
+                          location = loc, 
+                          age_group = "00+",
+                          min_horizon = 0,
+                          max_horizon = 28)
+    
+    # generate a plot:
+    plot_forecast(forecasts = nc,
+                  location = loc, age_group = "00+",
+                  truth = observed_for_plot, target_type = paste("inc hosp"),
+                  levels_coverage = c(0.5, 0.95),
+                  start = as.Date(forecast_date) - 35,
+                  end = as.Date(forecast_date) + 28,
+                  forecast_date = forecast_date)
+    # axis(1)
+    title(paste(forecast_date, "-", loc))
+    lines(observed_for_plot_old$date, observed_for_plot_old$value, col = "darkgrey", lty  ="dashed")
+    
+    if(is.null(all_nc)){
+      all_nc <- nc
+    }else{
+      all_nc <- rbind(all_nc, nc)
+    }
+  }
   
   # write out:
-  write.csv(nc, file = paste0(forecast_date, "-KIT-simple_nowcast.csv"), row.names = FALSE)
+  write.csv(all_nc, file = paste0(forecast_date, "-KIT-simple_nowcast.csv"), row.names = FALSE)
 }
-
 
 
 
