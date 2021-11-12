@@ -20,12 +20,7 @@ jobs:
         R -e 'install.packages(c("shiny", "shinyhelper", "rsconnect"))'
         
     - name: Push to shiny.io
-      env:
-        SHINYAPPS_NAME: ${{secrets.SHINYAPPS_NAME}}
-        SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
-        SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
-      
       run: |
         cd ./nowcast_viz_de
-        Rscript -e "rsconnect::setAccountInfo(name='${SHINYAPPS_NAME}', token='${SHINYAPPS_TOKEN}', secret='${SHINYAPPS_SECRET}')"
-        Rscript -e "rsconnect::deployApp(appName = 'github-vis')"
+        Rscript -e 'rsconnect::setAccountInfo(name="${{secrets.SHINYAPPS_NAME}}", token="${{secrets.SHINYAPPS_TOKEN}}", secret="${{secrets.SHINYAPPS_SECRET}}")'
+        Rscript -e 'rsconnect::deployApp(appName = "github-vis")'
