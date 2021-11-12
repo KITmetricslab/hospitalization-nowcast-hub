@@ -1,0 +1,18 @@
+team_name: ILM
+model_name: prop
+model_abbr: ILM-prop
+model_contributors: Stefan Heyder <stefan.heyder@tu-ilmenau.de>, Thomas Hotz <thomas.hotz@tu-ilmenau.de>
+website_url: https://github.com/Stochastik-TU-Ilmenau
+license: cc-by-4.0
+team_model_designation: primary
+methods: Weekly proportions of hospitalziatons by age-group
+data_inputs: RKI
+methods_long: "Within every age group we calculate the proportion of the seven-day \
+  \ case incidence that appear in the seven-day hospitalization incidence after a delay of \
+  \ one, two, three and four weeks. Using these proportions and the current incidence two days \
+  \ in the past, we predict the amount of hospitalizations within every age group. \
+  \ Prediction intervals are obtained by fitting a log-normal distribution to past predictions of our model. \
+  \ Summing the point predictions over all age-groups yields predictions for all hospitalizations. \
+  \ Prediction intervals for these are obtained by a similar procedure assuming \
+  \ a normal distribution for predictions."
+
