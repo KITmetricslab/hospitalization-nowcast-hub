@@ -1,0 +1,24 @@
+name: "deploy-shiny"
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 4,14 * * *"
+
+jobs:
+  deploy-shiny:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@main
+    
+    - name: Setup R
+      uses: r-lib/actions/setup-r@v1
+      
+    - name: Install shiny
+      run: |
+        install.packages(c("shiny", "shinyhelper", "rsconnect"))
+        
+    - name: Push to shiny.io
+      run: |
+        cd ./nowcast_viz_de
+        Rscript -e "rsconnect::setAccountInfo(name=${{secrets.SHINYAPPS_TOKEN}}, token=${{secrets.SHINYAPPS_TOKEN}}, secret=${{secrets.SHINYAPPS_SECRET}})"
+        Rscript -e "rsconnect::deployApp(appName = 'github-vis')" 
