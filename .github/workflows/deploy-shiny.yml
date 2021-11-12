@@ -12,14 +12,14 @@ jobs:
     
     - name: Setup R
       uses: r-lib/actions/setup-r@v1
-      
-    - name: Install shiny
-      run: |
-        install.packages(c("shiny", "shinyhelper", "rsconnect"), type = "binary")
-      shell: Rscript {0}
+      with:
+          r-version: 4.1.0
         
     - name: Push to shiny.io
+      env:
+        SHINYAPPS_NAME: ${{secrets.SHINYAPPS_NAME}}
+        SHINYAPPS_TOKEN: ${{secrets.SHINYAPPS_TOKEN}}
+        SHINYAPPS_SECRET: ${{secrets.SHINYAPPS_SECRET}}
+      
       run: |
-        cd ./nowcast_viz_de
-        Rscript -e "rsconnect::setAccountInfo(name=${{secrets.SHINYAPPS_NAME}}, token=${{secrets.SHINYAPPS_TOKEN}}, secret="test")"
-        Rscript -e "rsconnect::deployApp(appName = 'github-vis')"
+        Rscript ./code/deploy_shiny.R
