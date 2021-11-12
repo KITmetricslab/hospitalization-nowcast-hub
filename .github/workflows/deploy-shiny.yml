@@ -12,11 +12,8 @@ jobs:
     
     - name: Setup R
       uses: r-lib/actions/setup-r@v1
-      
-#     - name: Install shiny
-#       run: |
-#         install.packages(c("shiny", "shinyhelper", "rsconnect"), type = "binary")
-#       shell: Rscript {0}
+      with:
+          r-version: 4.1.0
         
     - name: Push to shiny.io
       env:
