@@ -27,5 +27,5 @@ jobs:
       
       run: |
         cd ./nowcast_viz_de
-        Rscript -e 'rsconnect::setAccountInfo(name=$SHINYAPPS_NAME, token=$SHINYAPPS_TOKEN, secret=$SHINYAPPS_SECRET)'
+        Rscript -e 'rsconnect::setAccountInfo(name="${SHINYAPPS_NAME}", token="${SHINYAPPS_TOKEN}", secret="${SHINYAPPS_SECRET}")'
         Rscript -e 'rsconnect::deployApp(appName = 'github-vis')'
