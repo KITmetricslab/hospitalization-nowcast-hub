@@ -6,21 +6,19 @@ on:
 
 jobs:
   deploy-shiny:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     steps:
     - uses: actions/checkout@main
     
     - name: Setup R
       uses: r-lib/actions/setup-r@v1
-      with:
-        r-version: '4.0.5'
       
     - name: Install shiny
       run: |
-        R -e 'install.packages(c("shiny", "shinyhelper", "rsconnect"))'
+        install.packages(c("shiny", "shinyhelper", "rsconnect"), type = "binary")
         
     - name: Push to shiny.io
       run: |
         cd ./nowcast_viz_de
-        Rscript -e 'rsconnect::setAccountInfo(name="${{secrets.SHINYAPPS_NAME}}", token="${{secrets.SHINYAPPS_TOKEN}}", secret="${{secrets.SHINYAPPS_SECRET}}")'
-        Rscript -e 'rsconnect::deployApp(appName = "github-vis")'
+        Rscript -e "rsconnect::setAccountInfo(name=${{secrets.SHINYAPPS_NAME}}, token=${{secrets.SHINYAPPS_TOKEN}}, secret=${{secrets.SHINYAPPS_SECRET}})"
+        Rscript -e "rsconnect::deployApp(appName = 'github-vis')"
