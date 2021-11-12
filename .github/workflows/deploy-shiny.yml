@@ -17,7 +17,7 @@ jobs:
       
     - name: Install shiny
       run: |
-        R -e "install.packages(c("shiny", "shinyhelper", "rsconnect"), repos='https://cran.rstudio.com/')"
+        R -e 'install.packages(c("shiny", "shinyhelper", "rsconnect"))'
         
     - name: Push to shiny.io
       run: |
