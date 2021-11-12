@@ -3,7 +3,7 @@ library(plotly)
 library(shinyhelper)
 library(magrittr)
 
-local <- FALSE
+local <- TRUE
 if(local){
     available_dates <- sort(read.csv("plot_data/available_dates.csv")$date)
 }else{
@@ -75,6 +75,8 @@ shinyUI(fluidPage(
                                      "log-Skala / log scale"  ="log scale"), 
                          selected = "natural scale", inline = TRUE),
             checkboxInput("show_truth_by_reporting", label = "Zeitreihe nach Erscheinen in RKI-Daten / time series by appearance in RKI data", 
+                          value = FALSE),
+            checkboxInput("show_truth_frozen", label = "Zeitreihe eingefrorener Werte / time series of frozen values", 
                           value = FALSE),
             checkboxInput("show_last_two_days", label = "Zeige letzte zwei Tage / show two most recent days", 
                           value = FALSE),

@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-local <- FALSE
+local <- TRUE
 
 library(shiny)
 library(plotly)
@@ -67,8 +67,6 @@ path_truth <- ifelse(local,
 dat_truth <- read.csv(path_truth,
                       colClasses = c(date = "Date"))
 dat_truth <- dat_truth[order(dat_truth$date), ]
-
-
 
 # the most recent date in the truth data:
 current_date <- max(dat_truth$date)
@@ -190,8 +188,9 @@ shinyServer(function(input, output, session) {
         temp <- list("selected_date" = 1, # 0 is grey area
                      "old_truth" = 2,
                      "current_truth" = 3,
-                     "truth_by_reporting" = 4)
-        for(i in seq_along(models)) temp[[models[i]]] <- 2*i + 4 - 1:0
+                     "truth_by_reporting" = 4,
+                     "truth_frozen" = 5)
+        for(i in seq_along(models)) temp[[models[i]]] <- 2*i + 5 - 1:0
         plot_data$mapping <- temp
         
         # truth data as of selected date:
@@ -218,6 +217,18 @@ shinyServer(function(input, output, session) {
                                        value = 0)
         }
         plot_data$truth_by_reporting <- data.frame(x = truth_by_rep$date, y = round(truth_by_rep$value*pop_factor, 2))
+        
+        # frozen truth:
+        if(input$show_truth_frozen){
+            truth_fr <- truth_frozen(dat_truth = dat_truth,
+                                     age_group = input$select_age,
+                                     location = input$select_state)
+        }else{
+            truth_fr <- data.frame(date = as.Date("2021-04-12"),
+                                       value = 0)
+        }
+        plot_data$truth_frozen <- data.frame(x = truth_fr$date, y = round(truth_fr$value*pop_factor, 2))
+        
         
         # y axis limit
         plot_data$ylim <- c(0, 1.1*max(plot_data$current_truth$y, na.rm = TRUE))
@@ -317,6 +328,11 @@ shinyServer(function(input, output, session) {
                           name = paste("Zeitreihe nach Erscheinen\n in RKI Daten"),
                           line = list(color = 'rgb(0, 0, 0)', dash = "dash"),
                           showlegend = input$show_truth_by_reporting) %>%
+                add_lines(x = plot_data$truth_frozen$x, # trace for data by reporting date
+                          y = plot_data$truth_frozen$y,
+                          name = paste("Zeitreihe eingefrorener Werte"),
+                          line = list(color = 'rgb(0, 0, 0)', dash = "dot"),
+                          showlegend = input$show_truth_frozen) %>%
                 event_register(event = "plotly_click") # enable clicking to select date
             
             # add nowcasts: run through models
@@ -393,6 +409,13 @@ shinyServer(function(input, output, session) {
                           list(plot_data$mapping$truth_by_reporting))
     })
     
+    # update frozen truth:
+    observe({
+        plotlyProxyInvoke(myPlotProxy, "restyle", list(x = list(plot_data$truth_frozen$x),
+                                                       y = list(plot_data$truth_frozen$y)),
+                          list(plot_data$mapping$truth_frozen))
+    })
+    
     # update nowcasts:
     observe({
         for(mod in models){
@@ -443,6 +466,17 @@ shinyServer(function(input, output, session) {
                                                  "by appearance in RKI data")),
                               list(plot_data$mapping[["truth_by_reporting"]]))
 
+        })
+        
+        # update frozen time series:
+        observe({
+            plotlyProxyInvoke(myPlotProxy, "restyle",
+                              list(showlegend = input$show_truth_frozen,
+                                   name = ifelse(input$select_language == "DE",
+                                                 "eingefrorene Werte",
+                                                 "frozen values")),
+                              list(plot_data$mapping[["truth_frozen"]]))
+            
         })
         
         # change language in label of old truth:
