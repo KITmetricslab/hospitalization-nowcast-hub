@@ -12,6 +12,8 @@ jobs:
     
     - name: Setup R
       uses: r-lib/actions/setup-r@v1
+      with:
+        r-version: '4.0.5'
       
     - name: Install shiny
       run: |
