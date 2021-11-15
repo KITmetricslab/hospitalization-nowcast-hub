@@ -111,7 +111,12 @@ for(i in seq_along(forecast_dates)){
   }
   
   # write out:
-  write.csv(all_nc, file = paste0(forecast_date, "-KIT-simple_nowcast.csv"), row.names = FALSE)
+  if(forecast_date == Sys.Date()){
+    write.csv(all_nc, file = paste0("../../data-processed/KIT-simple_nowcast/", forecast_date, "-KIT-simple_nowcast.csv"), row.names = FALSE)
+  }else{
+    cat("forecast_date is in the past, writing to data-processed_retrospective")
+    write.csv(all_nc, file = paste0("../../data-processed_retrospective/", forecast_date, "-KIT-simple_nowcast.csv"), row.names = FALSE)
+  }
 }
 
 
