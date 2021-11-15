@@ -215,7 +215,7 @@ shinyServer(function(input, output, session) {
                                                age_group = input$select_age,
                                                location = input$select_state)
         }else{
-            truth_by_rep <- data.frame(date = as.Date("2021-04-12"),
+            truth_by_rep <- data.frame(date = min(dat_truth$date),
                                        value = 0)
         }
         plot_data$truth_by_reporting <- data.frame(x = truth_by_rep$date, y = round(truth_by_rep$value*pop_factor, 2))
@@ -226,7 +226,7 @@ shinyServer(function(input, output, session) {
                                      age_group = input$select_age,
                                      location = input$select_state)
         }else{
-            truth_fr <- data.frame(date = as.Date("2021-04-12"),
+            truth_fr <- data.frame(date = min(dat_truth$date),
                                        value = 0)
         }
         plot_data$truth_frozen <- data.frame(x = truth_fr$date, y = round(truth_fr$value*pop_factor, 2))
@@ -371,10 +371,10 @@ shinyServer(function(input, output, session) {
                     text_interval <- plot_data[[mod]]$points$text_interval
                 }else{
                     # if no nowcast available: "hide" the respective trace
-                    x <- as.Date("2021-04-12")
+                    x <- min(dat_truth$date)
                     y <- 0
                     s <- 0.001
-                    x_intervals <- as.Date("2021-04-12")
+                    x_intervals <- min(dat_truth$date)
                     y_intervals <- 0
                     labels <- ""
                 }
@@ -457,10 +457,10 @@ shinyServer(function(input, output, session) {
                 text_interval <- plot_data[[mod]]$points$text_interval
             }else{
                 # if no nowcast available: "hide" the respective trace
-                x <- as.Date("2021-04-12")
+                x <- min(dat_truth$date)
                 y <- 1
                 s <- 0.001
-                x_intervals <- as.Date("2021-04-12")
+                x_intervals <- min(dat_truth$date)
                 y_intervals <- 0
                 text_interval <- ""
             }
