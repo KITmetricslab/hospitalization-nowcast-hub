@@ -198,14 +198,16 @@ shinyServer(function(input, output, session) {
                                  age_group = input$select_age,
                                  location = input$select_state,
                                  date = input$select_date)
-        plot_data$old_truth <- data.frame(x = old_truth$date, y = round(old_truth$value*pop_factor, 2))
+        # reverting necessary to avoid bug with mouseovers (don't know why)
+        plot_data$old_truth <- data.frame(x = rev(old_truth$date), y = rev(round(old_truth$value*pop_factor, 2)))
         
         # most recent truth data:
         current_truth <- truth_as_of(dat_truth = dat_truth, 
                                      age_group = input$select_age,
                                      location = input$select_state,
                                      date = current_date)
-        plot_data$current_truth <- data.frame(x = current_truth$date, y = round(current_truth$value*pop_factor, 2))
+        # reverting necessary to avoid bug with mouseovers (don't know why)
+        plot_data$current_truth <- data.frame(x = rev(current_truth$date), y = rev(round(current_truth$value*pop_factor, 2)))
         
         # truth by reporting:
         if(input$show_truth_by_reporting){
@@ -277,8 +279,26 @@ shinyServer(function(input, output, session) {
                         intervals <- rbind(lower, upper[nrow(upper):1, ])
                         
                         # take population factor into account (switch between absolute numbers and per 100,000)
-                        points$y <- round(points$y*pop_factor, 2)
-                        intervals$y <- round(intervals$y*pop_factor, 2)
+                        print(input$select_scale == "absolute counts")
+                        points$y <- round(points$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
+                        intervals$y <- round(intervals$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
+                        
+                        # add labels:
+                        if(input$select_interval %in% c("50%", "95%")){
+                            points$text_interval <- paste0(" (", lower$y, " - ", upper$y, ")")
+                        }else{
+                            points$text_interval <- ""
+                        }
+                        
+                        
+                        # reverting necessary to avoid bug with mouseovers (don't know why)
+                        points$x <- rev(points$x)
+                        points$y <- rev(points$y)
+                        intervals$x <- rev(intervals$x)
+                        intervals$y <- rev(intervals$y)
+                        points$text_interval <- rev(points$text_interval)
+                        
+                        
                         
                         # store:
                         plot_data[[mod]] <- list(points = points, intervals = intervals)
@@ -312,16 +332,20 @@ shinyServer(function(input, output, session) {
                              showlegend = FALSE) %>%
                 add_lines(x = rep(input$select_date, 2), # vertical line for selected date
                           y = plot_data$ylim,
+                          name = "current date",
+                          hovertemplate = "%{x}",
                           line = list(color = 'rgb(0.5, 0.5, 0.5)', dash = "dot"),
                           showlegend = FALSE) %>%
                 # layout(xaxis = list(rangeslider = list(type = "date", thickness = 0.08))) %>%
                 add_lines(x = plot_data$old_truth$x, # trace for truth data as of selected date
                           y = plot_data$old_truth$y,
                           name = paste("Datenstand", current_date),
+                          hovertemplate = "<b>%{y}</b>",
                           line = list(color = 'rgb(0.5, 0.5, 0.5)')) %>%
                 add_lines(x = plot_data$current_truth$x, # trace for most current truth data
                           y = plot_data$current_truth$y,
                           name = paste("Datenstand", current_date),
+                          hovertemplate = "<b>%{y}</b>",
                           line = list(color = 'rgb(0, 0, 0)')) %>%
                 add_lines(x = plot_data$truth_by_reporting$x, # trace for data by reporting date
                           y = plot_data$truth_by_reporting$y,
@@ -344,6 +368,7 @@ shinyServer(function(input, output, session) {
                     s <- 5
                     x_intervals <- plot_data[[mod]]$intervals$x
                     y_intervals <- plot_data[[mod]]$intervals$y
+                    text_interval <- plot_data[[mod]]$points$text_interval
                 }else{
                     # if no nowcast available: "hide" the respective trace
                     x <- as.Date("2021-04-12")
@@ -351,6 +376,7 @@ shinyServer(function(input, output, session) {
                     s <- 0.001
                     x_intervals <- as.Date("2021-04-12")
                     y_intervals <- 0
+                    labels <- ""
                 }
                 # add shaded areas for uncertainty:
                 p <- p%>% add_polygons(x = x_intervals, y = y_intervals,
@@ -365,6 +391,8 @@ shinyServer(function(input, output, session) {
                                      line = list(dash = "dot", 
                                                  width = 2, 
                                                  color = cols[mod]),
+                                     text = text_interval,
+                                     hovertemplate = "<b>%{y}</b> %{text}",
                                      legendgroup = mod)
             }
             p
@@ -426,6 +454,7 @@ shinyServer(function(input, output, session) {
                 s <- 5
                 x_intervals <- plot_data[[mod]]$intervals$x
                 y_intervals <- plot_data[[mod]]$intervals$y
+                text_interval <- plot_data[[mod]]$points$text_interval
             }else{
                 # if no nowcast available: "hide" the respective trace
                 x <- as.Date("2021-04-12")
@@ -433,6 +462,7 @@ shinyServer(function(input, output, session) {
                 s <- 0.001
                 x_intervals <- as.Date("2021-04-12")
                 y_intervals <- 0
+                text_interval <- ""
             }
             # shaded area for uncertainty:
             plotlyProxyInvoke(myPlotProxy, "restyle",
@@ -442,7 +472,8 @@ shinyServer(function(input, output, session) {
             # point nowcasts:
             plotlyProxyInvoke(myPlotProxy, "restyle",
                               list(x = list(x),
-                                   y = list(y)),
+                                   y = list(y),
+                                   text = list(text_interval)),
                               list(plot_data$mapping[[mod]][2]))
         }
         
