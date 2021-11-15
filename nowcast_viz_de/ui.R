@@ -3,7 +3,7 @@ library(plotly)
 library(shinyhelper)
 library(magrittr)
 
-local <- TRUE
+local <- FALSE
 if(local){
     available_dates <- sort(read.csv("plot_data/available_dates.csv")$date)
 }else{
@@ -48,6 +48,12 @@ shinyUI(fluidPage(
                                label = NULL, 
                                choices = rev(available_dates))),
             div(style="display: inline-block;vertical-align:top;", actionButton("skip_forward", ">")),
+            conditionalPanel("input.select_language == 'DE'",
+                             p("Nowcasts werden werktäglich aktualisiert. Falls ein Nowcast für das gewählte Datum nicht vorliegen wird der aktuellste Nowcast der letzten 7 Tage gezeigt.",
+                               style = "font-size:11px;")),
+            conditionalPanel("input.select_language == 'EN'",
+                             p("Nowcasts are updated on working days. If a nowcast is not available for the chosen date, the most current nowcast from the last 7 days is shown.",
+                               style = "font-size:11px;")),
             radioButtons("select_stratification", label = "Stratifizierung / stratification",
                          choices = c("Altersgruppe / age group" = "age", "Bundesland" = "state"), inline = TRUE),
             conditionalPanel("input.select_stratification == 'age'",

@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-local <- TRUE
+local <- FALSE
 
 library(shiny)
 library(plotly)
