@@ -3,7 +3,7 @@ library(plotly)
 library(shinyhelper)
 library(magrittr)
 
-local <- TRUE
+local <- FALSE
 if(local){
     available_dates <- sort(read.csv("plot_data/available_dates.csv")$date)
 }else{

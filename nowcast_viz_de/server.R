@@ -255,6 +255,7 @@ shinyServer(function(input, output, session) {
                     # remove last two days if requested:
                     if(!input$show_last_two_days){
                         subs <- subs[subs$target_end_date <= (subs$forecast_date - 2), ]
+                        # subs[subs$target_end_date >= (subs$forecast_date - 1), c("q0.5")] <- NA
                     }
                     
                     
@@ -275,12 +276,16 @@ shinyServer(function(input, output, session) {
                         }
                         
                         colnames(points) <- colnames(lower) <- colnames(upper) <- c("x", "y")
-                        intervals <- rbind(lower, upper[nrow(upper):1, ])
                         
                         # take population factor into account (switch between absolute numbers and per 100,000)
                         #print(input$select_scale == "absolute counts")
                         points$y <- round(points$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
-                        intervals$y <- round(intervals$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
+                        lower$y <- round(lower$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
+                        upper$y <- round(upper$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
+                        
+                        # pool lower and upper into intervals:
+                        intervals <- rbind(lower, upper[nrow(upper):1, ])
+                        
                         
                         # add labels:
                         if(input$select_interval %in% c("50%", "95%")){
@@ -326,7 +331,7 @@ shinyServer(function(input, output, session) {
             
             # initialize plot:
             p <- plot_ly(mode = "lines", hovertemplate = '%{y}', source = "tsplot") %>% # last argument ensures labels are completely visible
-                layout(yaxis = list(title = '7-Tage Hospitalisierungsinzidenz'), # axis + legend settings
+                layout(yaxis = list(title = '7-Tage Hospitalisierungsinzidenz (absolut)'), # axis + legend settings
                        xaxis = list(title = "Meldedatum"),
                        hovermode = "x unified") %>%
                 add_polygons(x = c(min(dat_truth$date), as.Date(input$select_date), # grey shade to separate past and future
@@ -526,10 +531,21 @@ shinyServer(function(input, output, session) {
         
         # change language in y-label:
         observe({
+            ylab <- if(input$select_language == "DE"){
+                if(input$select_scale == "absolute counts"){
+                    "7-Tages-Hospitalisierungsinzidenz (absolut)"
+                }else{
+                    "7-Tages-Hospitalisierungsinzidenz (pro 100.000)"
+                }
+            }else{
+                if(input$select_scale == "absolute counts"){
+                    '7-day hospitalization incidence (absolute)'
+                }else{
+                    '7-day hospitalization incidence (per 100,000)'
+                }
+            }
             plotlyProxyInvoke(myPlotProxy, "relayout",
-                              list(yaxis = list(title = ifelse(input$select_language == "DE",
-                                                               "7-Tages-Hospitalisierungsinzidenz",
-                                                               '7-day hospitalization incidence'))))
+                              list(yaxis = list(title = ylab)))
         })
     })
 })
