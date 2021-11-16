@@ -1,0 +1,12 @@
+team_name: SU
+model_name: hierarchical_bayes
+model_abbr: SU-hier_bayes
+model_contributors: Felix Günther (Stockholm University) <felix.gunther@math.su.se>
+website_url: https://www.su.se/english/profiles/fegu7762-1.554768
+license: cc-by-4.0
+team_model_designation: primary
+methods: Bayesian hierarchical nowcasting for stratified data. Extension of https://doi.org/10.1002/bimj.202000112.
+institution_affil: Mathematical Statistics, Department of Mathematics, Stockholm University
+data_inputs: Only past hospitalization incidence and delays. 
+citation: none
+methods_long: Bayesian hierarchical nowcasting for stratified data. Log-number of hospitalisations modelled by strata-specific random walk. Delay model based on non-parametric baseline hazard, week-day effects for reporting date, random effect per strata and week. Extension of https://doi.org/10.1002/bimj.202000112.
