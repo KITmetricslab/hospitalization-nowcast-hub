@@ -183,6 +183,9 @@ shinyServer(function(input, output, session) {
             }else{
                 1
             }
+        
+        max_vals <- numeric(length(models))
+        names(max_vals) <- models
 
         # a mapping to determine which trace corresponds to what (needed to replace things below)
         temp <- list("selected_date" = 1, # 0 is grey area
@@ -231,10 +234,6 @@ shinyServer(function(input, output, session) {
         }
         plot_data$truth_frozen <- data.frame(x = truth_fr$date, y = round(truth_fr$value*pop_factor, 2))
         
-        
-        # y axis limit
-        plot_data$ylim <- c(0, 1.1*max(plot_data$current_truth$y, na.rm = TRUE))
-        
         # nowcasts / forecasts
         if(!is.null(input$select_date)){
             # run through models:
@@ -279,7 +278,7 @@ shinyServer(function(input, output, session) {
                         intervals <- rbind(lower, upper[nrow(upper):1, ])
                         
                         # take population factor into account (switch between absolute numbers and per 100,000)
-                        print(input$select_scale == "absolute counts")
+                        #print(input$select_scale == "absolute counts")
                         points$y <- round(points$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
                         intervals$y <- round(intervals$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
                         
@@ -302,13 +301,19 @@ shinyServer(function(input, output, session) {
                         
                         # store:
                         plot_data[[mod]] <- list(points = points, intervals = intervals)
+                        
+                        # add largest value to max_vals to compute ylim later:
+                        max_vals[mod] <- max(c(1, intervals$y), na.rm = TRUE)
                     }else{
                         plot_data[[mod]] <- NULL
+                        max_vals[mod] <- 1
                     }
                 }else{
                     plot_data[[mod]] <- NULL
                 }
             }
+            # y axis limit
+            plot_data$ylim <- c(0, 1.1*max(c(plot_data$current_truth$y, max_vals), na.rm = TRUE))
         }
         
     })
