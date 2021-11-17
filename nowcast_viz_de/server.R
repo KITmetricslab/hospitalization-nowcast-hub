@@ -344,6 +344,8 @@ shinyServer(function(input, output, session) {
                 add_polygons(x = c(min(dat_truth$date), as.Date(input$select_date), # grey shade to separate past and future
                                    as.Date(input$select_date), min(dat_truth$date)),
                              y = rep(plot_data$ylim, each = 2),
+                             hoverinfo = "none",
+                             inherit = FALSE,
                              fillcolor = "rgba(0.9, 0.9, 0.9, 0.5)",
                              line = list(width = 0),
                              showlegend = FALSE) %>%
@@ -494,17 +496,6 @@ shinyServer(function(input, output, session) {
                               list(plot_data$mapping[[mod]][2]))
         }
         
-        # update log vs natural:
-        observe({
-            if(input$select_log == "log scale"){
-                plotlyProxyInvoke(myPlotProxy, "relayout",
-                                  list(yaxis = list(type = "log")))
-            }else{
-                plotlyProxyInvoke(myPlotProxy, "relayout",
-                                  list(yaxis = list(type = "linear")))
-            }
-        })
-        
         # update time series by reporting date:
         observe({
             plotlyProxyInvoke(myPlotProxy, "restyle",
@@ -536,8 +527,10 @@ shinyServer(function(input, output, session) {
                               list(plot_data$mapping[["current_truth"]]))
         })
         
-        # change language in y-label:
+        # change language in y-label and log vs natural scale:
         observe({
+            type <- ifelse(input$select_log == "log scale", "log", "linear")
+
             ylab <- if(input$select_language == "DE"){
                 if(input$select_scale == "absolute counts"){
                     "7-Tages-Hospitalisierungsinzidenz (absolut)"
@@ -552,7 +545,7 @@ shinyServer(function(input, output, session) {
                 }
             }
             plotlyProxyInvoke(myPlotProxy, "relayout",
-                              list(yaxis = list(title = ylab)))
+                              list(yaxis = list(title = ylab, type = type)))
         })
     })
 })
