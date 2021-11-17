@@ -5,9 +5,9 @@ library(magrittr)
 
 local <- FALSE
 if(local){
-    available_dates <- sort(read.csv("plot_data/available_dates.csv")$date)
+    available_dates <- sort(read.csv("plot_data/available_dates.csv", colClasses = c("date" = "Date"))$date)
 }else{
-    available_dates <- sort(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv")$date)
+    available_dates <- sort(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv", colClasses = c("date" = "Date"))$date)
 }
 bundeslaender <- c("All (Germany)" = "DE",
                    "Baden-Württemberg" = "DE-BW", 	
@@ -44,9 +44,8 @@ shinyUI(fluidPage(
             br(),
             div(style="display: inline-block;vertical-align:top;", actionButton("skip_backward", "<")),
             div(style="display: inline-block;vertical-align:top;width:200px", 
-                selectizeInput("select_date", 
-                               label = NULL, 
-                               choices = rev(available_dates))),
+                dateInput("select_date", label = NULL, value = max(available_dates),
+                          min = min(available_dates), max = max(available_dates))),
             div(style="display: inline-block;vertical-align:top;", actionButton("skip_forward", ">")),
             conditionalPanel("input.select_language == 'DE'",
                              p("Nowcasts werden werktäglich aktualisiert. Falls ein Nowcast für das gewählte Datum nicht vorliegt wird der aktuellste Nowcast der letzten 7 Tage gezeigt.",

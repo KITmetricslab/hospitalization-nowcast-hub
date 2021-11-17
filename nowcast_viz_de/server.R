@@ -85,17 +85,18 @@ shinyServer(function(input, output, session) {
     #                                            label = "Select data version (also by click in plot)")
     # )
     
-    # listen to clicks in plot for date selection:
-    observe({
-        date <- as.Date(event_data("plotly_click", source = "tsplot")$x[1])
-        # only use if actually available and contained in selection options 
-        if(length(date) > 0){
-            if(date %in% available_dates){
-                updateSelectInput(session = session, inputId = "select_date", 
-                                  selected = as.character(date))
-            }
-        }
-    })
+    # add back in if date selection by click desired
+    # # listen to clicks in plot for date selection:
+    # observe({
+    #     date <- as.Date(event_data("plotly_click", source = "tsplot")$x[1])
+    #     # only use if actually available and contained in selection options 
+    #     if(length(date) > 0){
+    #         if(date %in% available_dates){
+    #             updateSelectInput(session = session, inputId = "select_date", 
+    #                               selected = as.character(date))
+    #         }
+    #     }
+    # })
     
     # set age_group to "00+" if state != "DE"
     observe({
@@ -117,11 +118,12 @@ shinyServer(function(input, output, session) {
     observe({
         input$skip_backward
         isolate({
-            if(!is.null(input$select_date) & input$skip_backward > 0){
+            print(input$select_date)
+            if(!is.null(input$select_date) & length(input$select_date) > 0 & input$skip_backward > 0){
                 new_date <- as.Date(input$select_date) - 1
                 if(new_date %in% available_dates){
-                    updateSelectInput(session = session, inputId = "select_date", 
-                                      selected = as.character(new_date))
+                    updateSelectInput(session = session, inputId = "select_date",
+                                      selected = new_date)
                 }
             }
         })
@@ -131,11 +133,11 @@ shinyServer(function(input, output, session) {
     observe({
         input$skip_forward
         isolate({
-            if(!is.null(input$select_date) & input$skip_forward > 0){
+            if(!is.null(input$select_date) & length(input$select_date) > 0 & input$skip_forward > 0){
                 new_date <- as.Date(input$select_date) + 1
                 if(new_date %in% available_dates){
-                    updateSelectInput(session = session, inputId = "select_date", 
-                                      selected = as.character(new_date))
+                    updateSelectInput(session = session, inputId = "select_date",
+                                      selected = new_date)
                 }
             }
         })
@@ -239,9 +241,9 @@ shinyServer(function(input, output, session) {
             # run through models:
             for(mod in models){
                 # only if not already loaded
-                if(!is.null(forecast_data[[input$select_date]])){
+                if(!is.null(forecast_data[[as.character(input$select_date)]])){
                     # subset to required info:
-                    subs <- subset(forecast_data[[input$select_date]],
+                    subs <- subset(forecast_data[[as.character(input$select_date)]],
                                    age_group == input$select_age &
                                        model == mod &
                                        location == input$select_state &
