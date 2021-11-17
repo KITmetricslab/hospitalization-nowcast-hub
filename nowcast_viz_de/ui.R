@@ -129,13 +129,13 @@ shinyUI(fluidPage(
             ),
             p(),
             conditionalPanel("input.select_language == 'DE'",
-                             p("Die interaktive Visualisierung funktioniert am besten unter Google Chrome.", style = style_explanation)
+                             p("Die interaktive Visualisierung funktioniert am besten unter Google Chrome und ist nicht für Mobilgeräte optimiert.", style = style_explanation)
                              # p("Diese Plattform wird von Mitgliedern des ",
                              #   a("Lehrstuhls für Ökonometrie und Statistik", href = "https://statistik.econ.kit.edu/index.php"),
                              #   "am Karlsruher Institut für Technologie betrieben. Kontakt: forecasthub@econ.kit.edu")
             ),
             conditionalPanel("input.select_language == 'EN'",
-                             p("The interactive visualization works best under Google Chrome.", style = style_explanation)
+                             p("The interactive visualization works best under Google Chrome and is not optimized for mobile devices.", style = style_explanation)
                              # p("This platform is run by members of the ",
                              #   a("Chair of Statistics and Econometrics", href = "https://statistik.econ.kit.edu/index.php"),
                              #   "at Karlsruhe Institute of Technology. Contact: forecasthub@econ.kit.edu")

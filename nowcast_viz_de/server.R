@@ -329,11 +329,18 @@ shinyServer(function(input, output, session) {
         # only run at start of app, rest is done in updates below
         isolate({
             
+            # compute default zoom:
+            min_Date <- Sys.Date() - 45
+            min_Date_ms <- interval("1970-01-01", min_Date) / dmilliseconds(1)
+            max_Date <- Sys.Date() + 5
+            max_Date_ms <- interval("1970-01-01", max_Date) / dmilliseconds(1)
+            
             # initialize plot:
             p <- plot_ly(mode = "lines", hovertemplate = '%{y}', source = "tsplot") %>% # last argument ensures labels are completely visible
                 layout(yaxis = list(title = '7-Tage Hospitalisierungsinzidenz (absolut)'), # axis + legend settings
-                       xaxis = list(title = "Meldedatum"),
-                       hovermode = "x unified") %>%
+                       xaxis = list(title = "Meldedatum", range = c(min_Date_ms, max_Date_ms)),
+                       hovermode = "x unified",
+                       hoverdistance = 5) %>%
                 add_polygons(x = c(min(dat_truth$date), as.Date(input$select_date), # grey shade to separate past and future
                                    as.Date(input$select_date), min(dat_truth$date)),
                              y = rep(plot_data$ylim, each = 2),
