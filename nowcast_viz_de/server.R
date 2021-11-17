@@ -344,7 +344,7 @@ shinyServer(function(input, output, session) {
                 add_polygons(x = c(min(dat_truth$date), as.Date(input$select_date), # grey shade to separate past and future
                                    as.Date(input$select_date), min(dat_truth$date)),
                              y = rep(plot_data$ylim, each = 2),
-                             hoverinfo = "none",
+                             hoverinfo = "none", hoveron = "points",
                              inherit = FALSE,
                              fillcolor = "rgba(0.9, 0.9, 0.9, 0.5)",
                              line = list(width = 0),
