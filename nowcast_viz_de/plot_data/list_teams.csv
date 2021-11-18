@@ -1,9 +1,9 @@
 model
+NowcastHub-MeanEnsemble
+RKI-weekly_report
+SU-hier_bayes
+LMU_StaBLab-GAM_nowcast
+NowcastHub-MedianEnsemble
+ILM-prop
 RIVM-KEW
 KIT-simple_nowcast
-LMU_StaBLab-GAM_nowcast
-RKI-weekly_report
-ILM-prop
-NowcastHub-MedianEnsemble
-NowcastHub-MeanEnsemble
-SU-hier_bayes
