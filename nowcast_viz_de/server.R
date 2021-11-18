@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-local <- FALSE
+local <- TRUE
 
 library(shiny)
 library(plotly)
@@ -41,7 +41,7 @@ if(local){
     # vector of Mondays available in truth data:
     available_dates <- sort(as.Date(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv")$date))
 }
-models <- dat_models$model
+models <- sort(dat_models$model)
 
 
 # assign colors:
@@ -331,11 +331,11 @@ shinyServer(function(input, output, session) {
         # only run at start of app, rest is done in updates below
         isolate({
             
-            # compute default zoom:
+            # compute default zoom (for some reason on millisecond scale):
             min_Date <- Sys.Date() - 45
-            min_Date_ms <- interval("1970-01-01", min_Date) / dmilliseconds(1)
+            min_Date_ms <- as.numeric(difftime(min_Date, "1970-01-01")) * (24*60*60*1000)
             max_Date <- Sys.Date() + 5
-            max_Date_ms <- interval("1970-01-01", max_Date) / dmilliseconds(1)
+            max_Date_ms <- as.numeric(difftime(max_Date, "1970-01-01")) * (24*60*60*1000)
             
             # initialize plot:
             p <- plot_ly(mode = "lines", hovertemplate = '%{y}', source = "tsplot") %>% # last argument ensures labels are completely visible
@@ -403,7 +403,9 @@ shinyServer(function(input, output, session) {
                 p <- p%>% add_polygons(x = x_intervals, y = y_intervals,
                                        line = list(width = 0),
                                        fillcolor = cols_transp[mod],
-                                       legendgroup = mod, showlegend = FALSE)
+                                       legendgroup = mod,
+                                       hoverinfo = "none",
+                                       showlegend = FALSE)
                 # add point nowcasts:
                 p <- p %>% add_trace(x = x, y = y,
                                      name = mod,
@@ -488,7 +490,8 @@ shinyServer(function(input, output, session) {
             # shaded area for uncertainty:
             plotlyProxyInvoke(myPlotProxy, "restyle",
                               list(x = list(x_intervals),
-                                   y = list(y_intervals)),
+                                   y = list(y_intervals),
+                                   hoverinfo = "none"),
                               list(plot_data$mapping[[mod]][1]))
             # point nowcasts:
             plotlyProxyInvoke(myPlotProxy, "restyle",
@@ -548,6 +551,116 @@ shinyServer(function(input, output, session) {
             }
             plotlyProxyInvoke(myPlotProxy, "relayout",
                               list(yaxis = list(title = ylab, type = type)))
+        })
+    })
+    
+    # update language in ui inputs:
+    observe({
+        input$select_language
+        isolate({
+            # Prediction interval
+            label <- ifelse(input$select_language == "DE", "Vorhersageintervall", "Prediction interval")
+            choices <- if(input$select_language == "DE"){
+                c("95%" = "95%", "50%" = "50%", "nur Median" = "none")
+            }else{
+                c("95%" = "95%", "50%" = "50%", "only median" = "none")
+            }
+            selected <- input$select_interval
+            updateRadioButtons(session, "select_interval",
+                               label = label,
+                               choices = choices,
+                               selected = selected,
+                               inline = TRUE
+            )
+            
+            # Show as
+            label <- ifelse(input$select_language == "DE", "Anzeige", "Show as")
+            choices <- if(input$select_language == "DE"){
+                c("absolute Zahlen" = "absolute counts",
+                  "pro 100.000" = "per 100.000")
+            }else{
+                c("absolute counts" = "absolute counts",
+                  "per 100.000" = "per 100.000")
+            }
+            selected <- input$select_scale
+            updateRadioButtons(session, "select_scale",
+                               label = label,
+                               choices = choices,
+                               selected = selected,
+                               inline = TRUE
+            )
+            
+            # log scale
+            label <- ifelse(input$select_language == "DE", "Anzeige", "Show as")
+            choices <- if(input$select_language == "DE"){
+                c("natürliche Skala" = "natural scale",
+                  "log-Skala"  ="log scale")
+            }else{
+                c("natural scale" = "natural scale",
+                  "log scale"  ="log scale")
+            }
+            selected <- input$select_log
+            updateRadioButtons(session, "select_log",
+                               label = label,
+                               choices = choices,
+                               selected = selected,
+                               inline = TRUE
+            )
+            
+            # Stratification
+            label <- ifelse(input$select_language == "DE", "Stratifizierung", "Stratification")
+            choices <- if(input$select_language == "DE"){
+                c("Bundesland" = "state", "Altersgruppe" = "age")
+            }else{
+                c("Bundesland" = "state", "Age group" = "age")
+            }
+            selected <- input$select_stratification
+            updateRadioButtons(session, "select_stratification",
+                               label = label,
+                               choices = choices,
+                               selected = selected,
+                               inline = TRUE
+            )
+            
+            # Time series by appearance in RKI data
+            label <- ifelse(input$select_language == "DE",
+                            "Zeitreihe nach Erscheinen in RKI-Daten",
+                            "Time series by appearance in RKI data")
+            selected <- input$show_truth_by_reporting
+            updateCheckboxInput(session, "show_truth_by_reporting",
+                               label = label,
+                               value = selected
+            )
+            
+            # Time series of frozen values
+            label <- ifelse(input$select_language == "DE", 
+                            "Zeitreihe eingefrorener Werte", 
+                            "Time series of frozen values")
+            selected <- input$show_truth_frozen
+            updateCheckboxInput(session, "show_truth_frozen",
+                               label = label,
+                               value = selected
+            )
+            
+            # Show two most recent days
+            label <- ifelse(input$select_language == "DE", 
+                            "Zeige letzte zwei Tage", 
+                            "Show two most recent days")
+            selected <- input$show_last_two_days
+            updateCheckboxInput(session, "show_last_two_days",
+                                label = label,
+                                value = selected
+            )
+            
+            # Show retrospective nowcasts
+            label <- ifelse(input$select_language == "DE", 
+                            "Nachträglich erstellte Nowcasts zeigen", 
+                            "Show retrospective nowcasts")
+            selected <- input$show_retrospective_nowcasts
+            updateCheckboxInput(session, "show_retrospective_nowcasts",
+                                label = label,
+                                value = selected
+            )
         })
     })
 })
