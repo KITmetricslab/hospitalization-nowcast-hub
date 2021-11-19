@@ -129,3 +129,4 @@ dmypy.json
 .pyre/
 .Rproj.user
 nowcast_hub.Rproj
+.Rhistory
