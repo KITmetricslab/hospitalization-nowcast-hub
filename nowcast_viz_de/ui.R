@@ -2,6 +2,7 @@ library(shiny)
 library(plotly)
 library(shinyhelper)
 library(magrittr)
+library(shinybusy)
 
 local <- TRUE
 if(local){
@@ -79,12 +80,14 @@ shinyUI(fluidPage(
             conditionalPanel("input.select_language == 'EN'",
                              p("When comparing age groups or Bundesländer please note that the scales in the figure differ.",
                                style = "font-size:11px;")),
-            radioButtons("select_interval", label = "Vorhersageintervall", 
-                         choices = c("95%" = "95%", "50%" = "50%", "nur Median" = "none"), selected = "95%", inline = TRUE),
+            radioButtons("select_point_estimate", label = "Punktschätzer:", 
+                         choices = c("Median" = "median", "Erwartungswert" = "mean"), selected = "median", inline = TRUE),
+            radioButtons("select_interval", label = "Unsicherheitsintervall", 
+                         choices = c("95%" = "95%", "50%" = "50%", "keines" = "none"), selected = "95%", inline = TRUE),
             radioButtons("select_scale", label = "Anzeige", 
-                         choices = c("absolute Zahlen" = "absolute counts",
-                                     "pro 100.000" = "per 100.000"),
-                         selected = "absolute counts", inline = TRUE),
+                         choices = c("pro 100.000" = "per 100.000",
+                                     "absolute Zahlen" = "absolute counts"),
+                         selected = "per 100.000", inline = TRUE),
             radioButtons("select_log", label = NULL, 
                          choices = c("natürliche Skala" = "natural scale",
                                      "log-Skala"  ="log scale"), 
@@ -117,6 +120,8 @@ shinyUI(fluidPage(
                              p("This platform unites nowcasts of the COVID-19 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends."),
             ),
             plotlyOutput("tsplot"),
+            add_busy_spinner(spin = "fading-circle"),
+            
             p(),
             conditionalPanel("input.select_language == 'DE'",
                              p("Das Wichtigste in Kürze"),

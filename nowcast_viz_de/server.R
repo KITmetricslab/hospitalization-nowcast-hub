@@ -43,6 +43,8 @@ if(local){
 }
 models <- sort(dat_models$model)
 
+default_models <- "NowcastHub-MeanEnsemble"
+
 
 # assign colors:
 cols <- c('rgb(31, 119, 180)',
@@ -263,7 +265,12 @@ shinyServer(function(input, output, session) {
                     
                     if(nrow(subs) > 0){
                         # prepare list of simple data frames for plotting:
-                        points <- subs[, c("target_end_date", "q0.5")]
+                        if(input$select_point_estimate == "median"){
+                            points <- subs[, c("target_end_date", "q0.5")]
+                        }else{
+                            points <- subs[, c("target_end_date", "mean")]
+                        }
+                        
                         if(input$select_interval == "none"){
                             lower <- subs[, c("target_end_date", "q0.5")]
                             upper <- subs[, c("target_end_date", "q0.5")]
@@ -339,7 +346,7 @@ shinyServer(function(input, output, session) {
             
             # initialize plot:
             p <- plot_ly(mode = "lines", hovertemplate = '%{y}', source = "tsplot") %>% # last argument ensures labels are completely visible
-                layout(yaxis = list(title = '7-Tage Hospitalisierungsinzidenz (absolut)'), # axis + legend settings
+                layout(yaxis = list(title = '7-Tage Hospitalisierungsinzidenz (pro 100.000)'), # axis + legend settings
                        xaxis = list(title = "Meldedatum", range = c(min_Date_ms, max_Date_ms)),
                        hovermode = "x unified",
                        hoverdistance = 5) %>%
@@ -405,7 +412,8 @@ shinyServer(function(input, output, session) {
                                        fillcolor = cols_transp[mod],
                                        legendgroup = mod,
                                        hoverinfo = "none",
-                                       showlegend = FALSE)
+                                       showlegend = FALSE,
+                                       visible = ifelse(mod %in% default_models, TRUE, "legendonly"))
                 # add point nowcasts:
                 p <- p %>% add_trace(x = x, y = y,
                                      name = mod,
@@ -416,7 +424,8 @@ shinyServer(function(input, output, session) {
                                                  color = cols[mod]),
                                      text = text_interval,
                                      hovertemplate = "<b>%{y}</b> %{text}",
-                                     legendgroup = mod)
+                                     legendgroup = mod,
+                                     visible = ifelse(mod %in% default_models, TRUE, "legendonly"))
             }
             p
         })
@@ -558,12 +567,27 @@ shinyServer(function(input, output, session) {
     observe({
         input$select_language
         isolate({
-            # Prediction interval
-            label <- ifelse(input$select_language == "DE", "Vorhersageintervall", "Prediction interval")
+            # Type of point nowcast
+            label <- ifelse(input$select_language == "DE", "Punktschätzer", "Point estimate")
             choices <- if(input$select_language == "DE"){
-                c("95%" = "95%", "50%" = "50%", "nur Median" = "none")
+                c("Median" = "median", "Erwartungswert" = "mean")
             }else{
-                c("95%" = "95%", "50%" = "50%", "only median" = "none")
+                c("Median" = "median", "Mean" = "mean")
+            }
+            selected <- input$select_point_estimate
+            updateRadioButtons(session, "select_point_estimate",
+                               label = label,
+                               choices = choices,
+                               selected = selected,
+                               inline = TRUE
+            )
+            
+            # Prediction interval
+            label <- ifelse(input$select_language == "DE", "Unsicherheitsintervall", "Uncertainty interval")
+            choices <- if(input$select_language == "DE"){
+                c("95%" = "95%", "50%" = "50%", "keines" = "none")
+            }else{
+                c("95%" = "95%", "50%" = "50%", "none" = "none")
             }
             selected <- input$select_interval
             updateRadioButtons(session, "select_interval",
@@ -576,11 +600,11 @@ shinyServer(function(input, output, session) {
             # Show as
             label <- ifelse(input$select_language == "DE", "Anzeige", "Show as")
             choices <- if(input$select_language == "DE"){
-                c("absolute Zahlen" = "absolute counts",
-                  "pro 100.000" = "per 100.000")
+                c("pro 100.000" = "per 100.000",
+                  "absolute Zahlen" = "absolute counts")
             }else{
-                c("absolute counts" = "absolute counts",
-                  "per 100.000" = "per 100.000")
+                c("per 100.000" = "per 100.000",
+                  "absolute counts" = "absolute counts")
             }
             selected <- input$select_scale
             updateRadioButtons(session, "select_scale",
