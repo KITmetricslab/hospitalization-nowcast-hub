@@ -1,0 +1,13 @@
+team_name: SZ
+model_name: hosp_nowcast
+model_abbr: SZ-hosp_nowcast
+model_contributors: Sören Müller-Hansen
+website_url: https://www.sueddeutsche.de/thema/Coronavirus
+license: cc-by-4.0
+team_model_designation: primary
+methods: Nowcasts are based on empirical quantiles of the relative difference between initially reported and retrospectively completed values of the hospitalization incidence.
+repo_url: 
+twitter_handles: s_muellerhansen
+data_inputs: data on hospitalization incidences and delays (https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland)
+methods_long: SZ estimates the nowcasting values for the hospitalization incidence based on differences between the daily published and retrospectively corrected values resulting from later reports. To this end the archived data sets of Robert-Koch-Institute (https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland) from the last 60 days are analysed. For each of the 25 days before the last date in the data set we compute by how many percent the later corrected value differs from the originally reported value. Quantiles of the resulting multiplication factors are computed, and the currently reported hospitalization incidence is multiplied with these quantiles to estimate the total incidence. Finally, the results are smoothed over a three-day window to remove unrealistic fluctuations.
+
