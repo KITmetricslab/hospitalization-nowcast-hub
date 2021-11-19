@@ -1,5 +1,5 @@
 location,age_group,forecast_date,target_end_date,target,type,quantile,value,pathogen
-DE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,8720.1,COVID-19
+DE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,8720.1,COVID-19
 DE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,8436.9,COVID-19
 DE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,8165.7,COVID-19
 DE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,7890.9,COVID-19
@@ -28,7 +28,7 @@ DE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,4613.2,COVID-19
 DE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,4562.6,COVID-19
 DE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,4362.4,COVID-19
 DE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,4092,COVID-19
-DE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,8519.9,COVID-19
+DE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,8519.9,COVID-19
 DE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,8298.1,COVID-19
 DE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,8066.9,COVID-19
 DE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,7815.7,COVID-19
@@ -57,7 +57,7 @@ DE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,4605.1,COVID-
 DE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,4554.6,COVID-19
 DE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,4355.2,COVID-19
 DE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,4085.8,COVID-19
-DE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,8589.8,COVID-19
+DE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,8589.8,COVID-19
 DE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,8345.5,COVID-19
 DE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,8100.1,COVID-19
 DE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,7841.4,COVID-19
@@ -86,7 +86,7 @@ DE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,4607.8,COVID-19
 DE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,4557.3,COVID-19
 DE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,4357.6,COVID-19
 DE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,4087.8,COVID-19
-DE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,8650.7,COVID-19
+DE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,8650.7,COVID-19
 DE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,8389.1,COVID-19
 DE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,8130.9,COVID-19
 DE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,7864.4,COVID-19
@@ -115,7 +115,7 @@ DE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,4610.4,COVID-1
 DE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,4559.8,COVID-19
 DE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,4359.9,COVID-19
 DE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,4089.8,COVID-19
-DE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,8720.2,COVID-19
+DE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,8720.2,COVID-19
 DE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,8437.8,COVID-19
 DE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,8166.6,COVID-19
 DE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,7892.3,COVID-19
@@ -144,7 +144,7 @@ DE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,4613.5,COVID-19
 DE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,4562.9,COVID-19
 DE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,4362.6,COVID-19
 DE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,4092.2,COVID-19
-DE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,8793.3,COVID-19
+DE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,8793.3,COVID-19
 DE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,8487.3,COVID-19
 DE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,8202.6,COVID-19
 DE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,7919.1,COVID-19
@@ -173,7 +173,7 @@ DE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,4616.9,COVID-1
 DE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,4566.2,COVID-19
 DE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,4365.7,COVID-19
 DE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,4094.8,COVID-19
-DE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,8857.7,COVID-19
+DE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,8857.7,COVID-19
 DE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,8533.5,COVID-19
 DE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,8236.7,COVID-19
 DE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,7945.1,COVID-19
@@ -202,7 +202,7 @@ DE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,4620.2,COVID-19
 DE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,4569.4,COVID-19
 DE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,4368.6,COVID-19
 DE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,4097.4,COVID-19
-DE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,8938.2,COVID-19
+DE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,8938.2,COVID-19
 DE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,8590.8,COVID-19
 DE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,8275.5,COVID-19
 DE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,7974.7,COVID-19
@@ -231,7 +231,7 @@ DE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,4624,COVID-19
 DE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,4573.2,COVID-19
 DE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,4372.2,COVID-19
 DE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,4100.5,COVID-19
-DE-BB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,192.5,COVID-19
+DE-BB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,192.5,COVID-19
 DE-BB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,185,COVID-19
 DE-BB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,155.7,COVID-19
 DE-BB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,158.6,COVID-19
@@ -260,7 +260,7 @@ DE-BB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,111.2,COVID-19
 DE-BB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,115.2,COVID-19
 DE-BB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,112.2,COVID-19
 DE-BB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,110.1,COVID-19
-DE-BB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,163.7,COVID-19
+DE-BB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,163.7,COVID-19
 DE-BB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,160.6,COVID-19
 DE-BB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,143.6,COVID-19
 DE-BB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,149.5,COVID-19
@@ -289,7 +289,7 @@ DE-BB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,111.1,COVI
 DE-BB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,115.1,COVID-19
 DE-BB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,112,COVID-19
 DE-BB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,110,COVID-19
-DE-BB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,173.5,COVID-19
+DE-BB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,173.5,COVID-19
 DE-BB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,169,COVID-19
 DE-BB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,148.2,COVID-19
 DE-BB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,152.8,COVID-19
@@ -318,7 +318,7 @@ DE-BB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,111.1,COVID-
 DE-BB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,115.1,COVID-19
 DE-BB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,112.1,COVID-19
 DE-BB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,110.1,COVID-19
-DE-BB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,183.9,COVID-19
+DE-BB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,183.9,COVID-19
 DE-BB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,177.6,COVID-19
 DE-BB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,152.6,COVID-19
 DE-BB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,156.3,COVID-19
@@ -347,7 +347,7 @@ DE-BB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,111.1,COVID
 DE-BB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,115.1,COVID-19
 DE-BB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,112.1,COVID-19
 DE-BB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,110.1,COVID-19
-DE-BB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,197.7,COVID-19
+DE-BB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,197.7,COVID-19
 DE-BB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,188.9,COVID-19
 DE-BB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,158.1,COVID-19
 DE-BB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,160.7,COVID-19
@@ -376,7 +376,7 @@ DE-BB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,111.3,COVID-
 DE-BB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,115.3,COVID-19
 DE-BB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,112.2,COVID-19
 DE-BB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,110.2,COVID-19
-DE-BB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,215.4,COVID-19
+DE-BB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,215.4,COVID-19
 DE-BB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,204.1,COVID-19
 DE-BB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,165.3,COVID-19
 DE-BB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,166.3,COVID-19
@@ -405,7 +405,7 @@ DE-BB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,111.7,COVID
 DE-BB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,115.7,COVID-19
 DE-BB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,112.6,COVID-19
 DE-BB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,110.6,COVID-19
-DE-BB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,236.6,COVID-19
+DE-BB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,236.6,COVID-19
 DE-BB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,222.2,COVID-19
 DE-BB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,173.3,COVID-19
 DE-BB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,173,COVID-19
@@ -434,7 +434,7 @@ DE-BB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,114.1,COVID-
 DE-BB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,118.2,COVID-19
 DE-BB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,114.9,COVID-19
 DE-BB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,112.8,COVID-19
-DE-BB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,284.9,COVID-19
+DE-BB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,284.9,COVID-19
 DE-BB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,264.2,COVID-19
 DE-BB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,195.1,COVID-19
 DE-BB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,196.4,COVID-19
@@ -463,7 +463,7 @@ DE-BB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,133.2,COVI
 DE-BB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,137.8,COVID-19
 DE-BB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,132.7,COVID-19
 DE-BB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,130.5,COVID-19
-DE-BE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,232.2,COVID-19
+DE-BE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,232.2,COVID-19
 DE-BE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,221.3,COVID-19
 DE-BE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,201.1,COVID-19
 DE-BE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,194.7,COVID-19
@@ -492,7 +492,7 @@ DE-BE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,205.5,COVID-19
 DE-BE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,204.5,COVID-19
 DE-BE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,201.5,COVID-19
 DE-BE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,195.4,COVID-19
-DE-BE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,210.1,COVID-19
+DE-BE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,210.1,COVID-19
 DE-BE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,204.7,COVID-19
 DE-BE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,189.9,COVID-19
 DE-BE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,186.8,COVID-19
@@ -521,7 +521,7 @@ DE-BE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,205.2,COVI
 DE-BE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,204.2,COVID-19
 DE-BE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,201.1,COVID-19
 DE-BE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,195.1,COVID-19
-DE-BE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,217.9,COVID-19
+DE-BE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,217.9,COVID-19
 DE-BE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,210.5,COVID-19
 DE-BE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,193.9,COVID-19
 DE-BE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,189.7,COVID-19
@@ -550,7 +550,7 @@ DE-BE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,205.2,COVID-
 DE-BE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,204.2,COVID-19
 DE-BE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,201.2,COVID-19
 DE-BE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,195.2,COVID-19
-DE-BE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,225.2,COVID-19
+DE-BE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,225.2,COVID-19
 DE-BE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,215.9,COVID-19
 DE-BE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,197.7,COVID-19
 DE-BE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,192.4,COVID-19
@@ -579,7 +579,7 @@ DE-BE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,205.4,COVID
 DE-BE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,204.4,COVID-19
 DE-BE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,201.4,COVID-19
 DE-BE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,195.3,COVID-19
-DE-BE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,234,COVID-19
+DE-BE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,234,COVID-19
 DE-BE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,222.9,COVID-19
 DE-BE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,202.4,COVID-19
 DE-BE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,195.7,COVID-19
@@ -608,7 +608,7 @@ DE-BE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,205.6,COVID-
 DE-BE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,204.6,COVID-19
 DE-BE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,201.6,COVID-19
 DE-BE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,195.5,COVID-19
-DE-BE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,244.4,COVID-19
+DE-BE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,244.4,COVID-19
 DE-BE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,230.6,COVID-19
 DE-BE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,207.6,COVID-19
 DE-BE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,199.5,COVID-19
@@ -637,7 +637,7 @@ DE-BE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,206.2,COVID
 DE-BE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,205.1,COVID-19
 DE-BE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,202.1,COVID-19
 DE-BE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,196,COVID-19
-DE-BE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,254.7,COVID-19
+DE-BE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,254.7,COVID-19
 DE-BE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,238.3,COVID-19
 DE-BE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,212.8,COVID-19
 DE-BE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,203.2,COVID-19
@@ -666,7 +666,7 @@ DE-BE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,207.1,COVID-
 DE-BE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,206.1,COVID-19
 DE-BE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,203,COVID-19
 DE-BE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,196.9,COVID-19
-DE-BE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,267.3,COVID-19
+DE-BE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,267.3,COVID-19
 DE-BE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,247.8,COVID-19
 DE-BE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,219,COVID-19
 DE-BE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,208,COVID-19
@@ -695,7 +695,7 @@ DE-BE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,209.3,COVI
 DE-BE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,208.3,COVID-19
 DE-BE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,205.1,COVID-19
 DE-BE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,198.8,COVID-19
-DE-BW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,1344.8,COVID-19
+DE-BW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,1344.8,COVID-19
 DE-BW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,1294.9,COVID-19
 DE-BW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,1199.3,COVID-19
 DE-BW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,1174.3,COVID-19
@@ -724,7 +724,7 @@ DE-BW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,780,COVID-19
 DE-BW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,765.6,COVID-19
 DE-BW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,715.9,COVID-19
 DE-BW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,698.9,COVID-19
-DE-BW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,1261,COVID-19
+DE-BW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,1261,COVID-19
 DE-BW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,1237.1,COVID-19
 DE-BW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,1164.4,COVID-19
 DE-BW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,1147.2,COVID-19
@@ -753,7 +753,7 @@ DE-BW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,777,COVID-
 DE-BW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,762.7,COVID-19
 DE-BW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,713.5,COVID-19
 DE-BW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,696.7,COVID-19
-DE-BW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,1289.5,COVID-19
+DE-BW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,1289.5,COVID-19
 DE-BW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,1256.4,COVID-19
 DE-BW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,1176.3,COVID-19
 DE-BW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,1156.1,COVID-19
@@ -782,7 +782,7 @@ DE-BW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,778,COVID-19
 DE-BW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,763.7,COVID-19
 DE-BW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,714.3,COVID-19
 DE-BW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,697.4,COVID-19
-DE-BW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,1315.9,COVID-19
+DE-BW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,1315.9,COVID-19
 DE-BW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,1275.2,COVID-19
 DE-BW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,1187.8,COVID-19
 DE-BW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,1165.4,COVID-19
@@ -811,7 +811,7 @@ DE-BW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,779,COVID-1
 DE-BW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,764.6,COVID-19
 DE-BW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,715.1,COVID-19
 DE-BW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,698.2,COVID-19
-DE-BW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,1347.6,COVID-19
+DE-BW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,1347.6,COVID-19
 DE-BW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,1297,COVID-19
 DE-BW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,1201.1,COVID-19
 DE-BW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,1176.1,COVID-19
@@ -840,7 +840,7 @@ DE-BW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,780.3,COVID-
 DE-BW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,765.9,COVID-19
 DE-BW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,716.2,COVID-19
 DE-BW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,699.2,COVID-19
-DE-BW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,1381.1,COVID-19
+DE-BW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,1381.1,COVID-19
 DE-BW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,1320.4,COVID-19
 DE-BW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,1215.1,COVID-19
 DE-BW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,1187,COVID-19
@@ -869,7 +869,7 @@ DE-BW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,781.9,COVID
 DE-BW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,767.5,COVID-19
 DE-BW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,717.6,COVID-19
 DE-BW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,700.5,COVID-19
-DE-BW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,1413.7,COVID-19
+DE-BW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,1413.7,COVID-19
 DE-BW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,1342,COVID-19
 DE-BW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,1228.3,COVID-19
 DE-BW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,1197.5,COVID-19
@@ -898,7 +898,7 @@ DE-BW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,783.7,COVID-
 DE-BW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,769.3,COVID-19
 DE-BW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,719.1,COVID-19
 DE-BW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,701.9,COVID-19
-DE-BW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,1451.2,COVID-19
+DE-BW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,1451.2,COVID-19
 DE-BW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,1368,COVID-19
 DE-BW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,1243.9,COVID-19
 DE-BW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,1209.9,COVID-19
@@ -927,7 +927,7 @@ DE-BW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,786.2,COVI
 DE-BW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,771.7,COVID-19
 DE-BW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,721.3,COVID-19
 DE-BW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,703.9,COVID-19
-DE-BY,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,2630.6,COVID-19
+DE-BY,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,2630.6,COVID-19
 DE-BY,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,2552.6,COVID-19
 DE-BY,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,2406.7,COVID-19
 DE-BY,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,2246.9,COVID-19
@@ -956,7 +956,7 @@ DE-BY,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,954.1,COVID-19
 DE-BY,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,921.3,COVID-19
 DE-BY,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,888.9,COVID-19
 DE-BY,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,832.8,COVID-19
-DE-BY,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,2478.4,COVID-19
+DE-BY,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,2478.4,COVID-19
 DE-BY,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,2442.2,COVID-19
 DE-BY,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,2328.2,COVID-19
 DE-BY,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,2187.5,COVID-19
@@ -985,7 +985,7 @@ DE-BY,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,948.5,COVI
 DE-BY,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,916,COVID-19
 DE-BY,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,884,COVID-19
 DE-BY,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,828.6,COVID-19
-DE-BY,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,2531.9,COVID-19
+DE-BY,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,2531.9,COVID-19
 DE-BY,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,2480.1,COVID-19
 DE-BY,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,2354.9,COVID-19
 DE-BY,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,2207.9,COVID-19
@@ -1014,7 +1014,7 @@ DE-BY,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,950.4,COVID-
 DE-BY,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,917.7,COVID-19
 DE-BY,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,885.6,COVID-19
 DE-BY,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,830,COVID-19
-DE-BY,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,2580.1,COVID-19
+DE-BY,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,2580.1,COVID-19
 DE-BY,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,2515.5,COVID-19
 DE-BY,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,2380.2,COVID-19
 DE-BY,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,2227.5,COVID-19
@@ -1043,7 +1043,7 @@ DE-BY,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,952.2,COVID
 DE-BY,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,919.5,COVID-19
 DE-BY,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,887.3,COVID-19
 DE-BY,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,831.4,COVID-19
-DE-BY,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,2635.7,COVID-19
+DE-BY,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,2635.7,COVID-19
 DE-BY,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,2556.9,COVID-19
 DE-BY,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,2410.2,COVID-19
 DE-BY,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,2250.2,COVID-19
@@ -1072,7 +1072,7 @@ DE-BY,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,954.6,COVID-
 DE-BY,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,921.8,COVID-19
 DE-BY,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,889.3,COVID-19
 DE-BY,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,833.2,COVID-19
-DE-BY,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,2695.4,COVID-19
+DE-BY,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,2695.4,COVID-19
 DE-BY,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,2600.5,COVID-19
 DE-BY,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,2442.1,COVID-19
 DE-BY,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,2273.5,COVID-19
@@ -1101,7 +1101,7 @@ DE-BY,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,957.4,COVID
 DE-BY,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,924.4,COVID-19
 DE-BY,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,891.7,COVID-19
 DE-BY,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,835.3,COVID-19
-DE-BY,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,2751.3,COVID-19
+DE-BY,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,2751.3,COVID-19
 DE-BY,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,2641.9,COVID-19
 DE-BY,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,2471.5,COVID-19
 DE-BY,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,2296.1,COVID-19
@@ -1130,7 +1130,7 @@ DE-BY,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,960.3,COVID-
 DE-BY,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,927.2,COVID-19
 DE-BY,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,894.3,COVID-19
 DE-BY,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,837.6,COVID-19
-DE-BY,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,2820.7,COVID-19
+DE-BY,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,2820.7,COVID-19
 DE-BY,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,2690.6,COVID-19
 DE-BY,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,2506.3,COVID-19
 DE-BY,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,2321.9,COVID-19
@@ -1159,7 +1159,7 @@ DE-BY,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,964.1,COVI
 DE-BY,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,930.8,COVID-19
 DE-BY,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,897.7,COVID-19
 DE-BY,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,840.6,COVID-19
-DE-HB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,44.8,COVID-19
+DE-HB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,44.8,COVID-19
 DE-HB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,37.8,COVID-19
 DE-HB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,40.3,COVID-19
 DE-HB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,37.6,COVID-19
@@ -1188,7 +1188,7 @@ DE-HB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,35.4,COVID-19
 DE-HB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,39.4,COVID-19
 DE-HB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,37.3,COVID-19
 DE-HB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,35.3,COVID-19
-DE-HB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,38,COVID-19
+DE-HB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,38,COVID-19
 DE-HB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,34.3,COVID-19
 DE-HB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,37.2,COVID-19
 DE-HB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,34.8,COVID-19
@@ -1217,7 +1217,7 @@ DE-HB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,35.1,COVID
 DE-HB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,39.1,COVID-19
 DE-HB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,37.1,COVID-19
 DE-HB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,35.1,COVID-19
-DE-HB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,40.2,COVID-19
+DE-HB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,40.2,COVID-19
 DE-HB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,35.6,COVID-19
 DE-HB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,38.4,COVID-19
 DE-HB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,35.8,COVID-19
@@ -1246,7 +1246,7 @@ DE-HB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,35.2,COVID-1
 DE-HB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,39.2,COVID-19
 DE-HB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,37.1,COVID-19
 DE-HB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,35.1,COVID-19
-DE-HB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,42.8,COVID-19
+DE-HB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,42.8,COVID-19
 DE-HB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,37,COVID-19
 DE-HB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,39.6,COVID-19
 DE-HB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,37,COVID-19
@@ -1275,7 +1275,7 @@ DE-HB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,35.3,COVID-
 DE-HB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,39.3,COVID-19
 DE-HB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,37.3,COVID-19
 DE-HB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,35.2,COVID-19
-DE-HB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,46.9,COVID-19
+DE-HB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,46.9,COVID-19
 DE-HB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,39.2,COVID-19
 DE-HB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,41.7,COVID-19
 DE-HB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,38.8,COVID-19
@@ -1304,7 +1304,7 @@ DE-HB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,35.5,COVID-1
 DE-HB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,39.5,COVID-19
 DE-HB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,37.5,COVID-19
 DE-HB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,35.4,COVID-19
-DE-HB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,53.1,COVID-19
+DE-HB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,53.1,COVID-19
 DE-HB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,42.2,COVID-19
 DE-HB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,44.3,COVID-19
 DE-HB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,41.3,COVID-19
@@ -1333,7 +1333,7 @@ DE-HB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,36,COVID-19
 DE-HB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,40,COVID-19
 DE-HB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,38,COVID-19
 DE-HB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,35.8,COVID-19
-DE-HB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,62.1,COVID-19
+DE-HB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,62.1,COVID-19
 DE-HB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,46.3,COVID-19
 DE-HB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,48.1,COVID-19
 DE-HB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,44.7,COVID-19
@@ -1362,7 +1362,7 @@ DE-HB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,37,COVID-19
 DE-HB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,41.1,COVID-19
 DE-HB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,39,COVID-19
 DE-HB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,36.8,COVID-19
-DE-HB,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,81,COVID-19
+DE-HB,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,81,COVID-19
 DE-HB,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,54.7,COVID-19
 DE-HB,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,55.4,COVID-19
 DE-HB,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,51.4,COVID-19
@@ -1391,7 +1391,7 @@ DE-HB,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,40.4,COVID
 DE-HB,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,45.5,COVID-19
 DE-HB,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,43.2,COVID-19
 DE-HB,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,41,COVID-19
-DE-HE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,585.1,COVID-19
+DE-HE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,585.1,COVID-19
 DE-HE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,557.5,COVID-19
 DE-HE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,511.8,COVID-19
 DE-HE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,491.9,COVID-19
@@ -1420,7 +1420,7 @@ DE-HE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,290.2,COVID-19
 DE-HE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,283,COVID-19
 DE-HE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,269.4,COVID-19
 DE-HE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,246.5,COVID-19
-DE-HE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,532.4,COVID-19
+DE-HE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,532.4,COVID-19
 DE-HE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,521.3,COVID-19
 DE-HE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,488.1,COVID-19
 DE-HE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,474.4,COVID-19
@@ -1449,7 +1449,7 @@ DE-HE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,288.4,COVI
 DE-HE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,281.3,COVID-19
 DE-HE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,267.9,COVID-19
 DE-HE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,245.3,COVID-19
-DE-HE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,550.5,COVID-19
+DE-HE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,550.5,COVID-19
 DE-HE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,533.7,COVID-19
 DE-HE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,496.3,COVID-19
 DE-HE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,480.7,COVID-19
@@ -1478,7 +1478,7 @@ DE-HE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,289,COVID-19
 DE-HE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,281.8,COVID-19
 DE-HE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,268.4,COVID-19
 DE-HE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,245.7,COVID-19
-DE-HE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,567.5,COVID-19
+DE-HE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,567.5,COVID-19
 DE-HE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,546,COVID-19
 DE-HE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,504.6,COVID-19
 DE-HE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,486.7,COVID-19
@@ -1507,7 +1507,7 @@ DE-HE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,289.6,COVID
 DE-HE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,282.4,COVID-19
 DE-HE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,268.9,COVID-19
 DE-HE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,246.1,COVID-19
-DE-HE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,589.3,COVID-19
+DE-HE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,589.3,COVID-19
 DE-HE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,560.6,COVID-19
 DE-HE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,514.3,COVID-19
 DE-HE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,494,COVID-19
@@ -1536,7 +1536,7 @@ DE-HE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,290.5,COVID-
 DE-HE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,283.3,COVID-19
 DE-HE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,269.6,COVID-19
 DE-HE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,246.7,COVID-19
-DE-HE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,613.1,COVID-19
+DE-HE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,613.1,COVID-19
 DE-HE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,576.9,COVID-19
 DE-HE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,525.1,COVID-19
 DE-HE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,502,COVID-19
@@ -1565,7 +1565,7 @@ DE-HE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,291.7,COVID
 DE-HE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,284.4,COVID-19
 DE-HE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,270.7,COVID-19
 DE-HE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,247.5,COVID-19
-DE-HE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,636.1,COVID-19
+DE-HE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,636.1,COVID-19
 DE-HE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,592.8,COVID-19
 DE-HE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,535.3,COVID-19
 DE-HE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,509.8,COVID-19
@@ -1594,7 +1594,7 @@ DE-HE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,293.2,COVID-
 DE-HE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,285.9,COVID-19
 DE-HE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,272,COVID-19
 DE-HE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,248.6,COVID-19
-DE-HE,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,666.1,COVID-19
+DE-HE,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,666.1,COVID-19
 DE-HE,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,612.6,COVID-19
 DE-HE,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,548,COVID-19
 DE-HE,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,519.3,COVID-19
@@ -1623,7 +1623,7 @@ DE-HE,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,295.5,COVI
 DE-HE,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,288.2,COVID-19
 DE-HE,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,274.1,COVID-19
 DE-HE,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,250.3,COVID-19
-DE-HH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,123.4,COVID-19
+DE-HH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,123.4,COVID-19
 DE-HH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,135.9,COVID-19
 DE-HH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,109.6,COVID-19
 DE-HH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,122.3,COVID-19
@@ -1652,7 +1652,7 @@ DE-HH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,70.8,COVID-19
 DE-HH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,69.8,COVID-19
 DE-HH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,69.7,COVID-19
 DE-HH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,70.7,COVID-19
-DE-HH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,88.8,COVID-19
+DE-HH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,88.8,COVID-19
 DE-HH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,100.2,COVID-19
 DE-HH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,93,COVID-19
 DE-HH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,107.4,COVID-19
@@ -1681,7 +1681,7 @@ DE-HH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,70.4,COVID
 DE-HH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,69.3,COVID-19
 DE-HH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,69.3,COVID-19
 DE-HH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,70.3,COVID-19
-DE-HH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,99.3,COVID-19
+DE-HH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,99.3,COVID-19
 DE-HH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,111,COVID-19
 DE-HH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,98.3,COVID-19
 DE-HH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,112.3,COVID-19
@@ -1710,7 +1710,7 @@ DE-HH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,70.5,COVID-1
 DE-HH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,69.5,COVID-19
 DE-HH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,69.4,COVID-19
 DE-HH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,70.4,COVID-19
-DE-HH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,110.8,COVID-19
+DE-HH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,110.8,COVID-19
 DE-HH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,123,COVID-19
 DE-HH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,104.1,COVID-19
 DE-HH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,117.6,COVID-19
@@ -1739,7 +1739,7 @@ DE-HH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,70.7,COVID-
 DE-HH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,69.6,COVID-19
 DE-HH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,69.6,COVID-19
 DE-HH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,70.5,COVID-19
-DE-HH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,127.3,COVID-19
+DE-HH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,127.3,COVID-19
 DE-HH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,140.2,COVID-19
 DE-HH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,112.1,COVID-19
 DE-HH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,124.7,COVID-19
@@ -1768,7 +1768,7 @@ DE-HH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,71,COVID-19
 DE-HH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,69.9,COVID-19
 DE-HH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,69.8,COVID-19
 DE-HH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,70.8,COVID-19
-DE-HH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,149.4,COVID-19
+DE-HH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,149.4,COVID-19
 DE-HH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,162.9,COVID-19
 DE-HH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,121.3,COVID-19
 DE-HH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,133,COVID-19
@@ -1797,7 +1797,7 @@ DE-HH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,71.4,COVID-
 DE-HH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,70.2,COVID-19
 DE-HH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,70.3,COVID-19
 DE-HH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,71.3,COVID-19
-DE-HH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,177.2,COVID-19
+DE-HH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,177.2,COVID-19
 DE-HH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,191.2,COVID-19
 DE-HH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,131.2,COVID-19
 DE-HH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,141.8,COVID-19
@@ -1826,7 +1826,7 @@ DE-HH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,72,COVID-19
 DE-HH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,70.9,COVID-19
 DE-HH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,71,COVID-19
 DE-HH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,72.1,COVID-19
-DE-HH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,223.9,COVID-19
+DE-HH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,223.9,COVID-19
 DE-HH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,237.4,COVID-19
 DE-HH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,145.2,COVID-19
 DE-HH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,154.1,COVID-19
@@ -1855,7 +1855,7 @@ DE-HH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,73.1,COVID
 DE-HH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,72,COVID-19
 DE-HH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,72.5,COVID-19
 DE-HH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,73.8,COVID-19
-DE-MV,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,232.8,COVID-19
+DE-MV,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,232.8,COVID-19
 DE-MV,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,214,COVID-19
 DE-MV,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,189.4,COVID-19
 DE-MV,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,187.6,COVID-19
@@ -1884,7 +1884,7 @@ DE-MV,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,56.7,COVID-19
 DE-MV,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,60.7,COVID-19
 DE-MV,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,60.7,COVID-19
 DE-MV,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,56.6,COVID-19
-DE-MV,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,191.5,COVID-19
+DE-MV,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,191.5,COVID-19
 DE-MV,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,185.7,COVID-19
 DE-MV,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,171.8,COVID-19
 DE-MV,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,175.7,COVID-19
@@ -1913,7 +1913,7 @@ DE-MV,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,56.2,COVID
 DE-MV,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,60.2,COVID-19
 DE-MV,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,60.2,COVID-19
 DE-MV,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,56.2,COVID-19
-DE-MV,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,206.2,COVID-19
+DE-MV,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,206.2,COVID-19
 DE-MV,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,196,COVID-19
 DE-MV,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,179,COVID-19
 DE-MV,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,180.5,COVID-19
@@ -1942,7 +1942,7 @@ DE-MV,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,56.4,COVID-1
 DE-MV,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,60.4,COVID-19
 DE-MV,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,60.4,COVID-19
 DE-MV,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,56.3,COVID-19
-DE-MV,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,222.7,COVID-19
+DE-MV,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,222.7,COVID-19
 DE-MV,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,207.3,COVID-19
 DE-MV,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,186,COVID-19
 DE-MV,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,185.6,COVID-19
@@ -1971,7 +1971,7 @@ DE-MV,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,56.6,COVID-
 DE-MV,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,60.6,COVID-19
 DE-MV,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,60.6,COVID-19
 DE-MV,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,56.5,COVID-19
-DE-MV,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,245.3,COVID-19
+DE-MV,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,245.3,COVID-19
 DE-MV,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,222.5,COVID-19
 DE-MV,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,195.6,COVID-19
 DE-MV,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,192.7,COVID-19
@@ -2000,7 +2000,7 @@ DE-MV,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,56.9,COVID-1
 DE-MV,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,61,COVID-19
 DE-MV,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,61,COVID-19
 DE-MV,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,56.8,COVID-19
-DE-MV,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,274.8,COVID-19
+DE-MV,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,274.8,COVID-19
 DE-MV,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,241.6,COVID-19
 DE-MV,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,207.3,COVID-19
 DE-MV,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,201,COVID-19
@@ -2029,7 +2029,7 @@ DE-MV,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,57.5,COVID-
 DE-MV,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,61.6,COVID-19
 DE-MV,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,61.6,COVID-19
 DE-MV,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,57.4,COVID-19
-DE-MV,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,310.2,COVID-19
+DE-MV,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,310.2,COVID-19
 DE-MV,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,263.3,COVID-19
 DE-MV,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,220.9,COVID-19
 DE-MV,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,211.1,COVID-19
@@ -2058,7 +2058,7 @@ DE-MV,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,58.4,COVID-1
 DE-MV,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,62.5,COVID-19
 DE-MV,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,62.5,COVID-19
 DE-MV,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,58.3,COVID-19
-DE-MV,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,363.2,COVID-19
+DE-MV,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,363.2,COVID-19
 DE-MV,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,295.1,COVID-19
 DE-MV,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,240.7,COVID-19
 DE-MV,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,226.1,COVID-19
@@ -2087,7 +2087,7 @@ DE-MV,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,60.2,COVID
 DE-MV,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,64.5,COVID-19
 DE-MV,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,64.5,COVID-19
 DE-MV,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,60,COVID-19
-DE-NI,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,280.4,COVID-19
+DE-NI,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,280.4,COVID-19
 DE-NI,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,271,COVID-19
 DE-NI,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,268,COVID-19
 DE-NI,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,272.8,COVID-19
@@ -2116,7 +2116,7 @@ DE-NI,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,202.4,COVID-19
 DE-NI,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,208.4,COVID-19
 DE-NI,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,202.3,COVID-19
 DE-NI,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,204.1,COVID-19
-DE-NI,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,260.9,COVID-19
+DE-NI,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,260.9,COVID-19
 DE-NI,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,259,COVID-19
 DE-NI,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,259.1,COVID-19
 DE-NI,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,265.6,COVID-19
@@ -2145,7 +2145,7 @@ DE-NI,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,201.6,COVI
 DE-NI,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,207.5,COVID-19
 DE-NI,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,201.5,COVID-19
 DE-NI,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,203.4,COVID-19
-DE-NI,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,267.4,COVID-19
+DE-NI,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,267.4,COVID-19
 DE-NI,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,263.1,COVID-19
 DE-NI,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,262.2,COVID-19
 DE-NI,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,268.1,COVID-19
@@ -2174,7 +2174,7 @@ DE-NI,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,201.8,COVID-
 DE-NI,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,207.8,COVID-19
 DE-NI,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,201.7,COVID-19
 DE-NI,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,203.6,COVID-19
-DE-NI,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,273.9,COVID-19
+DE-NI,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,273.9,COVID-19
 DE-NI,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,267.3,COVID-19
 DE-NI,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,265.3,COVID-19
 DE-NI,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,270.6,COVID-19
@@ -2203,7 +2203,7 @@ DE-NI,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,202.1,COVID
 DE-NI,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,208.1,COVID-19
 DE-NI,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,202,COVID-19
 DE-NI,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,203.8,COVID-19
-DE-NI,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,282.2,COVID-19
+DE-NI,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,282.2,COVID-19
 DE-NI,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,272.4,COVID-19
 DE-NI,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,269.2,COVID-19
 DE-NI,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,273.9,COVID-19
@@ -2232,7 +2232,7 @@ DE-NI,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,202.6,COVID-
 DE-NI,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,208.6,COVID-19
 DE-NI,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,202.4,COVID-19
 DE-NI,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,204.3,COVID-19
-DE-NI,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,291.1,COVID-19
+DE-NI,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,291.1,COVID-19
 DE-NI,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,277.9,COVID-19
 DE-NI,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,273.3,COVID-19
 DE-NI,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,277.3,COVID-19
@@ -2261,7 +2261,7 @@ DE-NI,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,203.4,COVID
 DE-NI,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,209.4,COVID-19
 DE-NI,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,203.2,COVID-19
 DE-NI,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,204.9,COVID-19
-DE-NI,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,299.9,COVID-19
+DE-NI,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,299.9,COVID-19
 DE-NI,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,283.4,COVID-19
 DE-NI,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,277.5,COVID-19
 DE-NI,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,280.9,COVID-19
@@ -2290,7 +2290,7 @@ DE-NI,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,204.5,COVID-
 DE-NI,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,210.6,COVID-19
 DE-NI,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,204.3,COVID-19
 DE-NI,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,206,COVID-19
-DE-NI,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,311.8,COVID-19
+DE-NI,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,311.8,COVID-19
 DE-NI,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,290.4,COVID-19
 DE-NI,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,282.6,COVID-19
 DE-NI,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,285.1,COVID-19
@@ -2319,7 +2319,7 @@ DE-NI,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,206.8,COVI
 DE-NI,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,212.9,COVID-19
 DE-NI,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,206.5,COVID-19
 DE-NI,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,208.1,COVID-19
-DE-NW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,1362.8,COVID-19
+DE-NW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,1362.8,COVID-19
 DE-NW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,1339.4,COVID-19
 DE-NW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,1344.8,COVID-19
 DE-NW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,1253.8,COVID-19
@@ -2348,7 +2348,7 @@ DE-NW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,856.5,COVID-19
 DE-NW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,859,COVID-19
 DE-NW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,828.8,COVID-19
 DE-NW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,770,COVID-19
-DE-NW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,1291.2,COVID-19
+DE-NW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,1291.2,COVID-19
 DE-NW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,1287.8,COVID-19
 DE-NW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,1304,COVID-19
 DE-NW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,1223.7,COVID-19
@@ -2377,7 +2377,7 @@ DE-NW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,853.5,COVI
 DE-NW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,856.1,COVID-19
 DE-NW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,826.1,COVID-19
 DE-NW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,767.7,COVID-19
-DE-NW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,1315,COVID-19
+DE-NW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,1315,COVID-19
 DE-NW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,1304.8,COVID-19
 DE-NW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,1317.6,COVID-19
 DE-NW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,1233.9,COVID-19
@@ -2406,7 +2406,7 @@ DE-NW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,854.5,COVID-
 DE-NW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,857.1,COVID-19
 DE-NW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,827,COVID-19
 DE-NW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,768.5,COVID-19
-DE-NW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,1338,COVID-19
+DE-NW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,1338,COVID-19
 DE-NW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,1321.9,COVID-19
 DE-NW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,1330.9,COVID-19
 DE-NW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,1243.6,COVID-19
@@ -2435,7 +2435,7 @@ DE-NW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,855.5,COVID
 DE-NW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,858.1,COVID-19
 DE-NW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,827.9,COVID-19
 DE-NW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,769.3,COVID-19
-DE-NW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,1364.6,COVID-19
+DE-NW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,1364.6,COVID-19
 DE-NW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,1340.9,COVID-19
 DE-NW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,1346.4,COVID-19
 DE-NW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,1255.4,COVID-19
@@ -2464,7 +2464,7 @@ DE-NW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,856.8,COVID-
 DE-NW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,859.3,COVID-19
 DE-NW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,829.1,COVID-19
 DE-NW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,770.3,COVID-19
-DE-NW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,1393.9,COVID-19
+DE-NW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,1393.9,COVID-19
 DE-NW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,1361.8,COVID-19
 DE-NW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,1362.8,COVID-19
 DE-NW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,1267.4,COVID-19
@@ -2493,7 +2493,7 @@ DE-NW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,858.3,COVID
 DE-NW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,860.8,COVID-19
 DE-NW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,830.5,COVID-19
 DE-NW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,771.5,COVID-19
-DE-NW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,1421.8,COVID-19
+DE-NW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,1421.8,COVID-19
 DE-NW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,1381,COVID-19
 DE-NW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,1378.1,COVID-19
 DE-NW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,1278.5,COVID-19
@@ -2522,7 +2522,7 @@ DE-NW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,860,COVID-19
 DE-NW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,862.5,COVID-19
 DE-NW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,832,COVID-19
 DE-NW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,772.8,COVID-19
-DE-NW,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,1454.7,COVID-19
+DE-NW,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,1454.7,COVID-19
 DE-NW,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,1405.2,COVID-19
 DE-NW,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,1397.4,COVID-19
 DE-NW,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,1292.3,COVID-19
@@ -2551,7 +2551,7 @@ DE-NW,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,862.1,COVI
 DE-NW,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,864.6,COVID-19
 DE-NW,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,834,COVID-19
 DE-NW,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,774.6,COVID-19
-DE-RP,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,318,COVID-19
+DE-RP,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,318,COVID-19
 DE-RP,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,316.7,COVID-19
 DE-RP,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,291.6,COVID-19
 DE-RP,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,288.9,COVID-19
@@ -2580,7 +2580,7 @@ DE-RP,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,216.3,COVID-19
 DE-RP,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,203,COVID-19
 DE-RP,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,192.7,COVID-19
 DE-RP,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,169.1,COVID-19
-DE-RP,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,277.7,COVID-19
+DE-RP,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,277.7,COVID-19
 DE-RP,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,287.5,COVID-19
 DE-RP,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,270.9,COVID-19
 DE-RP,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,271.7,COVID-19
@@ -2609,7 +2609,7 @@ DE-RP,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,215.2,COVI
 DE-RP,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,202,COVID-19
 DE-RP,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,191.8,COVID-19
 DE-RP,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,168.5,COVID-19
-DE-RP,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,291.4,COVID-19
+DE-RP,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,291.4,COVID-19
 DE-RP,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,297.4,COVID-19
 DE-RP,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,278.2,COVID-19
 DE-RP,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,278,COVID-19
@@ -2638,7 +2638,7 @@ DE-RP,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,215.5,COVID-
 DE-RP,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,202.2,COVID-19
 DE-RP,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,192,COVID-19
 DE-RP,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,168.6,COVID-19
-DE-RP,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,305.2,COVID-19
+DE-RP,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,305.2,COVID-19
 DE-RP,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,307.8,COVID-19
 DE-RP,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,285.4,COVID-19
 DE-RP,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,283.9,COVID-19
@@ -2667,7 +2667,7 @@ DE-RP,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,215.9,COVID
 DE-RP,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,202.6,COVID-19
 DE-RP,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,192.3,COVID-19
 DE-RP,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,168.8,COVID-19
-DE-RP,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,322.6,COVID-19
+DE-RP,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,322.6,COVID-19
 DE-RP,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,320.4,COVID-19
 DE-RP,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,294.7,COVID-19
 DE-RP,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,291.6,COVID-19
@@ -2696,7 +2696,7 @@ DE-RP,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,216.5,COVID-
 DE-RP,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,203.2,COVID-19
 DE-RP,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,192.8,COVID-19
 DE-RP,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,169.2,COVID-19
-DE-RP,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,343,COVID-19
+DE-RP,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,343,COVID-19
 DE-RP,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,334.7,COVID-19
 DE-RP,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,304.9,COVID-19
 DE-RP,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,300.1,COVID-19
@@ -2725,7 +2725,7 @@ DE-RP,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,217.5,COVID
 DE-RP,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,204.1,COVID-19
 DE-RP,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,193.6,COVID-19
 DE-RP,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,169.8,COVID-19
-DE-RP,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,364.8,COVID-19
+DE-RP,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,364.8,COVID-19
 DE-RP,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,350.1,COVID-19
 DE-RP,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,315.5,COVID-19
 DE-RP,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,309.2,COVID-19
@@ -2754,7 +2754,7 @@ DE-RP,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,219.1,COVID-
 DE-RP,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,205.5,COVID-19
 DE-RP,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,194.8,COVID-19
 DE-RP,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,170.8,COVID-19
-DE-RP,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,394.7,COVID-19
+DE-RP,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,394.7,COVID-19
 DE-RP,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,370.5,COVID-19
 DE-RP,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,329.4,COVID-19
 DE-RP,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,320.3,COVID-19
@@ -2783,7 +2783,7 @@ DE-RP,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,222.3,COVI
 DE-RP,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,208.5,COVID-19
 DE-RP,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,197.5,COVID-19
 DE-RP,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,173.1,COVID-19
-DE-SH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,147.9,COVID-19
+DE-SH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,147.9,COVID-19
 DE-SH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,133.6,COVID-19
 DE-SH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,142.7,COVID-19
 DE-SH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,150.4,COVID-19
@@ -2812,7 +2812,7 @@ DE-SH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,95.2,COVID-19
 DE-SH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,94.2,COVID-19
 DE-SH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,90.1,COVID-19
 DE-SH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,85.1,COVID-19
-DE-SH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,132,COVID-19
+DE-SH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,132,COVID-19
 DE-SH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,123.2,COVID-19
 DE-SH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,133.6,COVID-19
 DE-SH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,143,COVID-19
@@ -2841,7 +2841,7 @@ DE-SH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,95,COVID-1
 DE-SH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,94,COVID-19
 DE-SH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,90,COVID-19
 DE-SH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,85,COVID-19
-DE-SH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,137.3,COVID-19
+DE-SH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,137.3,COVID-19
 DE-SH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,126.8,COVID-19
 DE-SH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,136.8,COVID-19
 DE-SH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,145.6,COVID-19
@@ -2870,7 +2870,7 @@ DE-SH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,95.1,COVID-1
 DE-SH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,94.1,COVID-19
 DE-SH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,90,COVID-19
 DE-SH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,85,COVID-19
-DE-SH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,143.2,COVID-19
+DE-SH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,143.2,COVID-19
 DE-SH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,130.6,COVID-19
 DE-SH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,140.1,COVID-19
 DE-SH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,148.4,COVID-19
@@ -2899,7 +2899,7 @@ DE-SH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,95.1,COVID-
 DE-SH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,94.1,COVID-19
 DE-SH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,90.1,COVID-19
 DE-SH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,85,COVID-19
-DE-SH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,150.7,COVID-19
+DE-SH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,150.7,COVID-19
 DE-SH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,135.6,COVID-19
 DE-SH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,144.6,COVID-19
 DE-SH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,152.2,COVID-19
@@ -2928,7 +2928,7 @@ DE-SH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,95.2,COVID-1
 DE-SH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,94.2,COVID-19
 DE-SH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,90.1,COVID-19
 DE-SH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,85.1,COVID-19
-DE-SH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,159.8,COVID-19
+DE-SH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,159.8,COVID-19
 DE-SH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,141.5,COVID-19
 DE-SH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,149.7,COVID-19
 DE-SH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,156.5,COVID-19
@@ -2957,7 +2957,7 @@ DE-SH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,95.5,COVID-
 DE-SH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,94.5,COVID-19
 DE-SH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,90.4,COVID-19
 DE-SH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,85.3,COVID-19
-DE-SH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,170.7,COVID-19
+DE-SH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,170.7,COVID-19
 DE-SH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,148.2,COVID-19
 DE-SH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,155.6,COVID-19
 DE-SH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,161.7,COVID-19
@@ -2986,7 +2986,7 @@ DE-SH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,96.5,COVID-1
 DE-SH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,95.4,COVID-19
 DE-SH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,91.2,COVID-19
 DE-SH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,86,COVID-19
-DE-SH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,188.4,COVID-19
+DE-SH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,188.4,COVID-19
 DE-SH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,159.4,COVID-19
 DE-SH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,165.6,COVID-19
 DE-SH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,170.6,COVID-19
@@ -3015,7 +3015,7 @@ DE-SH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,103.5,COVI
 DE-SH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,102.2,COVID-19
 DE-SH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,97.5,COVID-19
 DE-SH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,91.5,COVID-19
-DE-SL,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,51,COVID-19
+DE-SL,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,51,COVID-19
 DE-SL,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,39.7,COVID-19
 DE-SL,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,42.6,COVID-19
 DE-SL,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,41.7,COVID-19
@@ -3044,7 +3044,7 @@ DE-SL,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,22.1,COVID-19
 DE-SL,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,21,COVID-19
 DE-SL,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,20,COVID-19
 DE-SL,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,23,COVID-19
-DE-SN,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,156.6,COVID-19
+DE-SN,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,156.6,COVID-19
 DE-SN,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,246.4,COVID-19
 DE-SN,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,349.3,COVID-19
 DE-SN,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,420.9,COVID-19
@@ -3073,7 +3073,7 @@ DE-SN,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,329.4,COVID-19
 DE-SN,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,322.4,COVID-19
 DE-SN,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,307.3,COVID-19
 DE-SN,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,260.2,COVID-19
-DE-SN,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,148.8,COVID-19
+DE-SN,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,148.8,COVID-19
 DE-SN,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,236.8,COVID-19
 DE-SN,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,338.7,COVID-19
 DE-SN,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,410.2,COVID-19
@@ -3102,7 +3102,7 @@ DE-SN,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,329.1,COVI
 DE-SN,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,322.1,COVID-19
 DE-SN,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,307.1,COVID-19
 DE-SN,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,260,COVID-19
-DE-SN,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,151.5,COVID-19
+DE-SN,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,151.5,COVID-19
 DE-SN,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,240.1,COVID-19
 DE-SN,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,342.4,COVID-19
 DE-SN,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,414.2,COVID-19
@@ -3131,7 +3131,7 @@ DE-SN,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,329.2,COVID-
 DE-SN,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,322.1,COVID-19
 DE-SN,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,307.1,COVID-19
 DE-SN,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,260.1,COVID-19
-DE-SN,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,154.2,COVID-19
+DE-SN,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,154.2,COVID-19
 DE-SN,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,243.5,COVID-19
 DE-SN,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,346.2,COVID-19
 DE-SN,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,418,COVID-19
@@ -3160,7 +3160,7 @@ DE-SN,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,329.2,COVID
 DE-SN,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,322.2,COVID-19
 DE-SN,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,307.2,COVID-19
 DE-SN,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,260.1,COVID-19
-DE-SN,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,157.4,COVID-19
+DE-SN,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,157.4,COVID-19
 DE-SN,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,247.6,COVID-19
 DE-SN,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,350.8,COVID-19
 DE-SN,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,422.5,COVID-19
@@ -3189,7 +3189,7 @@ DE-SN,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,329.5,COVID-
 DE-SN,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,322.4,COVID-19
 DE-SN,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,307.3,COVID-19
 DE-SN,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,260.2,COVID-19
-DE-SN,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,160.9,COVID-19
+DE-SN,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,160.9,COVID-19
 DE-SN,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,252.2,COVID-19
 DE-SN,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,355.8,COVID-19
 DE-SN,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,427.6,COVID-19
@@ -3218,7 +3218,7 @@ DE-SN,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,330.1,COVID
 DE-SN,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,323.1,COVID-19
 DE-SN,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,307.9,COVID-19
 DE-SN,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,260.6,COVID-19
-DE-SN,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,164.6,COVID-19
+DE-SN,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,164.6,COVID-19
 DE-SN,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,257,COVID-19
 DE-SN,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,361.1,COVID-19
 DE-SN,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,433.1,COVID-19
@@ -3247,7 +3247,7 @@ DE-SN,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,332.3,COVID-
 DE-SN,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,325.3,COVID-19
 DE-SN,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,309.9,COVID-19
 DE-SN,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,262.1,COVID-19
-DE-SN,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,169.7,COVID-19
+DE-SN,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,169.7,COVID-19
 DE-SN,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,265.1,COVID-19
 DE-SN,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,371.1,COVID-19
 DE-SN,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,443.6,COVID-19
@@ -3276,7 +3276,7 @@ DE-SN,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,344.3,COVI
 DE-SN,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,337.1,COVID-19
 DE-SN,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,320.9,COVID-19
 DE-SN,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,270,COVID-19
-DE-ST,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,535.9,COVID-19
+DE-ST,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,535.9,COVID-19
 DE-ST,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,443.7,COVID-19
 DE-ST,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,385.9,COVID-19
 DE-ST,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,340.2,COVID-19
@@ -3305,7 +3305,7 @@ DE-ST,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,102.7,COVID-19
 DE-ST,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,101.6,COVID-19
 DE-ST,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,91.5,COVID-19
 DE-ST,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,92.3,COVID-19
-DE-ST,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,465.8,COVID-19
+DE-ST,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,465.8,COVID-19
 DE-ST,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,404.9,COVID-19
 DE-ST,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,359.5,COVID-19
 DE-ST,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,321.9,COVID-19
@@ -3334,7 +3334,7 @@ DE-ST,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,102.2,COVI
 DE-ST,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,101.2,COVID-19
 DE-ST,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,91.1,COVID-19
 DE-ST,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,92.1,COVID-19
-DE-ST,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,491.7,COVID-19
+DE-ST,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,491.7,COVID-19
 DE-ST,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,419.1,COVID-19
 DE-ST,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,369.8,COVID-19
 DE-ST,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,329.4,COVID-19
@@ -3363,7 +3363,7 @@ DE-ST,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,102.3,COVID-
 DE-ST,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,101.3,COVID-19
 DE-ST,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,91.2,COVID-19
 DE-ST,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,92.1,COVID-19
-DE-ST,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,516.4,COVID-19
+DE-ST,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,516.4,COVID-19
 DE-ST,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,433.6,COVID-19
 DE-ST,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,379.9,COVID-19
 DE-ST,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,336.5,COVID-19
@@ -3392,7 +3392,7 @@ DE-ST,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,102.5,COVID
 DE-ST,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,101.4,COVID-19
 DE-ST,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,91.3,COVID-19
 DE-ST,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,92.2,COVID-19
-DE-ST,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,550.1,COVID-19
+DE-ST,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,550.1,COVID-19
 DE-ST,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,452.9,COVID-19
 DE-ST,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,392.6,COVID-19
 DE-ST,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,345.7,COVID-19
@@ -3421,7 +3421,7 @@ DE-ST,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,102.8,COVID-
 DE-ST,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,101.8,COVID-19
 DE-ST,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,91.6,COVID-19
 DE-ST,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,92.4,COVID-19
-DE-ST,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,591.8,COVID-19
+DE-ST,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,591.8,COVID-19
 DE-ST,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,476.1,COVID-19
 DE-ST,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,408.6,COVID-19
 DE-ST,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,357.1,COVID-19
@@ -3450,7 +3450,7 @@ DE-ST,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,103.7,COVID
 DE-ST,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,102.6,COVID-19
 DE-ST,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,92.3,COVID-19
 DE-ST,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,93.1,COVID-19
-DE-ST,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,637.7,COVID-19
+DE-ST,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,637.7,COVID-19
 DE-ST,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,501.9,COVID-19
 DE-ST,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,427.3,COVID-19
 DE-ST,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,371.6,COVID-19
@@ -3479,7 +3479,7 @@ DE-ST,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,106.3,COVID-
 DE-ST,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,105.1,COVID-19
 DE-ST,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,94.4,COVID-19
 DE-ST,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,95.2,COVID-19
-DE-ST,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,713.3,COVID-19
+DE-ST,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,713.3,COVID-19
 DE-ST,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,552.5,COVID-19
 DE-ST,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,465.9,COVID-19
 DE-ST,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,407.9,COVID-19
@@ -3508,7 +3508,7 @@ DE-ST,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.975,116.2,COVI
 DE-ST,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.975,114.8,COVID-19
 DE-ST,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.975,103.2,COVID-19
 DE-ST,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.975,104,COVID-19
-DE-TH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,mean,NA,585.6,COVID-19
+DE-TH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,mean,NA,585.6,COVID-19
 DE-TH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,mean,NA,609.9,COVID-19
 DE-TH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,mean,NA,610.3,COVID-19
 DE-TH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,mean,NA,578.6,COVID-19
@@ -3537,7 +3537,7 @@ DE-TH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,mean,NA,285.7,COVID-19
 DE-TH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,mean,NA,293.6,COVID-19
 DE-TH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,mean,NA,274.2,COVID-19
 DE-TH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,mean,NA,241.6,COVID-19
-DE-TH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.025,549.1,COVID-19
+DE-TH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.025,549.1,COVID-19
 DE-TH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.025,580.9,COVID-19
 DE-TH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.025,588,COVID-19
 DE-TH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.025,562,COVID-19
@@ -3566,7 +3566,7 @@ DE-TH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.025,284,COVID-
 DE-TH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.025,292,COVID-19
 DE-TH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.025,272.8,COVID-19
 DE-TH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.025,240.5,COVID-19
-DE-TH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.1,562.1,COVID-19
+DE-TH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.1,562.1,COVID-19
 DE-TH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.1,591.4,COVID-19
 DE-TH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.1,596.1,COVID-19
 DE-TH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.1,568.4,COVID-19
@@ -3595,7 +3595,7 @@ DE-TH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.1,284.5,COVID-
 DE-TH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.1,292.4,COVID-19
 DE-TH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.1,273.2,COVID-19
 DE-TH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.1,240.8,COVID-19
-DE-TH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.25,575.2,COVID-19
+DE-TH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.25,575.2,COVID-19
 DE-TH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.25,601.8,COVID-19
 DE-TH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.25,604.4,COVID-19
 DE-TH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.25,574.6,COVID-19
@@ -3624,7 +3624,7 @@ DE-TH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.25,285.1,COVID
 DE-TH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.25,293,COVID-19
 DE-TH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.25,273.7,COVID-19
 DE-TH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.25,241.2,COVID-19
-DE-TH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.5,591,COVID-19
+DE-TH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.5,591,COVID-19
 DE-TH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.5,614.8,COVID-19
 DE-TH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.5,614.9,COVID-19
 DE-TH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.5,582.5,COVID-19
@@ -3653,7 +3653,7 @@ DE-TH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.5,286.2,COVID-
 DE-TH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.5,294.2,COVID-19
 DE-TH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.5,274.7,COVID-19
 DE-TH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.5,242,COVID-19
-DE-TH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.75,608.9,COVID-19
+DE-TH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.75,608.9,COVID-19
 DE-TH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.75,629.2,COVID-19
 DE-TH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.75,626.2,COVID-19
 DE-TH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.75,591.3,COVID-19
@@ -3682,7 +3682,7 @@ DE-TH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.75,288.1,COVID
 DE-TH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.75,296.1,COVID-19
 DE-TH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.75,276.4,COVID-19
 DE-TH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.75,243.3,COVID-19
-DE-TH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.9,625.8,COVID-19
+DE-TH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.9,625.8,COVID-19
 DE-TH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.9,644.3,COVID-19
 DE-TH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.9,638.1,COVID-19
 DE-TH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.9,600.8,COVID-19
@@ -3711,7 +3711,7 @@ DE-TH,00+,2021-11-19,2021-10-25,-25 day ahead inc hosp,quantile,0.9,291.2,COVID-
 DE-TH,00+,2021-11-19,2021-10-24,-26 day ahead inc hosp,quantile,0.9,299.3,COVID-19
 DE-TH,00+,2021-11-19,2021-10-23,-27 day ahead inc hosp,quantile,0.9,279.4,COVID-19
 DE-TH,00+,2021-11-19,2021-10-22,-28 day ahead inc hosp,quantile,0.9,245.7,COVID-19
-DE-TH,00+,2021-11-19,2021-11-19,-0 day ahead inc hosp,quantile,0.975,650.2,COVID-19
+DE-TH,00+,2021-11-19,2021-11-19,0 day ahead inc hosp,quantile,0.975,650.2,COVID-19
 DE-TH,00+,2021-11-19,2021-11-18,-1 day ahead inc hosp,quantile,0.975,664.6,COVID-19
 DE-TH,00+,2021-11-19,2021-11-17,-2 day ahead inc hosp,quantile,0.975,654.9,COVID-19
 DE-TH,00+,2021-11-19,2021-11-16,-3 day ahead inc hosp,quantile,0.975,615,COVID-19
