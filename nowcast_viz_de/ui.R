@@ -4,13 +4,13 @@ library(shinyhelper)
 library(magrittr)
 library(shinybusy)
 
-local <- TRUE
+local <- FALSE
 if(local){
     available_dates <- sort(read.csv("plot_data/available_dates.csv", colClasses = c("date" = "Date"))$date)
 }else{
     available_dates <- sort(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv", colClasses = c("date" = "Date"))$date)
 }
-bundeslaender <- c("All (Germany)" = "DE",
+bundeslaender <- c("Alle (Deutschland)" = "DE",
                    "Baden-Württemberg" = "DE-BW", 	
                    "Bayern" = "DE-BY", 	
                    "Berlin" = "DE-BE", 	
@@ -34,7 +34,10 @@ style_explanation <- "font-size:13px;"
 shinyUI(fluidPage(
     
     # Application title
-    titlePanel("Nowcasts der Hospitalisierungsinzidenz in Deutschland (COVID-19)"),
+    conditionalPanel("input.select_language == 'DE'", 
+                     titlePanel("Nowcasts der Hospitalisierungsinzidenz in Deutschland (COVID-19)")),
+    conditionalPanel("input.select_language == 'EN'", 
+                     titlePanel("Nowcasts of the hospitalization incidence in Germany (COVID-19)")),
     
     br(),
     
@@ -80,26 +83,39 @@ shinyUI(fluidPage(
             conditionalPanel("input.select_language == 'EN'",
                              p("When comparing age groups or Bundesländer please note that the scales in the figure differ.",
                                style = "font-size:11px;")),
-            radioButtons("select_point_estimate", label = "Punktschätzer:", 
-                         choices = c("Median" = "median", "Erwartungswert" = "mean"), selected = "median", inline = TRUE),
-            radioButtons("select_interval", label = "Unsicherheitsintervall", 
-                         choices = c("95%" = "95%", "50%" = "50%", "keines" = "none"), selected = "95%", inline = TRUE),
-            radioButtons("select_scale", label = "Anzeige", 
-                         choices = c("pro 100.000" = "per 100.000",
-                                     "absolute Zahlen" = "absolute counts"),
-                         selected = "per 100.000", inline = TRUE),
-            radioButtons("select_log", label = NULL, 
-                         choices = c("natürliche Skala" = "natural scale",
-                                     "log-Skala"  ="log scale"), 
-                         selected = "natural scale", inline = TRUE),
-            checkboxInput("show_truth_by_reporting", label = "Zeitreihe nach Erscheinen in RKI-Daten", 
-                          value = FALSE),
-            checkboxInput("show_truth_frozen", label = "Zeitreihe eingefrorener Werte", 
-                          value = FALSE),
-            checkboxInput("show_last_two_days", label = "Zeige letzte zwei Tage", 
-                          value = FALSE),
-            checkboxInput("show_retrospective_nowcasts", label = "Nachträglich erstellte Nowcasts zeigen", 
-                          value = FALSE),
+            
+            conditionalPanel("input.select_language == 'DE'", strong("Weitere Optionen")),
+            conditionalPanel("input.select_language == 'EN'", strong("More options")),
+            strong(checkboxInput("show_additional_controls", label = "Zeige weitere Optionen", 
+                          value = FALSE)),
+            
+            conditionalPanel("input.show_additional_controls",
+                             radioButtons("select_scale", label = "Anzeige", 
+                                          choices = c("pro 100.000" = "per 100.000",
+                                                      "absolute Zahlen" = "absolute counts"),
+                                          selected = "per 100.000", inline = TRUE),
+                             radioButtons("select_log", label = NULL, 
+                                          choices = c("natürliche Skala" = "natural scale",
+                                                      "log-Skala"  ="log scale"), 
+                                          selected = "natural scale", inline = TRUE),
+                             radioButtons("select_point_estimate", label = "Punktschätzer:", 
+                                          choices = c("Median" = "median", "Erwartungswert" = "mean"),
+                                          selected = "median", inline = TRUE),
+                             radioButtons("select_interval", label = "Unsicherheitsintervall", 
+                                          choices = c("95%" = "95%", "50%" = "50%", "keines" = "none"), selected = "95%", inline = TRUE),
+                             
+                             conditionalPanel("input.select_language == 'DE'", strong("Weitere Anzeigeoptionen")),
+                             conditionalPanel("input.select_language == 'EN'", strong("Further display options")),
+                             
+                             checkboxInput("show_truth_by_reporting", label = "Zeitreihe nach Erscheinen in RKI-Daten", 
+                                           value = FALSE),
+                             checkboxInput("show_truth_frozen", label = "Zeitreihe eingefrorener Werte", 
+                                           value = FALSE),
+                             checkboxInput("show_last_two_days", label = "Zeige letzte zwei Tage", 
+                                           value = FALSE),
+                             checkboxInput("show_retrospective_nowcasts", label = "Nachträglich erstellte Nowcasts zeigen", 
+                                           value = FALSE)
+            ),
             conditionalPanel("input.select_language == 'DE'",
                              helper(strong("Erklärung der Kontrollelemente"),
                                     content = "erklaerung",
@@ -119,7 +135,13 @@ shinyUI(fluidPage(
             conditionalPanel("input.select_language == 'EN'",
                              p("This platform unites nowcasts of the COVID-19 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends."),
             ),
-            plotlyOutput("tsplot"),
+            conditionalPanel("input.select_language == 'DE'",
+                             strong("Am 19.11. wurden dem RKI keine Hospitalisierungen für Sachsen gemeldet. Selbst mit Nowcast-Korrektur sind die derzeitigen Zahlen für Sachsen wahrscheinlich deutlich unterschätzt."),
+            ),
+            conditionalPanel("input.select_language == 'EN'",
+                             strong("On 19 Nov hospitalizations for Saxony were not reported to RKI. Even with a nowcast correction the current numbers for Saxony are likely considerably underestimated."),
+            ),
+            plotlyOutput("tsplot", height = "440px"),
             add_busy_spinner(spin = "fading-circle"),
             
             p(),
@@ -127,14 +149,14 @@ shinyUI(fluidPage(
                              p("Das Wichtigste in Kürze"),
                              p('- Die 7-Tages-Hospitalisierungsinzidenz ist einer der Leitindikatoren für die COVID-19 Pandemie in Deutschland (siehe "Hintergrund" für die Definition).', style = style_explanation),
                              p("- Aufgrund von Verzögerungen sind die für die letzten Tage veröffentlichten rohen Inzidenzwerte stets zu niedrig. Nowcasts helfen, diese Werte zu korrigieren und eine realistischere Einschätzung der aktuellen Entwicklung zu erhalten.", style = style_explanation),
-                             p("- Es gibt unterschiedliche Nowcasting-Verfahren. Diese vergleichen wir hier systematisch und kombinieren sie in einem sogenannten Ensemble-Nowcast.", style = style_explanation),
+                             p('- Es gibt unterschiedliche Nowcasting-Verfahren. Diese vergleichen wir hier systematisch und kombinieren sie in einem sogenannten Ensemble-Nowcast. Modellbeschreibungen und Details zur Interpretation sind unter "Hintergrund" verfügbar.', style = style_explanation),
                              strong("Dieses Projekt befindet sich noch im Aufbau und die Verlässlichkeit der Ergebnisse ist noch nicht eingehend evaluiert worden.", style = style_explanation)
             ),
             conditionalPanel("input.select_language == 'EN'",
                              p("Short summary"),
                              p('- The 7-day hospitalization incidence is one of the main indicators for the assessment of the COVID-19 pandemic in Germany (see "Background" for the definition).', style = style_explanation),
                              p("- Due to delays, the published raw incidence values for the last few days are biased downward. Nowcasts can help to correct these and obtain a more realistic assessment of recent developments.", style = style_explanation),
-                             p("- A variety of nowcasting methods exist. We systematically compile results based on different methods and combine them into so-called ensemble nowcasts.", style = style_explanation),
+                             p('- A variety of nowcasting methods exist. We systematically compile results based on different methods and combine them into so-called ensemble nowcasts. Model descriptions and details on the interpretation are available in the "Background" section.', style = style_explanation),
                              strong("This project is currently still in development and the reliability of results has not yet been assessed systematically.", style = style_explanation)
             ),
             p(),
@@ -149,7 +171,7 @@ shinyUI(fluidPage(
                              # p("This platform is run by members of the ",
                              #   a("Chair of Statistics and Econometrics", href = "https://statistik.econ.kit.edu/index.php"),
                              #   "at Karlsruhe Institute of Technology. Contact: forecasthub@econ.kit.edu")
-                             )
+            )
             
         )
     )
