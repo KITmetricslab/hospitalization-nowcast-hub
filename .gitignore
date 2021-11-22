@@ -130,3 +130,5 @@ dmypy.json
 .Rproj.user
 nowcast_hub.Rproj
 .Rhistory
+
+.DS_Store
