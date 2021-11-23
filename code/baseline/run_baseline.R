@@ -1,4 +1,4 @@
-setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub/code/baseline")
+setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub_fork/code/baseline")
 source("functions.R")
 source("../check_nowcast_submission/plot_functions.R")
 
@@ -10,15 +10,20 @@ observed0 <- read.csv("../../data-truth/COVID-19/COVID-19_hospitalizations_prepr
 
 
 # dates for which to produce nowcasts:
-forecast_dates <- Sys.Date() # seq(from = as.Date("2021-11-08"), to = as.Date("2021-11-08"), by = 1)
+forecast_dates <-  seq(from = as.Date("2021-07-01"), to = as.Date("2021-11-17"), by = 1) # Sys.Date() # seq(from = as.Date("2021-11-08"), to = as.Date("2021-11-08"), by = 1)
 
+# Sys.Date() #
 for(i in seq_along(forecast_dates)){
   all_nc <- NULL
   
+  forecast_date <- forecast_dates[i]
+  cat(as.character(forecast_dates[i]), "\n")
+  
+  # limited by number of observations (in the early part, not relevant anymore)
+  n_history_dispersion <- min(60, as.numeric(forecast_date - as.Date("2021-04-06")) - 40)
+  
   # generate nowcasts for age groups:
   for(ag in c("00+", "00-04", "05-14", "15-34", "35-59", "60-79", "80+")){
-    
-    forecast_date <- forecast_dates[i]
     
     observed_temp <- subset(observed0, location == "DE" & age_group == ag)
     # prepare for plotting:
@@ -35,14 +40,18 @@ for(i in seq_along(forecast_dates)){
     observed_temp <- back_in_time_df(observed_temp, date = forecast_date)
     
     # compute nowcast:
+    
     # undebug(compute_nowcast)
     nc <- compute_nowcast(observed = observed_temp, 
                           location = "DE", 
-                          age_group = ag,
+                          age_group = ag, 
+                          n_history_expectations = 60, 
+                          n_history_dispersion = n_history_dispersion,
                           min_horizon = 0,
                           max_horizon = 28)
     
     # generate a plot:
+    # undebug(plot_forecast)
     plot_forecast(forecasts = nc,
                   location = "DE", age_group = ag,
                   truth = observed_for_plot, target_type = paste("inc hosp"),
@@ -67,8 +76,6 @@ for(i in seq_along(forecast_dates)){
                "DE-NI", "DE-NW", "DE-RP", "DE-SH", 
                "DE-SL", "DE-SN", "DE-ST", "DE-TH")){
     
-    forecast_date <- forecast_dates[i]
-    
     observed_temp <- subset(observed0, location == loc & age_group == "00+")
     # prepare for plotting:
     observed_for_plot <- truth_as_of(observed_temp, age_group = "00+",
@@ -88,6 +95,8 @@ for(i in seq_along(forecast_dates)){
     nc <- compute_nowcast(observed = observed_temp, 
                           location = loc, 
                           age_group = "00+",
+                          n_history_expectations = 60,
+                          n_history_dispersion = n_history_dispersion,
                           min_horizon = 0,
                           max_horizon = 28)
     

@@ -15,7 +15,7 @@ compute_expectations <- function(observed, n_history = 60, remove_observed = TRU
   for(co in 2:nc){
     block_top_left <- expectation[1:(nr - co + 1), 1:(co - 1), drop = FALSE]
     block_top <- expectation[1:(nr - co + 1), co, drop = FALSE]
-    factor <- sum(block_top)/sum(block_top_left)
+    factor <- sum(block_top)/max(sum(block_top_left), 1)
     block_left <- expectation[(nr - co + 2):nr, 1:(co - 1), drop = FALSE]
     expectation[(nr - co + 2):nr, co] <- factor*rowSums(block_left)
   }
@@ -23,6 +23,9 @@ compute_expectations <- function(observed, n_history = 60, remove_observed = TRU
   if(remove_observed){
     expectation[!is.na(observed)] <- NA
   }
+  # avoid zero values:
+  # expectation[expectation == 0] <- 0.2
+  
   # return
   return(expectation)
 }
@@ -135,6 +138,7 @@ compute_nowcast <- function(observed, location = "DE", age_group = "00+",
   for(i in min_horizon:max_horizon){
     size_params[i + 1] <- fit_nb(x = to_add_already_observed[, i + 1], 
                                  mu = expectation_to_add_already_observed[, i + 1] + 0.1)
+    # plus 0.1 to avoid ill-defined NB
   }
   
   
