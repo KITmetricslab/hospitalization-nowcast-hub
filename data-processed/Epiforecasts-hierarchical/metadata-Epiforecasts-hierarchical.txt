@@ -1,0 +1,12 @@
+team_name: Epiforecasts
+model_name: hierarchical
+model_abbr: Epiforecasts-hierarchical
+model_contributors: Sam Abbott (London School of Hygiene and Tropical Medicine) <sam.abbott@lshtm.ac.uk>
+website_url: https://samabbott.co.uk/about
+license: MIT
+team_model_designation: secondary
+methods: Hierarchical semi-parametric nowcasting of age-stratified right censored hospitalisations by date of positive test. An application of the epinowcast R package.
+institution_affil: Centre for Mathematical Modelling, London School of Hygiene and Tropical Medicine
+data_inputs: Past hospitalisations by date of positive test and report. 
+citation: none
+methods_long: Hierarchical semi-parametric nowcasting of age-stratified right censored hospitalisations by date of positive test. Hospitalisations are modelled using an age group specific random walk on the log scale. Reporting delays are then modelled parametrically using a lognormal distribution with the log mean and log standard deviation each modelled using a random effect for age group, and an age group specific weekly random walk with a pooled standard deviation. Report date effects are modelling using a random effect for day of the week with public holidays assumed to be reported like Sundays. Only national level nowcasts are produced due to the computation requirements of the model. The model is implemented using the epinowcast R package (https://epiforecasts.io/epinowcast). The analysis code is available here: https://github.com/epiforecasts/eval-germany-sp-nowcasting
