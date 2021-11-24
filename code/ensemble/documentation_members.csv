@@ -1,2 +1,4 @@
-"forecast_date","included_models"
-2021-11-23,"Epiforecasts-independent;KIT-simple_nowcast;LMU_StaBLab-GAM_nowcast;RIVM-KEW;SU-hier_bayes"
+forecast_date,included_models
+2021-11-22,ILM-prop;KIT-simple_nowcast;LMU_StaBLab-GAM_nowcast;RIVM-KEW;SU-hier_bayes
+2021-11-23,Epiforecasts-independent;KIT-simple_nowcast;LMU_StaBLab-GAM_nowcast;RIVM-KEW;SU-hier_bayes
+2021-11-24,Epiforecasts-independent;KIT-simple_nowcast;LMU_StaBLab-GAM_nowcast;RIVM-KEW;SU-hier_bayes
