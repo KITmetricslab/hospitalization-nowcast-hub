@@ -83,7 +83,10 @@ shinyUI(fluidPage(
             conditionalPanel("input.select_language == 'EN'",
                              p("When comparing age groups or Bundesländer please note that the scales in the figure differ.",
                                style = "font-size:11px;")),
-            
+            checkboxInput("show_truth_frozen", label = "Zeitreihe eingefrorener Werte", 
+                          value = FALSE),
+            checkboxInput("show_last_two_days", label = "Zeige letzte zwei Tage", 
+                          value = FALSE),
             conditionalPanel("input.select_language == 'DE'", strong("Weitere Optionen")),
             conditionalPanel("input.select_language == 'EN'", strong("More options")),
             strong(checkboxInput("show_additional_controls", label = "Zeige weitere Optionen", 
@@ -109,10 +112,6 @@ shinyUI(fluidPage(
                              
                              checkboxInput("show_truth_by_reporting", label = "Zeitreihe nach Erscheinen in RKI-Daten", 
                                            value = FALSE),
-                             checkboxInput("show_truth_frozen", label = "Zeitreihe eingefrorener Werte", 
-                                           value = FALSE),
-                             checkboxInput("show_last_two_days", label = "Zeige letzte zwei Tage", 
-                                           value = FALSE),
                              checkboxInput("show_retrospective_nowcasts", label = "Nachträglich erstellte Nowcasts zeigen", 
                                            value = FALSE)
             ),
@@ -135,12 +134,6 @@ shinyUI(fluidPage(
             conditionalPanel("input.select_language == 'EN'",
                              p("This platform unites nowcasts of the COVID-19 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends."),
             ),
-            conditionalPanel("input.select_language == 'DE'",
-                             strong("Am 19.11. wurden dem RKI keine Hospitalisierungen für Sachsen gemeldet. Selbst mit Nowcast-Korrektur sind die derzeitigen Zahlen für Sachsen wahrscheinlich deutlich unterschätzt."),
-            ),
-            conditionalPanel("input.select_language == 'EN'",
-                             strong("On 19 Nov hospitalizations for Saxony were not reported to RKI. Even with a nowcast correction the current numbers for Saxony are likely considerably underestimated."),
-            ),
             plotlyOutput("tsplot", height = "440px"),
             add_busy_spinner(spin = "fading-circle"),
             
@@ -150,6 +143,9 @@ shinyUI(fluidPage(
                              p('- Die 7-Tages-Hospitalisierungsinzidenz ist einer der Leitindikatoren für die COVID-19 Pandemie in Deutschland (siehe "Hintergrund" für die Definition).', style = style_explanation),
                              p("- Aufgrund von Verzögerungen sind die für die letzten Tage veröffentlichten rohen Inzidenzwerte stets zu niedrig. Nowcasts helfen, diese Werte zu korrigieren und eine realistischere Einschätzung der aktuellen Entwicklung zu erhalten.", style = style_explanation),
                              p('- Es gibt unterschiedliche Nowcasting-Verfahren. Diese vergleichen wir hier systematisch und kombinieren sie in einem sogenannten Ensemble-Nowcast. Modellbeschreibungen und Details zur Interpretation sind unter "Hintergrund" verfügbar.', style = style_explanation),
+                             strong("- Starke Belastung des Gesundheits- und Meldewesens kann dazu führen, dass sich Meldeverzögerungen anders verhalten als in der Vergangenheit. Die Verlässlichkeit von Nowcasts kann hierdurch beeinträchtigt werden.", style = style_explanation),
+                             br(),
+                             br(),
                              strong("Dieses Projekt befindet sich noch im Aufbau und die Verlässlichkeit der Ergebnisse ist noch nicht eingehend evaluiert worden.", style = style_explanation)
             ),
             conditionalPanel("input.select_language == 'EN'",
@@ -157,6 +153,9 @@ shinyUI(fluidPage(
                              p('- The 7-day hospitalization incidence is one of the main indicators for the assessment of the COVID-19 pandemic in Germany (see "Background" for the definition).', style = style_explanation),
                              p("- Due to delays, the published raw incidence values for the last few days are biased downward. Nowcasts can help to correct these and obtain a more realistic assessment of recent developments.", style = style_explanation),
                              p('- A variety of nowcasting methods exist. We systematically compile results based on different methods and combine them into so-called ensemble nowcasts. Model descriptions and details on the interpretation are available in the "Background" section.', style = style_explanation),
+                             strong("- High burden on the health and reporting system can change delay patterns. Nowcasts may then be less reliable.", style = style_explanation),
+                             br(),
+                             br(),
                              strong("This project is currently still in development and the reliability of results has not yet been assessed systematically.", style = style_explanation)
             ),
             p(),
