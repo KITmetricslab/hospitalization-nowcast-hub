@@ -146,7 +146,7 @@ shinyUI(fluidPage(
                              strong("- Starke Belastung des Gesundheits- und Meldewesens kann dazu führen, dass sich Meldeverzögerungen anders verhalten als in der Vergangenheit. Die Verlässlichkeit von Nowcasts kann hierdurch beeinträchtigt werden.", style = style_explanation),
                              br(),
                              br(),
-                             strong("Dieses Projekt befindet sich noch im Aufbau und die Verlässlichkeit der Ergebnisse ist noch nicht eingehend evaluiert worden.", style = style_explanation)
+                             strong("Dieses Projekt ist erst kürzlich gestartet worden und die Verlässlichkeit der Echtzeit-Analysen kann noch nicht systematisch evaluiert werden.", style = style_explanation)
             ),
             conditionalPanel("input.select_language == 'EN'",
                              p("Short summary"),
@@ -156,7 +156,7 @@ shinyUI(fluidPage(
                              strong("- High burden on the health and reporting system can change delay patterns. Nowcasts may then be less reliable.", style = style_explanation),
                              br(),
                              br(),
-                             strong("This project is currently still in development and the reliability of results has not yet been assessed systematically.", style = style_explanation)
+                             strong("This project has been launched recently reliability of nowcasts made in real time cannot yet be assessed systematically.", style = style_explanation)
             ),
             p(),
             conditionalPanel("input.select_language == 'DE'",
