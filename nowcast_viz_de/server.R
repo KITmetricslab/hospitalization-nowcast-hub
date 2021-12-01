@@ -7,7 +7,7 @@
 #    http://shiny.rstudio.com/
 #
 
-local <- TRUE
+local <- FALSE
 
 library(shiny)
 library(plotly)
@@ -567,6 +567,19 @@ shinyServer(function(input, output, session) {
     observe({
         input$select_language
         isolate({
+            
+            # Show additional options
+            label <- if(input$select_language == "DE"){
+                "Zeige weitere Optionen"
+            }else{
+                "Show more options"
+            }
+            selected <- input$show_additional_controls
+            updateCheckboxInput(session, "show_additional_controls",
+                                label = label,
+                                value = selected
+            )
+            
             # Type of point nowcast
             label <- ifelse(input$select_language == "DE", "Punktschätzer", "Point estimate")
             choices <- if(input$select_language == "DE"){
@@ -615,7 +628,7 @@ shinyServer(function(input, output, session) {
             )
             
             # log scale
-            label <- ifelse(input$select_language == "DE", "Anzeige", "Show as")
+            label <- NULL
             choices <- if(input$select_language == "DE"){
                 c("natürliche Skala" = "natural scale",
                   "log-Skala"  ="log scale")
