@@ -36,7 +36,7 @@ url = "https://api.github.com/repos/robert-koch-institut/COVID-19-Hospitalisieru
 r = requests.get(url)
 res = r.json()
 
-files = [file["path"] for file in res["tree"] if (file["path"].startswith('Archiv/') and file["path"].endswith('.csv'))]
+files = [file["path"] for file in res["tree"] if (file["path"].startswith('Archiv/') and file["path"].endswith('Deutschland_COVID-19-Hospitalisierungen.csv'))]
 df_files = pd.DataFrame({'filename':files})
 
 # extract dates from filenames
