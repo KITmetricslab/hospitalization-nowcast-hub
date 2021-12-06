@@ -1,12 +1,12 @@
 setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub_fork/code/fetch_nowcasts")
 
-forecast_dates <- seq(from = as.Date("2021-10-01"),
-                      to = as.Date("2021-11-21"),
-                      by = 1)
+# forecast_dates <- seq(from = as.Date("2021-10-01"),
+#                       to = as.Date("2021-11-21"),
+#                       by = 1)
 
-for(i in seq_along(forecast_dates)){
+# for(i in seq_along(forecast_dates)){
   
-  forecast_date <- forecast_dates[i]
+  forecast_date <- Sys.Date()
   cat("Processing", as.character(forecast_date), "...\n")
   
   url <- paste0("https://raw.githubusercontent.com/epiforecasts/eval-germany-sp-nowcasting/main/data/nowcasts/submission/independent/", 
@@ -35,6 +35,6 @@ for(i in seq_along(forecast_dates)){
   write.csv(dat, 
             file = dir_to_store,
             row.names = FALSE)
-}
+# }
 
 
