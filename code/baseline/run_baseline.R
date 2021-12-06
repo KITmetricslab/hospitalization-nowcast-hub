@@ -10,9 +10,8 @@ observed0 <- read.csv("../../data-truth/COVID-19/COVID-19_hospitalizations_prepr
 
 
 # dates for which to produce nowcasts:
-forecast_dates <-  seq(from = as.Date("2021-07-01"), to = as.Date("2021-11-17"), by = 1) # Sys.Date() # seq(from = as.Date("2021-11-08"), to = as.Date("2021-11-08"), by = 1)
+forecast_dates <- Sys.Date()
 
-# Sys.Date() #
 for(i in seq_along(forecast_dates)){
   all_nc <- NULL
   
