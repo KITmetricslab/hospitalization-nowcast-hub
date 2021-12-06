@@ -1,10 +1,13 @@
 from urllib.request import urlretrieve
+from datetime import date
+
+today = date.today().strftime('%Y-%m-%d')
 
 # Import pandas
 import pandas as pd
 
 # Assign url of file: url
-url = "https://gfx.sueddeutsche.de/storytelling-assets/datenteam/2021_corona-automation/hosp_incidence/archive/2021-11-26_hosp_incidence_nowcast_sz.csv"
+url = "https://gfx.sueddeutsche.de/storytelling-assets/datenteam/2021_corona-automation/hosp_incidence/archive/" + today + "_hosp_incidence_nowcast_sz.csv"
 date = url[104:114]
 # Save file locally
 urlretrieve(url, 'sz.{0}.csv'.format(date))
@@ -56,6 +59,6 @@ def get_sz(url):
     # calculate the absolute age group numbers
     for tup2 in fractions:
         df_f.loc[df_f["age_group"] == tup2[0], "value"] = tup2[1] * df_f.loc[df_f["age_group"] == tup2[0], "value"]
-    df_f.to_csv("{0}-SZ-hosp_nowcast.csv".format(date), index=False)
+    df_f.to_csv("../../data-processed/SZ-hosp_nowcast/{0}-SZ-hosp_nowcast.csv".format(date), index=False)
     return("")
 get_sz(url)
