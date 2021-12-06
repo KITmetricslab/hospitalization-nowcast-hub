@@ -129,18 +129,18 @@ write.csv(median_ensemble, file = paste0("data-processed/NowcastHub-MedianEnsemb
 
 # store included models:
 if(file.exists("code/ensemble/documentation_members.csv")){
-  dat_included_models <- read.csv("code/ensemble/documentation_members.csv", colClasses = c("nowcast_date" = "Date"))
+  dat_included_models <- read.csv("code/ensemble/documentation_members.csv")
   if(forecast_date %in% dat_included_models$forecast_date){
     warning("There is already an entry with the same forecast_date in documentation_members.csv")
   }else{
-    to_add <- data.frame(forecast_date = forecast_date,
+    to_add <- data.frame(forecast_date = as.character(forecast_date),
                          included_models = paste(included_models, collapse = ";"))
     dat_included_models <- rbind(dat_included_models,
                                  to_add)
     write.csv(dat_included_models, file = "code/ensemble/documentation_members.csv", row.names = FALSE)
   }
 }else{
-  dat_included_models <- data.frame(forecast_date = forecast_date,
+  dat_included_models <- data.frame(forecast_date = as.character(forecast_date),
                        included_models = paste(included_models, collapse = ";"))
   write.csv(dat_included_models, file = "code/ensemble/documentation_members.csv", row.names = FALSE)
 }
