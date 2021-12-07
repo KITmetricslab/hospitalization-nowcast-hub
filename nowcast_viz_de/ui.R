@@ -3,12 +3,20 @@ library(plotly)
 library(shinyhelper)
 library(magrittr)
 library(shinybusy)
+library(DT)
 
-local <- FALSE
+local <- TRUE
 if(local){
+    # get vector of model names:
+    dat_models <- read.csv("plot_data/list_teams.csv")
+    # available dates:
     available_dates <- sort(read.csv("plot_data/available_dates.csv", colClasses = c("date" = "Date"))$date)
+    
 }else{
+    # available dates:
     available_dates <- sort(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv", colClasses = c("date" = "Date"))$date)
+    # get vector of model names:
+    dat_models <- read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/list_teams.csv")
 }
 bundeslaender <- c("Alle (Deutschland)" = "DE",
                    "Baden-Württemberg" = "DE-BW", 	
@@ -85,7 +93,9 @@ shinyUI(fluidPage(
                                style = "font-size:11px;")),
             checkboxInput("show_truth_frozen", label = "Zeitreihe eingefrorener Werte", 
                           value = FALSE),
-            checkboxInput("show_last_two_days", label = "Zeige letzte zwei Tage", 
+            checkboxInput("show_last_two_days", label = "Zeige letzte zwei Tage (weniger verlässliche Schätzung)", 
+                          value = FALSE),
+            checkboxInput("show_table", label = "Zeige Übersichtstabelle", 
                           value = FALSE),
             conditionalPanel("input.select_language == 'DE'", strong("Weitere Optionen")),
             conditionalPanel("input.select_language == 'EN'", strong("More options")),
@@ -128,6 +138,7 @@ shinyUI(fluidPage(
         ),
         
         mainPanel(
+            add_busy_spinner(spin = "fading-circle"),
             conditionalPanel("input.select_language == 'DE'",
                              p("Diese Plattform vereint Nowcasts der COVID19-7-Tages-Hospitalisierungsinzidenz in Deutschland basierend auf verschiedenen Methoden, mit dem Ziel einer verlässlichen Einschätzung aktueller Trends."),
             ),
@@ -135,7 +146,24 @@ shinyUI(fluidPage(
                              p("This platform unites nowcasts of the COVID-19 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends."),
             ),
             plotlyOutput("tsplot", height = "440px"),
-            add_busy_spinner(spin = "fading-circle"),
+            conditionalPanel("input.show_table",
+                             br(),
+                             conditionalPanel("input.select_language == 'DE'",
+                                              p("Untenstehende Tabelle fasst die Nowcasts eines gewählten Modells für ein bestimmtes Meldedatum und verschiedene Bundesländer oder Altersgruppen zusammen. Der verwendete Datenstand ist der selbe wie für die grafischen Darstellung."),
+                             ),
+                             conditionalPanel("input.select_language == 'EN'",
+                                              p("This table summarizes the nowcasts made by the selected model for a given Meldedatum (target date) and all German states or age groups. The data version is the same as in the graphical display."),
+                             ),
+                             div(style="display: inline-block;vertical-align:top;width:400px",
+                                 selectInput("select_model", "Modell:",
+                                             choices = dat_models$model,
+                                             selected = "NowcastHub-MeanEnsemble")),
+                             div(style="display: inline-block;vertical-align:top;width:200px",
+                                 dateInput("select_target_end_date", label = "Meldedatum", value = max(available_dates) - 2,
+                                           min = min(available_dates), max = max(available_dates))),
+                             DTOutput("table"), 
+                             br()),
+            
             
             p(),
             conditionalPanel("input.select_language == 'DE'",
