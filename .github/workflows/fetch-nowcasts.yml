@@ -2,7 +2,6 @@ name: "fetch-nowcasts"
 on:
   workflow_dispatch:
   
-
 jobs:
   fetch-nowcasts:
     runs-on: ubuntu-latest
@@ -24,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: python3 -m pip install pandas
       
-#     - run: false
+    - run: false
 
     - name: Fetch RKI
       run: python3 ./code/fetch_nowcasts/fetch-RKI.py	
