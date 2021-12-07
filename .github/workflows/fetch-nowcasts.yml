@@ -16,12 +16,21 @@ jobs:
     - name: Setup R
       uses: r-lib/actions/setup-r@v1  
       
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+      
     - run: false
 
     - name: Fetch epiforecasts
       run: Rscript ./code/fetch_nowcasts/epiforecasts_url2nowcast.R	
       if: always()
-        
+      
+    - name: Fetch SZ
+      run: python3 ./code/fetch_nowcasts/sz-url2nowcast.py	
+      if: always()  
+      
     - name: Commit files
       env:
         AUTH: ${{ secrets.GITHUBTOKEN }}
