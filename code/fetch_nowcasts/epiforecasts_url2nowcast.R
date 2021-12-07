@@ -1,4 +1,4 @@
-setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub_fork/code/fetch_nowcasts")
+# setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub_fork/code/fetch_nowcasts")
 
 # forecast_dates <- seq(from = as.Date("2021-10-01"),
 #                       to = as.Date("2021-11-21"),
