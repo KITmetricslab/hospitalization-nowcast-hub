@@ -5,7 +5,7 @@ shortcuts = ["DE",'DE-BW', 'DE-BY', 'DE-HB', 'DE-HH', 'DE-HE', 'DE-NI', 'DE-NW',
 regions = ['Bundesgebiet','Baden-Württemberg', 'Bayern','Bremen','Hamburg','Hessen','Niedersachsen','Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', "Schleswig-Holstein", "Brandenburg", 'Mecklenburg-Vorpommern', 'Sachsen','Sachsen-Anhalt', 'Thüringen', 'Berlin']
 regtup = list(zip(shortcuts,regions))
 # Assign url of file: url
-url = "/home/johannes/Documents/Projects/hospitalization-nowcast-hub_fork/temp/2021-12-05_Deutschland_adjustierte-COVID-19-Hospitalisierungen.csv"
+url = "https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/Archiv/2021-12-07_Deutschland_adjustierte-COVID-19-Hospitalisierungen.csv"
 date = url[112:122]
 # get the csv file form the website
 urlretrieve(url, 'rki-{0}.csv'.format(date))
