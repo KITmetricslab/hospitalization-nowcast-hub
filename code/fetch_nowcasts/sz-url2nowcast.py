@@ -59,6 +59,6 @@ def get_sz(url):
     # calculate the absolute age group numbers
     for tup2 in fractions:
         df_f.loc[df_f["age_group"] == tup2[0], "value"] = tup2[1] * df_f.loc[df_f["age_group"] == tup2[0], "value"]
-    df_f.to_csv("../../data-processed/SZ-hosp_nowcast/{0}-SZ-hosp_nowcast.csv".format(date), index=False)
+    df_f.to_csv("./data-processed/SZ-hosp_nowcast/{0}-SZ-hosp_nowcast.csv".format(date), index=False)
     return("")
 get_sz(url)
