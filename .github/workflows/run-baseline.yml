@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   
 jobs:
-  fetch-nowcasts:
+  run-baseline:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
