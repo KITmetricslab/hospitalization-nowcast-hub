@@ -29,7 +29,7 @@ date = pd.to_datetime('today').date()
 url = f"https://gfx.sueddeutsche.de/storytelling-assets/datenteam/2021_corona-automation/hosp_incidence/" \
     f"archive/{date}_hosp_incidence_nowcast_sz.csv"
 
-# import csf file as a dataframe
+# import csv file as a dataframe
 df = pd.read_csv(url, sep=',', parse_dates=["Datum"] )
 
 # remove rows with missing values
