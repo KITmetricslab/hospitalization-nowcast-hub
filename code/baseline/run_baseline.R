@@ -1,7 +1,8 @@
-setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub_fork/code/baseline")
+# setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub_fork/code/baseline")
 source("functions.R")
 source("../check_nowcast_submission/plot_functions.R")
 
+install.packages("zoo")
 library(zoo)
 
 # read truth data:
