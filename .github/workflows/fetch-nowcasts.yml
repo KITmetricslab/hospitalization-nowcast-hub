@@ -26,13 +26,17 @@ jobs:
       
 #     - run: false
 
-    - name: Fetch epiforecasts
-      run: Rscript ./code/fetch_nowcasts/epiforecasts_url2nowcast.R	
-      if: always()
+    - name: Fetch RKI
+      run: python3 ./code/fetch_nowcasts/sz-fetch-RKI.py	
+      if: always()  
       
     - name: Fetch SZ
       run: python3 ./code/fetch_nowcasts/sz-url2nowcast.py	
       if: always()  
+    
+    - name: Fetch epiforecasts
+      run: Rscript ./code/fetch_nowcasts/epiforecasts_url2nowcast.R	
+      if: always()
       
     - name: Commit files
       env:
