@@ -33,8 +33,10 @@ jobs:
         git pull origin main
         git add --all
         git commit --allow-empty -m "Daily nowcasts update"
+      if: always()
         
     - name: Push changes
       run: |
         git push --quiet --set-upstream origin HEAD:main
         echo "pushed to github"
+      if: always()
