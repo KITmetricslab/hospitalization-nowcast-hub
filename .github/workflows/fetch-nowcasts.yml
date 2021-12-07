@@ -23,7 +23,7 @@ jobs:
     - name: Install dependencies
       run: python3 -m pip install pandas
       
-    - run: false
+#     - run: false # for testing of if: always()
 
     - name: Fetch RKI
       run: python3 ./code/fetch_nowcasts/fetch-RKI.py	
