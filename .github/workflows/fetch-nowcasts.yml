@@ -30,9 +30,9 @@ jobs:
       run: python3 ./code/fetch_nowcasts/fetch-RKI.py	
       if: always()  
       
-#     - name: Fetch SZ
-#       run: python3 ./code/fetch_nowcasts/sz-url2nowcast.py	
-#       if: always()  
+    - name: Fetch SZ
+      run: python3 ./code/fetch_nowcasts/fetch-SZ.py	
+      if: always()  
     
     - name: Fetch epiforecasts
       run: Rscript ./code/fetch_nowcasts/epiforecasts_url2nowcast.R	
@@ -48,7 +48,7 @@ jobs:
         git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
         git pull origin main
         git add --all
-        git commit --allow-empty -m "Daily nowcasts update"
+        git commit --allow-empty -m "Daily nowcast update"
       if: always()
         
     - name: Push changes
