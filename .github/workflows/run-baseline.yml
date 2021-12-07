@@ -16,7 +16,9 @@ jobs:
       uses: r-lib/actions/setup-r@v1  
       
     - name: Run baseline
-      run: Rscript ./code/baseline/run_baseline.R
+      run: |
+        cd ./code/baseline/
+        Rscript run_baseline.R
     
     - name: Commit files
       env:
