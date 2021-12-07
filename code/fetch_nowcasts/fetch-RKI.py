@@ -15,7 +15,7 @@ date = pd.to_datetime('today').date()
 url = "https://raw.githubusercontent.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/master/" \
     f"Archiv/{date}_Deutschland_adjustierte-COVID-19-Hospitalisierungen.csv"   
 
-# import the csv file as an Dataframe
+# import the csv file as a dataframe
 df = pd.read_csv(url, sep=',', parse_dates=["Datum"])
 
 # drop the most recent two dates and dates older than 28 days
@@ -24,7 +24,7 @@ df = df[df.Datum.dt.date.between(date - pd.Timedelta(days = 28), date - pd.Timed
 # rename locations according to submission guidelines
 df.Bundesland.replace(region_dict, inplace = True)
 
-# drop unnecessary  columns
+# drop unnecessary columns
 df.drop(columns = ["Bundesland_Id","Altersgruppe","Bevoelkerung","fixierte_7T_Hospitalisierung_Faelle", 
                    "aktualisierte_7T_Hospitalisierung_Faelle","fixierte_7T_Hospitalisierung_Inzidenz",
                    "aktualisierte_7T_Hospitalisierung_Inzidenz","PS_adjustierte_7T_Hospitalisierung_Inzidenz",
@@ -46,7 +46,7 @@ df['quantile'].replace({'PS_adjustierte_7T_Hospitalisierung_Faelle': '',
 df['type'] = 'quantile'
 df.loc[df['quantile'] == '', 'type'] = 'mean'
 
-# add necessary
+# add necessary columns
 df["age_group"] = "00+"
 df["forecast_date"] = date
 df["pathogen"] = "COVID-19"
