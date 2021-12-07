@@ -19,8 +19,8 @@ jobs:
     - run: false
 
     - name: Fetch epiforecasts
-      run: |
-        Rscript ./code/fetch_nowcasts/epiforecasts_url2nowcast.R	
+      run: Rscript ./code/fetch_nowcasts/epiforecasts_url2nowcast.R	
+      if: always()
         
     - name: Commit files
       env:
