@@ -27,7 +27,7 @@ jobs:
 #     - run: false
 
     - name: Fetch RKI
-      run: python3 ./code/fetch_nowcasts/sz-fetch-RKI.py	
+      run: python3 ./code/fetch_nowcasts/fetch-RKI.py	
       if: always()  
       
 #     - name: Fetch SZ
