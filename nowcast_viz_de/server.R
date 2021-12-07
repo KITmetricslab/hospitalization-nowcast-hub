@@ -7,46 +7,78 @@
 #    http://shiny.rstudio.com/
 #
 
-local <- FALSE
+# setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub/nowcast_viz_de")
 
+# set to TRUE to test locally (avoids always downloading data form GitHub)
+# set to FALSE to deploy
+local <- TRUE
+
+# load packages:
 library(shiny)
 library(plotly)
 library(zoo)
 library(httr)
+library(DT)
 
+# set locale to English (Linux-specific)
 Sys.setlocale(category = "LC_TIME", locale = "en_US.UTF8")
 
+# get auxiliary functions:
 source("functions.R")
-# setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub/nowcast_viz_de")
 
-# check which forecast files are available:
+# load data:
 if(local){
+    # check which forecast files are available:
+    # simple when done locally:
     forecast_files <- list.files("plot_data")
-    # get vector of model names:
+    # get model names:
     dat_models <- read.csv("plot_data/list_teams.csv")
     # get population sizes:
     pop <- read.csv("plot_data/population_sizes.csv")
     # vector of Mondays available in truth data:
     available_dates <- sort(as.Date(read.csv("plot_data/available_dates.csv")$date))
 }else{
+    # check which forecast files are available:
+    # via GitHub Api when not local
     req <- GET("https://api.github.com/repos/KITmetricslab/hospitalization-nowcast-hub/git/trees/main?recursive=1")
     stop_for_status(req)
     filelist <- unlist(lapply(content(req)$tree, "[", "path"), use.names = F)
     forecast_files <- grep("forecast_data.csv", filelist, value = TRUE, fixed = TRUE)
     forecast_files <- basename(grep("nowcast_viz_de/plot_data/20", forecast_files, value = TRUE, fixed = TRUE))
-    # get vector of model names:
+    # get model names:
     dat_models <- read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/list_teams.csv")
     # get population sizes:
     pop <- read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/population_sizes.csv")
     # vector of Mondays available in truth data:
     available_dates <- sort(as.Date(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv")$date))
 }
+
+# map between codes for federal states and their human-readable names
+bundeslaender <- c("Alle (Deutschland)" = "DE",
+                   "Baden-Württemberg" = "DE-BW", 	
+                   "Bayern" = "DE-BY", 	
+                   "Berlin" = "DE-BE", 	
+                   "Brandenburg" = "DE-BB", 	
+                   "Bremen" = "DE-HB", 	
+                   "Hamburg" = "DE-HH", 	
+                   "Hessen" = "DE-HE", 	
+                   "Mecklenburg-Vorpommern" = "DE-MV", 	
+                   "Niedersachsen" = "DE-NI", 	
+                   "Nordrhein-Westfalen" = "DE-NW", 	
+                   "Rheinland-Pfalz" = "DE-RP", 	
+                   "Saarland" = "DE-SL", 	
+                   "Sachsen" = "DE-SN",
+                   "Sachsen-Anhalt" = "DE-ST",
+                   "Schleswig-Holstein" = "DE-SH", 	
+                   "Thüringen" = "DE-TH")
+
+# names of models:
 models <- sort(dat_models$model)
 
+# which models are to be shown by default?
 default_models <- "NowcastHub-MeanEnsemble"
 
-
-# assign colors:
+# define a color palette for the models:
 cols <- c('rgb(31, 119, 180)',
           'rgb(255, 127, 14)',
           'rgb(44, 160, 44)',
@@ -59,6 +91,8 @@ cols <- c('rgb(31, 119, 180)',
           'rgb(23, 190, 207)')
 cols <- cols[seq_along(models)]
 names(cols) <- models
+
+# create transparent versions:
 cols_transp <- gsub("rgb", "rgba", cols, fixed = TRUE)
 cols_transp <- gsub(")", ", 0.5)", cols_transp, fixed = TRUE)
 
@@ -76,16 +110,10 @@ current_date <- max(dat_truth$date)
 # Define server logic:
 shinyServer(function(input, output, session) {
     
+    # needed to display help texts:
     observe_helpers(withMathJax = TRUE)
     
     ##### UI handling
-    
-    # # input element to select date:
-    # output$select_date <- renderUI(selectInput("select_date",
-    #                                            choices = mondays,
-    #                                            selected = tail(mondays, 1),
-    #                                            label = "Select data version (also by click in plot)")
-    # )
     
     # add back in if date selection by click desired
     # # listen to clicks in plot for date selection:
@@ -152,7 +180,7 @@ shinyServer(function(input, output, session) {
     observe({
         # only read in if not already read in:
         if(is.null(forecast_data[[paste0(input$select_date)]])){
-            dats <- as.character(as.Date(input$select_date) + (-2:2))
+            dats <- as.character(as.Date(input$select_date)) #  + (-2:2)
             for (dat in dats) {
                 # read in file if available, set NULL otherwise
                 file_name <- paste0(dat, "_forecast_data.csv")
@@ -166,6 +194,7 @@ shinyServer(function(input, output, session) {
                                      colClasses = c("retrospective" = "logical",
                                                     "forecast_date" = "Date",
                                                     "target_end_date" = "Date"))
+                    # replace missing medians by means:
                     temp$q0.5[is.na(temp$q0.5)] <- temp$mean[is.na(temp$q0.5)]
                 }else{
                     temp <- NULL
@@ -188,16 +217,17 @@ shinyServer(function(input, output, session) {
                 1
             }
         
+        # a place to store the largest values occurring in each nowcast:
         max_vals <- numeric(length(models))
         names(max_vals) <- models
-
+        
         # a mapping to determine which trace corresponds to what (needed to replace things below)
         temp <- list("selected_date" = 1, # 0 is grey area
                      "old_truth" = 2,
                      "current_truth" = 3,
                      "truth_by_reporting" = 4,
                      "truth_frozen" = 5)
-        for(i in seq_along(models)) temp[[models[i]]] <- 2*i + 5 - 1:0
+        for(i in seq_along(models)) temp[[models[i]]] <- 2*i + 5 - 1:0 # layers for models
         plot_data$mapping <- temp
         
         # truth data as of selected date:
@@ -205,7 +235,7 @@ shinyServer(function(input, output, session) {
                                  age_group = input$select_age,
                                  location = input$select_state,
                                  date = input$select_date)
-        # reverting necessary to avoid bug with mouseovers (don't know why)
+        # reverting necessary to avoid bug with mouseover texts (don't know why)
         plot_data$old_truth <- data.frame(x = rev(old_truth$date), y = rev(round(old_truth$value*pop_factor, 2)))
         
         # most recent truth data:
@@ -213,7 +243,7 @@ shinyServer(function(input, output, session) {
                                      age_group = input$select_age,
                                      location = input$select_state,
                                      date = current_date)
-        # reverting necessary to avoid bug with mouseovers (don't know why)
+        # reverting necessary to avoid bug with mouseover texts (don't know why)
         plot_data$current_truth <- data.frame(x = rev(current_truth$date), y = rev(round(current_truth$value*pop_factor, 2)))
         
         # truth by reporting:
@@ -222,6 +252,7 @@ shinyServer(function(input, output, session) {
                                                age_group = input$select_age,
                                                location = input$select_state)
         }else{
+            # hide layer somewhere if deactivated by user:
             truth_by_rep <- data.frame(date = min(dat_truth$date),
                                        value = 0)
         }
@@ -233,8 +264,9 @@ shinyServer(function(input, output, session) {
                                      age_group = input$select_age,
                                      location = input$select_state)
         }else{
+            # hide layer somewhere if deactivated by user:
             truth_fr <- data.frame(date = min(dat_truth$date),
-                                       value = 0)
+                                   value = 0)
         }
         plot_data$truth_frozen <- data.frame(x = truth_fr$date, y = round(truth_fr$value*pop_factor, 2))
         
@@ -262,15 +294,17 @@ shinyServer(function(input, output, session) {
                         # subs[subs$target_end_date >= (subs$forecast_date - 1), c("q0.5")] <- NA
                     }
                     
-                    
+                    # if any relevant data found:
                     if(nrow(subs) > 0){
                         # prepare list of simple data frames for plotting:
+                        # point nowcast:
                         if(input$select_point_estimate == "median"){
                             points <- subs[, c("target_end_date", "q0.5")]
                         }else{
                             points <- subs[, c("target_end_date", "mean")]
                         }
                         
+                        # intervals:
                         if(input$select_interval == "none"){
                             lower <- subs[, c("target_end_date", "q0.5")]
                             upper <- subs[, c("target_end_date", "q0.5")]
@@ -284,10 +318,10 @@ shinyServer(function(input, output, session) {
                             upper <- subs[, c("target_end_date", "q0.975")]
                         }
                         
+                        # use uniform column names:
                         colnames(points) <- colnames(lower) <- colnames(upper) <- c("x", "y")
                         
                         # take population factor into account (switch between absolute numbers and per 100,000)
-                        #print(input$select_scale == "absolute counts")
                         points$y <- round(points$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
                         lower$y <- round(lower$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
                         upper$y <- round(upper$y*pop_factor, ifelse(input$select_scale == "absolute counts", 0, 2))
@@ -295,14 +329,12 @@ shinyServer(function(input, output, session) {
                         # pool lower and upper into intervals:
                         intervals <- rbind(lower, upper[nrow(upper):1, ])
                         
-                        
-                        # add labels:
+                        # add labels to be shown in mouseover:
                         if(input$select_interval %in% c("50%", "95%")){
                             points$text_interval <- paste0(" (", lower$y, " - ", upper$y, ")")
                         }else{
                             points$text_interval <- ""
                         }
-                        
                         
                         # reverting necessary to avoid bug with mouseovers (don't know why)
                         points$x <- rev(points$x)
@@ -311,9 +343,7 @@ shinyServer(function(input, output, session) {
                         intervals$y <- rev(intervals$y)
                         points$text_interval <- rev(points$text_interval)
                         
-                        
-                        
-                        # store:
+                        # store in plot_data:
                         plot_data[[mod]] <- list(points = points, intervals = intervals)
                         
                         # add largest value to max_vals to compute ylim later:
@@ -518,7 +548,7 @@ shinyServer(function(input, output, session) {
                                                  "nach Erscheinen in RKI Daten",
                                                  "by appearance in RKI data")),
                               list(plot_data$mapping[["truth_by_reporting"]]))
-
+            
         })
         
         # update frozen time series:
@@ -544,7 +574,7 @@ shinyServer(function(input, output, session) {
         # change language in y-label and log vs natural scale:
         observe({
             type <- ifelse(input$select_log == "log scale", "log", "linear")
-
+            
             ylab <- if(input$select_language == "DE"){
                 if(input$select_scale == "absolute counts"){
                     "7-Tages-Hospitalisierungsinzidenz (absolut)"
@@ -560,6 +590,79 @@ shinyServer(function(input, output, session) {
             }
             plotlyProxyInvoke(myPlotProxy, "relayout",
                               list(yaxis = list(title = ylab, type = type)))
+        })
+    })
+    
+    # create table with overview:
+    observe({
+        if(input$show_table){
+            # everything moved to separate function
+            tab <- create_table(forecasts = forecast_data[[as.character(input$select_date)]],
+                                dat_truth = dat_truth,
+                                population = pop,
+                                by = input$select_stratification,
+                                scale = input$select_scale,
+                                model = input$select_model,
+                                forecast_date = as.Date(input$select_date),
+                                target_end_date =  input$select_target_end_date,
+                                current_date = current_date,
+                                median_or_mean = input$select_point_estimate, 
+                                interval_level = input$select_interval)
+            
+            # if relevant data available:
+            if(!is.null(tab)){
+                # handle column names in shown in ui in both languages
+                if(input$select_language == "DE"){
+                    coln <- c(ifelse(input$select_stratification == "state", "Bundesland", "Altersgruppe"),
+                              "Aktuellster Datenstand",
+                              "Datenstand am Tag des Nowcasts",
+                              "Nowcast (Unsicherheitsintervall)",
+                              "Korrekturfaktor",
+                              "% Veränderung zur Vorwoche"
+                    )
+                }else{
+                    coln <- c(ifelse(input$select_stratification == "state", "Bundesland", "Age group"),
+                              "Most recent data version",
+                              "Data version used for nowcast",
+                              "Nowcast (uncertainty interval)",
+                              "Correction factor",
+                              "% change to previous week"
+                    )
+                }
+                
+                # render (without search window, with csv button)
+                output$table <- DT::renderDT({
+                    datatable(tab, colnames = coln, extensions = 'Buttons', rownames = FALSE,
+                              options = list(dom = 'tB', pageLength = 17, buttons = c('csv')))
+                })
+            }else{ # if no data available: show place holder
+                output$table <- DT::renderDT(data.frame("Error" = "Keine Nowcasts verfügbar für das ewählte Meldedatum."))
+            }
+            
+        }else{
+            output$table <- NULL
+        }
+    })
+    
+    # update calendar input for target_end_date:
+    observe({
+        # adapt range for calendar input when forecast_date is changed
+        input$select_date
+        isolate({
+            # should range from 0 to -28 days ahead
+            new_min <- input$select_date - 28
+            new_max <- input$select_date
+            # adapt chosen value if outside of range
+            old_value <- input$select_target_end_date
+            if(old_value >= new_min & old_value <= new_max){
+                new_value <- old_value
+            }else{
+                new_value <- new_max - 2
+            }
+            updateDateInput(session, "select_target_end_date",
+                            min = new_min,
+                            max = new_max,
+                            value = new_value)
         })
     })
     
@@ -665,8 +768,8 @@ shinyServer(function(input, output, session) {
                             "Time series by appearance in RKI data")
             selected <- input$show_truth_by_reporting
             updateCheckboxInput(session, "show_truth_by_reporting",
-                               label = label,
-                               value = selected
+                                label = label,
+                                value = selected
             )
             
             # Time series of frozen values
@@ -675,14 +778,14 @@ shinyServer(function(input, output, session) {
                             "Time series of frozen values")
             selected <- input$show_truth_frozen
             updateCheckboxInput(session, "show_truth_frozen",
-                               label = label,
-                               value = selected
+                                label = label,
+                                value = selected
             )
             
             # Show two most recent days
             label <- ifelse(input$select_language == "DE", 
-                            "Zeige letzte zwei Tage", 
-                            "Show two most recent days")
+                            "Zeige letzte zwei Tage (weniger verlässliche Schätzung)", 
+                            "Show two most recent days (less reliable estimation)")
             selected <- input$show_last_two_days
             updateCheckboxInput(session, "show_last_two_days",
                                 label = label,
@@ -695,6 +798,36 @@ shinyServer(function(input, output, session) {
                             "Show retrospective nowcasts")
             selected <- input$show_retrospective_nowcasts
             updateCheckboxInput(session, "show_retrospective_nowcasts",
+                                label = label,
+                                value = selected
+            )
+            
+            # Show summary table
+            label <- ifelse(input$select_language == "DE", 
+                            "Zeige Übersichtstabelle", 
+                            "Show summary table")
+            selected <- input$show_table
+            updateCheckboxInput(session, "show_table",
+                                label = label,
+                                value = selected
+            )
+            
+            # Select model:
+            label <- ifelse(input$select_language == "DE", 
+                            "Modell", 
+                            "Model")
+            selected <- input$select_model
+            updateCheckboxInput(session, "select_model",
+                                label = label,
+                                value = selected
+            )
+            
+            # Target end date:
+            label <- ifelse(input$select_language == "DE", 
+                            "Meldedatum", 
+                            "Meldedatum (target date)")
+            selected <- input$select_target_end_date
+            updateCheckboxInput(session, "select_target_end_date",
                                 label = label,
                                 value = selected
             )
