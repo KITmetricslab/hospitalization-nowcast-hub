@@ -2,7 +2,6 @@
 source("functions.R")
 source("../check_nowcast_submission/plot_functions.R")
 
-install.packages("zoo")
 library(zoo)
 
 # read truth data:
