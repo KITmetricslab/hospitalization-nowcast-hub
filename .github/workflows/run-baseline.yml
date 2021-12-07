@@ -16,23 +16,21 @@ jobs:
       uses: r-lib/actions/setup-r@v1  
       
     - name: Run baseline
-    - run: Rscript ./code/baseline/run_baseline.R
+      run: Rscript ./code/baseline/run_baseline.R
     
     - name: Commit files
       env:
         AUTH: ${{ secrets.GITHUBTOKEN }}
       run: |
         git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action - Fetch Nowcasts"
+        git config --local user.name "GitHub Action - Run Baseline"
         git remote rm origin
         git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
         git pull origin main
         git add --all
-        git commit --allow-empty -m "Daily nowcast update"
-      if: always()
+        git commit --allow-empty -m "Daily baseline update"
         
     - name: Push changes
       run: |
         git push --quiet --set-upstream origin HEAD:main
         echo "pushed to github"
-      if: always()
