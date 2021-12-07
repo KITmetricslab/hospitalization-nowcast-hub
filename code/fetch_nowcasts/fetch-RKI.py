@@ -1,10 +1,12 @@
 import pandas as pd
 
-abbreviations = ["DE",'DE-BW', 'DE-BY', 'DE-HB', 'DE-HH', 'DE-HE', 
+abbreviations = ['DE', 'DE-BW', 'DE-BY', 'DE-HB', 'DE-HH', 'DE-HE', 
                  'DE-NI', 'DE-NW', 'DE-RP', 'DE-SL', 'DE-SH', 'DE-BB', 
                  'DE-MV', 'DE-SN', 'DE-ST', 'DE-TH', 'DE-BE']
 
-regions = ['Bundesgebiet','Baden-Württemberg', 'Bayern','Bremen','Hamburg','Hessen','Niedersachsen','Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', "Schleswig-Holstein", "Brandenburg", 'Mecklenburg-Vorpommern', 'Sachsen','Sachsen-Anhalt', 'Thüringen', 'Berlin']
+regions = ['Bundesgebiet', 'Baden-Württemberg', 'Bayern', 'Bremen', 'Hamburg', 'Hessen',
+           'Niedersachsen', 'Nordrhein-Westfalen', 'Rheinland-Pfalz', 'Saarland', 'Schleswig-Holstein', 'Brandenburg', 
+           'Mecklenburg-Vorpommern', 'Sachsen', 'Sachsen-Anhalt', 'Thüringen', 'Berlin']
 
 # dictionary to map region names to abbreviations
 region_dict = dict(zip(regions, abbreviations))
