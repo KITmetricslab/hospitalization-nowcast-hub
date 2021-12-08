@@ -1,0 +1,34 @@
+name: "fetch-epiforecasts"
+on:
+  workflow_dispatch:
+  
+jobs:
+  fetch-epiforecasts:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+        
+    - name: Setup R
+      uses: r-lib/actions/setup-r@v1  
+      
+    - name: Fetch epiforecasts
+      run: Rscript ./code/fetch_nowcasts/epiforecasts_url2nowcast.R
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUBTOKEN }}
+        commit-message: Update nowcasts (epiforecasts)
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        signoff: false
+        branch: fetch-epiforecasts
+        delete-branch: true
+        title: 'Update nowcasts (epiforecasts)'
+        body: |
+          Update nowcasts
+        labels: |
+          automated pr
+        reviewers: jbracher
