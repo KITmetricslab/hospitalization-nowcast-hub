@@ -5,7 +5,7 @@ library(magrittr)
 library(shinybusy)
 library(DT)
 
-local <- TRUE
+local <- FALSE
 if(local){
     # get vector of model names:
     dat_models <- read.csv("plot_data/list_teams.csv")

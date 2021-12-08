@@ -11,7 +11,7 @@
 
 # set to TRUE to test locally (avoids always downloading data form GitHub)
 # set to FALSE to deploy
-local <- TRUE
+local <- FALSE
 
 # load packages:
 library(shiny)
