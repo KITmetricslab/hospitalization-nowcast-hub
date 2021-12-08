@@ -1,6 +1,8 @@
 name: "run-baseline"
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "50 10 * * *"
   
 jobs:
   run-baseline:
