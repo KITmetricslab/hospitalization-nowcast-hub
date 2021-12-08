@@ -1,6 +1,8 @@
 name: "fetch-RKI"
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "50 10 * * *"
   
 jobs:
   fetch-RKI:
