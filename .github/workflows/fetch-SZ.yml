@@ -1,0 +1,39 @@
+name: "fetch-SZ"
+on:
+  workflow_dispatch:
+  
+jobs:
+  fetch-SZ:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+        
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' 
+        
+    - name: Install dependencies
+      run: python3 -m pip install pandas
+      
+    - name: Fetch SZ
+      run: python3 ./code/fetch_nowcasts/fetch-SZ.py
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUBTOKEN }}
+        commit-message: Update nowcasts (SZ)
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        signoff: false
+        branch: fetch-SZ
+        delete-branch: true
+        title: 'Update nowcasts (SZ)'
+        body: |
+          Update nowcasts
+        labels: |
+          automated pr
+        reviewers: jbracher
