@@ -8,9 +8,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@main
-#       with:
-#         persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
-#         fetch-depth: 1 # otherwise, you will failed to push refs to dest repo
         
     - name: Setup R
       uses: r-lib/actions/setup-r@v1  
@@ -19,19 +16,37 @@ jobs:
       run: |
         Rscript ./code/ensemble/generate_ensembles.R
     
-    - name: Commit files
-      env:
-        AUTH: ${{ secrets.GITHUBTOKEN }}
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action - Generate Ensembles"
-        git remote rm origin
-        git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
-        git pull origin main
-        git add --all
-        git commit --allow-empty -m "Daily ensemble update"
+#     - name: Commit files
+#       env:
+#         AUTH: ${{ secrets.GITHUBTOKEN }}
+#       run: |
+#         git config --local user.email "action@github.com"
+#         git config --local user.name "GitHub Action - Generate Ensembles"
+#         git remote rm origin
+#         git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
+#         git pull origin main
+#         git add --all
+#         git commit --allow-empty -m "Daily ensemble update"
         
-    - name: Push changes
-      run: |
-        git push --quiet --set-upstream origin HEAD:main
-        echo "pushed to github"
+#     - name: Push changes
+#       run: |
+#         git push --quiet --set-upstream origin HEAD:main
+#         echo "pushed to github"
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUBTOKEN }}
+        commit-message: Update ensembles
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        signoff: false
+        branch: update-ensembles
+        delete-branch: true
+        title: 'Update ensembles'
+        body: |
+          Update ensembles
+        labels: |
+          automated pr
+        reviewers: jbracher

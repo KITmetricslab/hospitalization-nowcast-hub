@@ -51,16 +51,16 @@ for(i in seq_along(forecast_dates)){
     
     # generate a plot:
     # undebug(plot_forecast)
-    plot_forecast(forecasts = nc,
-                  location = "DE", age_group = ag,
-                  truth = observed_for_plot, target_type = paste("inc hosp"),
-                  levels_coverage = c(0.5, 0.95),
-                  start = as.Date(forecast_date) - 35,
-                  end = as.Date(forecast_date) + 28,
-                  forecast_date = forecast_date)
+    # plot_forecast(forecasts = nc,
+    #               location = "DE", age_group = ag,
+    #               truth = observed_for_plot, target_type = paste("inc hosp"),
+    #               levels_coverage = c(0.5, 0.95),
+    #               start = as.Date(forecast_date) - 35,
+    #               end = as.Date(forecast_date) + 28,
+    #               forecast_date = forecast_date)
     # axis(1)
-    title(paste(forecast_date, "-", ag))
-    lines(observed_for_plot_old$date, observed_for_plot_old$value, col = "darkgrey", lty  ="dashed")
+    # title(paste(forecast_date, "-", ag))
+    # lines(observed_for_plot_old$date, observed_for_plot_old$value, col = "darkgrey", lty  ="dashed")
     
     if(is.null(all_nc)){
       all_nc <- nc
@@ -100,16 +100,16 @@ for(i in seq_along(forecast_dates)){
                           max_horizon = 28)
     
     # generate a plot:
-    plot_forecast(forecasts = nc,
-                  location = loc, age_group = "00+",
-                  truth = observed_for_plot, target_type = paste("inc hosp"),
-                  levels_coverage = c(0.5, 0.95),
-                  start = as.Date(forecast_date) - 35,
-                  end = as.Date(forecast_date) + 28,
-                  forecast_date = forecast_date)
+    # plot_forecast(forecasts = nc,
+    #               location = loc, age_group = "00+",
+    #               truth = observed_for_plot, target_type = paste("inc hosp"),
+    #               levels_coverage = c(0.5, 0.95),
+    #               start = as.Date(forecast_date) - 35,
+    #               end = as.Date(forecast_date) + 28,
+    #               forecast_date = forecast_date)
     # axis(1)
-    title(paste(forecast_date, "-", loc))
-    lines(observed_for_plot_old$date, observed_for_plot_old$value, col = "darkgrey", lty  ="dashed")
+    # title(paste(forecast_date, "-", loc))
+    # lines(observed_for_plot_old$date, observed_for_plot_old$value, col = "darkgrey", lty  ="dashed")
     
     if(is.null(all_nc)){
       all_nc <- nc

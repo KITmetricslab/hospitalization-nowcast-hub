@@ -23,19 +23,37 @@ jobs:
         cd ./code/baseline/
         Rscript run_baseline.R
     
-    - name: Commit files
-      env:
-        AUTH: ${{ secrets.GITHUBTOKEN }}
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action - Run Baseline"
-        git remote rm origin
-        git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
-        git pull origin main
-        git add --all
-        git commit --allow-empty -m "Daily baseline update"
+#     - name: Commit files
+#       env:
+#         AUTH: ${{ secrets.GITHUBTOKEN }}
+#       run: |
+#         git config --local user.email "action@github.com"
+#         git config --local user.name "GitHub Action - Run Baseline"
+#         git remote rm origin
+#         git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
+#         git pull origin main
+#         git add --all
+#         git commit --allow-empty -m "Daily baseline update"
         
-    - name: Push changes
-      run: |
-        git push --quiet --set-upstream origin HEAD:main
-        echo "pushed to github"
+#     - name: Push changes
+#       run: |
+#         git push --quiet --set-upstream origin HEAD:main
+#         echo "pushed to github"
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUBTOKEN }}
+        commit-message: Update Baseline
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        signoff: false
+        branch: baseline
+        delete-branch: true
+        title: 'Update baseline'
+        body: |
+          Update baseline
+        labels: |
+          automated pr
+        reviewers: jbracher

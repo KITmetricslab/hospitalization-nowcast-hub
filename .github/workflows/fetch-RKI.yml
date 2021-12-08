@@ -1,0 +1,39 @@
+name: "fetch-RKI"
+on:
+  workflow_dispatch:
+  
+jobs:
+  fetch-RKI:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+        
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' 
+        
+    - name: Install dependencies
+      run: python3 -m pip install pandas
+      
+    - name: Fetch RKI
+      run: python3 ./code/fetch_nowcasts/fetch-RKI.py
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUBTOKEN }}
+        commit-message: Update nowcasts (RKI)
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        signoff: false
+        branch: fetch-RKI
+        delete-branch: true
+        title: 'Update nowcasts (RKI)'
+        body: |
+          Update nowcasts
+        labels: |
+          automated pr
+        reviewers: jbracher
