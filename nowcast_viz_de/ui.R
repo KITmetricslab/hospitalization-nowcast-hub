@@ -71,7 +71,7 @@ shinyUI(fluidPage(
                          choices = c("Bundesland" = "state", "Altersgruppe" = "age"), inline = TRUE),
             conditionalPanel("input.select_stratification == 'age'",
                              conditionalPanel("input.select_language == 'DE'", strong("Altersgruppe")),
-                             conditionalPanel("input.select_language == 'EN'", strong("Datenstand")),
+                             conditionalPanel("input.select_language == 'EN'", strong("Age group")),
                              selectizeInput("select_age",
                                             label = NULL,
                                             choices = c("0+" = "00+",
