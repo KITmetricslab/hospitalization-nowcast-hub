@@ -1,6 +1,8 @@
 name: "fetch-SZ"
 on:
   workflow_dispatch:
+  schedule:
+    - cron: "50 10 * * *"
   
 jobs:
   fetch-SZ:
