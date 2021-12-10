@@ -21,3 +21,7 @@ The main contents of the repository are currently the following:
 ## Guide to submission
 
 This is a collaborative project which is open for contributions. If you are interested in contributing please check our [wiki](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki), in particular the page on [submissions](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki/Submission). Submission is based on pull requests. **This repository is still under construction and not operational yet.**
+
+## Relationship to Forecast Hubs
+
+This projet draws heavily from the [US](https://github.com/reichlab/covid19-forecast-hub/), [EU](https://github.com/epiforecasts/covid19-forecast-hub-europe/) and [German / Polish](https://github.com/KITmetricslab/covid19-forecast-hub-de) COVID-19 Forecast Hubs (all code bases under MIT license). We are grateful to all contributors of these projects.
