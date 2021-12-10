@@ -20,7 +20,7 @@ The main contents of the repository are currently the following:
 
 ## Guide to submission
 
-This is a collaborative project which is open for contributions. If you are interested in contributing please check our [wiki](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki), in particular the page on [submissions](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki/Submission). Submission is based on pull requests. **This repository is still under construction and not operational yet.**
+This is a collaborative project which is open for contributions. If you are interested in contributing please check our [wiki](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki), in particular the page on [submissions](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki/Submission). Submission is based on pull requests.
 
 ## Relationship to Forecast Hubs
 
