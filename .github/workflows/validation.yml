@@ -31,5 +31,5 @@ jobs:
     - name: Automerge check
       uses: "pascalgn/automerge-action@v0.13.1"
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.GITHUBTOKEN }}
         MERGE_LABELS: "automerge,data-submission,!other-files-updated,!metadata-change,!forecast-updated,!forecast-deleted,!viz,!code"
