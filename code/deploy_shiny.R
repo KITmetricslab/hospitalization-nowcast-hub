@@ -8,6 +8,9 @@ library("zoo")
 library("httr")
 library("magrittr")
 
+file.copy('./data-truth/COVID-19/COVID-19_hospitalizations.csv', 
+          './nowcast_viz_de/plot_data/COVID-19_hospitalizations.csv')
+
 SHINYAPPS_NAME = Sys.getenv("SHINYAPPS_NAME")
 SHINYAPPS_TOKEN = Sys.getenv("SHINYAPPS_TOKEN")
 SHINYAPPS_SECRET = Sys.getenv("SHINYAPPS_SECRET")
