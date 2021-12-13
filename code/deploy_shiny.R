@@ -1,4 +1,5 @@
-install.packages(c("shiny", "shinyhelper", "rsconnect", "plotly", "zoo", "httr", "magrittr"), dependencies = TRUE)
+install.packages(c("shiny", "shinyhelper", "rsconnect", "plotly", "zoo", "httr", "magrittr",
+                   "shinybusy", "DT"), dependencies = TRUE)
 
 library("shiny")
 library("shinyhelper")
@@ -7,6 +8,8 @@ library("plotly")
 library("zoo")
 library("httr")
 library("magrittr")
+library("shinybusy")
+library("DT")
 
 file.copy('./data-truth/COVID-19/COVID-19_hospitalizations.csv', 
           './nowcast_viz_de/plot_data/COVID-19_hospitalizations.csv')
