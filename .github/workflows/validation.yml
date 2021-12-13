@@ -30,3 +30,10 @@ jobs:
     - run: python3 main.py
       env:
         GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+        
+ # Run and check for automerge
+    - name: Automerge check
+      uses: "pascalgn/automerge-action@v0.13.1"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        MERGE_LABELS: "automerge,data-submission,!other-files-updated,!metadata-change,!forecast-updated,!viz,!code"
