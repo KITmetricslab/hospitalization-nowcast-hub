@@ -3,6 +3,12 @@ on:
   workflow_dispatch:
   #schedule:
     #- cron: "0 4,14 * * *"
+  push:
+   branches:
+    - main
+   paths:
+    - nowcast_viz_de/plot_data/** # trigger when updated by prepare-plot-data
+   
 
 jobs:
   deploy-shiny:
