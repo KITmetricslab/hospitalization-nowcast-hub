@@ -133,7 +133,7 @@ shinyServer(function(input, output, session) {
         for(ag in unique(dat$forecasts$age_group)){
           truth_inc <- truth_as_of(dat_truth, age_group = ag,
                                    location = "DE",
-                                   date = Sys.Date())
+                                   date = max(dat_truth$date))
           
           plot_forecast(dat$forecasts, forecast_date = forecast_date,
                         location = "DE", age_group = ag,
@@ -149,7 +149,7 @@ shinyServer(function(input, output, session) {
         for(loc in unique(dat$forecasts$location)){
           truth_inc <- truth_as_of(dat_truth, age_group = "00+",
                                    location = loc,
-                                   date = Sys.Date())
+                                   date = max(dat_truth$date))
 
           plot_forecast(dat$forecasts, forecast_date = forecast_date,
                         location = loc, age_group = "00+",
