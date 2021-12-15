@@ -7,7 +7,7 @@ on:
    branches:
     - main
    paths:
-    - nowcast_viz_de/plot_data/** # trigger when updated by prepare-plot-data
+    - nowcast_viz_de/plot_data/*_forecast_data.csv
    
 
 jobs:
