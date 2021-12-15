@@ -434,7 +434,7 @@ shinyServer(function(input, output, session) {
                     s <- 0.001
                     x_intervals <- min(dat_truth$date)
                     y_intervals <- 0
-                    labels <- ""
+                    text_interval <- ""
                 }
                 # add shaded areas for uncertainty:
                 p <- p%>% add_polygons(x = x_intervals, y = y_intervals,
