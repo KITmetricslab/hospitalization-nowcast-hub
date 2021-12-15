@@ -8,14 +8,16 @@
 
 This repository assembles nowcasts of the seven-day hospitalization incidence due to COVID-19 in Germany in a standardized format. The repository is run by members of the [Chair of Econometrics and Statistics at Karlsruhe Institute of Technology](https://statistik.econ.kit.edu/index.php) and the [Computational Statistics Group at Heidelberg Institute for Theoretical Studies](https://www.h-its.org/research/cst/), see [below](#forecast-hub-team). It is based on [data](https://github.com/KITmetricslab/hospitalization-nowcast-hub/wiki/Truth-data) from Robert Koch Institute which we have processed for the purpose of nowcasting.
 
-An **interactive dashboard** and background information can be found [here](https://covid19nowcasthub.de/).
+An **interactive dashboard** and background information can be found here: [covid19nowcasthub.de](https://covid19nowcasthub.de/).
 
 ## Contents of the repository
 
 The main contents of the repository are currently the following:
 
-- `data-processed`: nowcasts in a standardized format
 - `data-truth`: truth data from RKI in a standardized format
+- `data-processed`: nowcasts in a standardized format
+- `data-processed_retrospective`: nowcasts which have not been submitted in realtime but were computed retrospectively
+- `data-processed_replaced`: nowcasts which were replaced due to technical problems (upon teams' request)
 
 
 ## Guide to submission
