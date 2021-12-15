@@ -5,6 +5,9 @@ library(magrittr)
 library(shinybusy)
 library(DT)
 
+# get auxiliary functions:
+source("functions.R")
+
 local <- TRUE
 if(local){
     # get vector of model names:
