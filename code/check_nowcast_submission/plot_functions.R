@@ -44,7 +44,9 @@ determine_ylim <- function(forecasts, forecast_date = NULL, target_type, horizon
   }else{
     0.95*min(c(forecasts$value, truth$value))
   }
-  truth <- truth[truth$location == location, ]
+  if("location" %in% colnames(truth)){
+    truth <- truth[truth$location == location, ]
+  }
   ylim <- c(lower, 1.05* max(c(forecasts$value, truth$value)))
 }
 
@@ -150,6 +152,7 @@ plot_forecast <- function(forecasts,
   if(is.null(horizon) & is.null(forecast_date)) stop("Exactly one out of horizon and forecast_date needs to be specified")
 
   forecasts <- subset(forecasts, target_end_date >= start - 7 & target_end_date <= end)
+  forecasts <- forecasts[order(forecasts$target_end_date), ]
   # truth <- truth[truth$date >= start & truth$location == location, ]
   xlim <- c(start, end)
 
