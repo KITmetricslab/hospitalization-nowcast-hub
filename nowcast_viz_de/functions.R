@@ -1,3 +1,8 @@
+# get date from a file name of plot_data:
+date_from_filename <- function(files){
+  as.Date(gsub("_forecast_data.csv", "", files))
+}
+
 # function to compute truth data as of a certain time:
 truth_as_of <- function(dat_truth, age_group = "00+", location = "DE", date){
   if(is.null(date)){

@@ -9,12 +9,16 @@ local <- TRUE
 if(local){
     # get vector of model names:
     dat_models <- read.csv("plot_data/list_teams.csv")
-    # available dates:
+    # available versions of truth_data:
     available_dates <- sort(read.csv("plot_data/available_dates.csv", colClasses = c("date" = "Date"))$date)
+    # available plot_data with nowcasts:
+    available_nowcast_dates <- date_from_filename(sort(read.csv("plot_data/list_plot_data.csv")$file))
     
 }else{
-    # available dates:
+    # available versions of truth_data:
     available_dates <- sort(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv", colClasses = c("date" = "Date"))$date)
+    # available plot_data with nowcasts:
+    available_nowcast_dates <- date_from_filename(sort(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/list_plot_data.csv")$file))
     # get vector of model names:
     dat_models <- read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/list_teams.csv")
 }
@@ -58,7 +62,7 @@ shinyUI(fluidPage(
             conditionalPanel("input.select_language == 'EN'", strong("Data version")),
             div(style="display: inline-block;vertical-align:top;", actionButton("skip_backward", "<")),
             div(style="display: inline-block;vertical-align:top;width:200px", 
-                dateInput("select_date", label = NULL, value = max(available_dates),
+                dateInput("select_date", label = NULL, value = max(available_nowcast_dates),
                           min = min(available_dates), max = max(available_dates))),
             div(style="display: inline-block;vertical-align:top;", actionButton("skip_forward", ">")),
             conditionalPanel("input.select_language == 'DE'",
