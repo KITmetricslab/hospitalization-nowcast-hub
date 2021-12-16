@@ -3,6 +3,11 @@ on:
   workflow_dispatch:
   schedule:
     - cron: "50 10 * * *"
+  push:
+   branches:
+    - main
+   paths:
+      - data-truth/COVID-19/**
   
 jobs:
   run-baseline:
