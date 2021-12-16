@@ -7,7 +7,7 @@ on:
    branches:
     - main
    paths:
-      - data-truth/COVID-19/
+      - data-truth/COVID-19/**
       - data-processed/NowcastHub-MeanEnsemble/**
 #     - data-processed/**
 #     - data-processed_retrospective/**
