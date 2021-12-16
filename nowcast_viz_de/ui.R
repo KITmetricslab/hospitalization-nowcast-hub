@@ -45,6 +45,12 @@ bundeslaender <- c("Alle (Deutschland)" = "DE",
 
 style_explanation <- "font-size:13px;"
 
+# check whether a disclaimer for a missing nowcast is needed:
+update_available <- ((Sys.Date()) %in% available_nowcast_dates)
+time <- as.POSIXct(Sys.time(), tz = "CET")
+disclaimer_necessary <- ifelse((!update_available) & (format(time, format = "%H") >= 15), "true", "false")
+# (a string to be added in a JS command)
+
 # Define UI for application
 shinyUI(fluidPage(
     
@@ -151,6 +157,13 @@ shinyUI(fluidPage(
             ),
             conditionalPanel("input.select_language == 'EN'",
                              p("This platform unites nowcasts of the COVID-19 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends."),
+            ),
+            
+            conditionalPanel(paste("input.select_language == 'DE' &", disclaimer_necessary),
+                             strong("Nowcasts werden gewöhnlich gegen 13:00 aktualisiert, jedoch scheint für den heutigen Tag noch kein Update vorzuliegen. Eine Aktualisiserung wird u.U. erst morgen wieder verfügbar (dies ist ein automatischer Hinweis)."),
+            ),
+            conditionalPanel(paste("input.select_language == 'EN' &", disclaimer_necessary),
+                             strong("Nowcasts are usually updated at around 1pm, but it seems that there has not yet been an update for today. An update may only become available tomorrow (this is an automated notification)."),
             ),
             plotlyOutput("tsplot", height = "440px"),
             conditionalPanel("input.show_table",
