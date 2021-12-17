@@ -2,7 +2,7 @@ name: "fetch-epiforecasts"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "50 10 * * *"
+    - cron: "30 8,9,10,11 * * *"
   
 jobs:
   fetch-epiforecasts:
