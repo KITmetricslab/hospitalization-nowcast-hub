@@ -19,7 +19,7 @@ jobs:
     - name: Install dependencies
       run: python3 -m pip install pandas
       
-    - name: Fetch RKI
+    - name: Fetch LMU
       run: python3 ./code/fetch_nowcasts/fetch-LMU.py
 
     - name: Create Pull Request
