@@ -218,8 +218,17 @@ shinyUI(fluidPage(
                              # p("This platform is run by members of the ",
                              #   a("Chair of Statistics and Econometrics", href = "https://statistik.econ.kit.edu/index.php"),
                              #   "at Karlsruhe Institute of Technology. Contact: forecasthub@econ.kit.edu")
+            ),
+            conditionalPanel("input.select_language == 'DE'",
+                             p(a("covid19nowcasthub.de", href = "https://covid19nowcasthub.de"), " - ",
+                               a("Lehrstuhl für Ökonometrie und Statistik, Karlsruher Institut für Technologie", href = "https://statistik.econ.kit.edu/index.php"), " - ",
+                               a("Kontakt", href = "https://covid19nowcasthub.de/contact.html"))
+            ),
+            conditionalPanel("input.select_language == 'EN'",
+                             p(a("covid19nowcasthub.de", href = "https://covid19nowcasthub.de"), " - ",
+                               a("Chair of Statistics and Econometrics, Karlsruhe Institute of Technology", href = "https://statistik.econ.kit.edu/index.php"), "-",
+                               a("Contact", href = "https://covid19nowcasthub.de/contact.html"))
             )
-            
         )
     )
 ))
