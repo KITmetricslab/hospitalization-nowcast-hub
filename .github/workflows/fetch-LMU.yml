@@ -1,0 +1,40 @@
+name: "fetch-LMU"
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "50 10 * * *"
+  
+jobs:
+  fetch-LMU:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+        
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' 
+        
+    - name: Install dependencies
+      run: python3 -m pip install pandas
+      
+    - name: Fetch RKI
+      run: python3 ./code/fetch_nowcasts/fetch-LMU.py
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUBTOKEN }}
+        commit-message: Update nowcasts (LMU)
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        signoff: false
+        branch: fetch-LMU
+        delete-branch: true
+        title: 'Update nowcasts (LMU)'
+        body: |
+          Update nowcasts
+        labels: |
+          automated pr
