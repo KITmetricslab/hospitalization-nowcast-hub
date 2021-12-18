@@ -11,7 +11,7 @@
 
 # set to TRUE to test locally (avoids always downloading data form GitHub)
 # set to FALSE to deploy
-local <- FALSE
+local <- TRUE
 
 # load packages:
 library(shiny)
@@ -98,7 +98,7 @@ cols_transp <- gsub(")", ", 0.5)", cols_transp, fixed = TRUE)
 
 # get truth data in format which allows for re-construction of old data versions
 path_truth <- ifelse(local,
-                     "../data-truth/COVID-19/COVID-19_hospitalizations.csv",
+                     "plot_data/COVID-19_hospitalizations.csv",
                      "https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/data-truth/COVID-19/COVID-19_hospitalizations.csv")
 dat_truth <- read.csv(path_truth,
                       colClasses = c(date = "Date"))
@@ -434,7 +434,7 @@ shinyServer(function(input, output, session) {
                     s <- 0.001
                     x_intervals <- min(dat_truth$date)
                     y_intervals <- 0
-                    labels <- ""
+                    text_interval <- ""
                 }
                 # add shaded areas for uncertainty:
                 p <- p%>% add_polygons(x = x_intervals, y = y_intervals,

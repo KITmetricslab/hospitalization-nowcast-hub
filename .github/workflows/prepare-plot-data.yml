@@ -1,8 +1,16 @@
 name: "prepare-plot-data"
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "0 4,14 * * *"
+#   schedule:
+#     - cron: "0 4,14 * * *"
+  push:
+   branches:
+    - main
+   paths:
+#       - data-truth/COVID-19/**
+      - data-processed/KIT-simple_nowcast/**
+      - data-processed/NowcastHub-MeanEnsemble/**
+#     - data-processed_retrospective/**
   
 
 jobs:

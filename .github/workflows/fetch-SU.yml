@@ -1,0 +1,40 @@
+name: "fetch-SU"
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 7,8,9,10,11,12,22 * * *"
+  
+jobs:
+  fetch-SU:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+        
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' 
+        
+    - name: Install dependencies
+      run: python3 -m pip install pandas
+      
+    - name: Fetch SU
+      run: python3 ./code/fetch_nowcasts/fetch-SU.py
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUBTOKEN }}
+        commit-message: Update nowcasts (SU)
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        signoff: false
+        branch: fetch-SU
+        delete-branch: true
+        title: 'Update nowcasts (SU)'
+        body: |
+          Update nowcasts
+        labels: |
+          automated pr

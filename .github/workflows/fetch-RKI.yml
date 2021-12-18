@@ -2,7 +2,7 @@ name: "fetch-RKI"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "50 10 * * *"
+    - cron: "30 8,9,10,22 * * *"
   
 jobs:
   fetch-RKI:

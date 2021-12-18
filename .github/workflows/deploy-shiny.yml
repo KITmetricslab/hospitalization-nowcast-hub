@@ -3,6 +3,12 @@ on:
   workflow_dispatch:
   #schedule:
     #- cron: "0 4,14 * * *"
+  push:
+   branches:
+    - main
+   paths:
+    - nowcast_viz_de/plot_data/*_forecast_data.csv
+   
 
 jobs:
   deploy-shiny:
@@ -14,6 +20,12 @@ jobs:
       uses: r-lib/actions/setup-r@v1
       with:
           r-version: 4.1.0
+          
+    - name: Cache R packages 
+      uses: actions/cache@v1 
+      with: 
+        path: ${{ env.R_LIBS_USER }} 
+        key: r-${{ hashFiles('DESCRIPTION') }}
         
     - name: Push to shiny.io
       env:
