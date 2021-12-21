@@ -1,0 +1,8 @@
+model
+Epiforecasts-independent
+ILM-prop
+KIT-simple_nowcast
+LMU_StaBLab-GAM_nowcast
+RIVM-KEW
+SU-hier_bayes
+SZ-hosp_nowcast
