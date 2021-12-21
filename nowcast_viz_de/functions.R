@@ -36,12 +36,12 @@ truth_by_reporting <- function(dat_truth, age_group = "00+", location = "DE"){
 }
 
 # function to et truth data as of a certain time for a certain date for all age groups or all regions:
-truth_as_of_by_strat <- function(dat_truth, by = c("state", "age"), forecast_date, target_end_date){
+truth_as_of_by_strat <- function(dat_truth, by = c("state", "age"), forecast_date, target_end_dates){
   forecast_date <- as.Date(forecast_date)
-  target_end_date <- as.Date(target_end_date)
-  if(forecast_date < target_end_date) stop("forecast_date needs to be after target_end_date")
+  target_end_dates <- as.Date(target_end_dates)
+  if(forecast_date < max(target_end_dates)) stop("forecast_date needs to be after target_end_date")
   
-  dates_to_keep <- (target_end_date - 6):forecast_date
+  dates_to_keep <- (min(target_end_dates) - 6):forecast_date
   subs <- dat_truth[dat_truth$date %in% dates_to_keep, ]
   
   
@@ -51,7 +51,7 @@ truth_as_of_by_strat <- function(dat_truth, by = c("state", "age"), forecast_dat
     bundeslaender <- unique(dat_truth$location)
     for(loc in bundeslaender){
       dat_temp <- truth_as_of(subs, age_group = "00+", location = loc, date = forecast_date)
-      dat_temp <- subset(dat_temp, date == target_end_date)
+      dat_temp <- subset(dat_temp, date %in% target_end_dates)
       dat_temp$location <- loc
       dat_temp$age_group <- "00+"
       if(is.null(res)){
@@ -64,7 +64,7 @@ truth_as_of_by_strat <- function(dat_truth, by = c("state", "age"), forecast_dat
     age_groups <- unique(dat_truth$age_group)
     for(age in age_groups){
       dat_temp <- truth_as_of(subs, age_group = age, location = "DE", date = forecast_date)
-      dat_temp <- subset(dat_temp, date == target_end_date)
+      dat_temp <- subset(dat_temp, date %in% target_end_dates)
       dat_temp$location <- "DE"
       dat_temp$age_group <- age
       if(is.null(res)){
