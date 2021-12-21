@@ -4,6 +4,7 @@
 # setwd("/home/johannes/Documents/Projects/hospitalization-nowcast-hub")
 
 # libraries and necessary functions:
+install.packages("zoo")
 library(zoo)
 source("nowcast_viz_de/functions.R")
 
