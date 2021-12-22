@@ -258,7 +258,7 @@ if(all_files_found | force_build){
   write.csv(median_ensemble, file = paste0("data-processed/NowcastHub-MedianEnsemble/",
                                            forecast_date, "-NowcastHub-MedianEnsemble.csv"), row.names = FALSE)
 }else{
-  "Not building ensemble.\n"
+  cat("Not building ensemble as not all expected member forecasts available yet.\n")
 }
 
 
