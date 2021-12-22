@@ -143,8 +143,11 @@ for(mo in models){
   cat("------------\n")
 }
 
-# only continue if all expected files found or a certain time is reached (force_build = TRUE):
-if(all_files_found | force_build){
+# only continue if (all expected files found OR a certain time is reached (force_build = TRUE)) AND
+# at least three models available:
+n_files_found <- length(unique(all_forecasts$model)) # number of models found
+
+if((all_files_found | force_build) & n_files_found >= 3){
   cat("Building ensemble...\n")
   
   cat("     Documenting included models\n")
@@ -258,7 +261,13 @@ if(all_files_found | force_build){
   write.csv(median_ensemble, file = paste0("data-processed/NowcastHub-MedianEnsemble/",
                                            forecast_date, "-NowcastHub-MedianEnsemble.csv"), row.names = FALSE)
 }else{
-  cat("Not building ensemble as not all expected member forecasts available yet.\n")
+  cat("Not building ensemble as not all expected member forecasts available yet. Reasons:\n")
+  if(!force_build  & !all_files_found){
+    cat("    Not all expected submissoin files found. Will re-try each hour until 3.30pm CET.\n")
+  }
+  if(n_files_found < 3){
+    cat("    Only", n_files_found, "submission files found.\n")
+  }
 }
 
 
