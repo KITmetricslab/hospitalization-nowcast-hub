@@ -159,6 +159,13 @@ shinyUI(fluidPage(
                              p("This platform unites nowcasts of the COVID-19 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends. Detailed explanations are given in ", a('"Background".', href="https://covid19nowcasthub.de/background.html")),
             ),
             
+            conditionalPanel("input.select_language == 'DE'",
+                             p("Über den Jahreswechsel kann es zu Verzögerungen bei der Erstellung der Nowcasts kommen. Außerdem ist zu erwarten, dass sich die Verzüge, mit denen Hospitalisierungen gemeldet werden während dieser Zeit anders verhalten als im Rest des Jahres. Dies kann die Verlässlichkeit der Nowcasts vermindern und diese sollten mit besonderer Vorsicht interpretiert werden."),
+            ),
+            conditionalPanel("input.select_language == 'EN'",
+                             p("During the holiday period delays may occur in the creation of nowcasts. Moreover, the delays with which hospitalizations get reported are expected to behave differently than during the rest of the year. This can reduce the reliability of nowcasts, which should be interpreted with particular care."),
+            ),
+            
             conditionalPanel(paste("input.select_language == 'DE' &", disclaimer_necessary),
                              strong("Nowcasts werden gewöhnlich gegen 13:00 aktualisiert, jedoch scheint für den heutigen Tag noch kein Update vorzuliegen. Eine Aktualisiserung wird u.U. erst morgen wieder verfügbar (dies ist ein automatischer Hinweis)."),
             ),
