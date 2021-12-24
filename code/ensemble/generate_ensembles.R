@@ -36,6 +36,7 @@ all_files_found <- TRUE # this will be set to FALSE if for any model no file is 
 
 # check whether after 3pm
 time <- as.POSIXct(Sys.time(), tz = "CET")
+print(time)
 force_build <- format(time, format = "%H") >= 15
 
 # read in all forecasts:
