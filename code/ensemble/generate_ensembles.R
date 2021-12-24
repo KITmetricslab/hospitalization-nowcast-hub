@@ -34,10 +34,10 @@ colnames(truth_inc)[colnames(truth_inc) == "date"] <- "target_end_date"
 # place holder to check if all forecast files were found
 all_files_found <- TRUE # this will be set to FALSE if for any model no file is not found
 
-# check whether after 3pm
-time <- as.POSIXct(Sys.time(), tz = "CET")
+# check whether after 3pm CET
+time <- as.POSIXct(Sys.time(), tz = "UTC")
 print(time)
-force_build <- format(time, format = "%H") >= 15
+force_build <- format(time, format = "%H") >= 14
 
 # read in all forecasts:
 all_forecasts <- NULL
