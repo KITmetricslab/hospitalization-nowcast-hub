@@ -2,9 +2,10 @@
 
 - **Datenstand:** Wählen Sie ein Datum in der Vergangenheit, um die Nowcasts, die zu diesem Zeitpunkt gemacht wurden anzuzeigen. Dies ermöglicht den Abgleich vergangener Nowcasts mit später angefallenen Daten.
 - **Stratifizierung**: Nowcasts können für ganz Deutschland, pro Bundesland oder pro Altersgruppe gezeigt werden.
+- **Grafische Darstellung**: Nowcasts können auf zwei Arten dargestellt weren: Entweder in einem interaktiven Plot, in dem für ein Bundesland/eine Altersgruppe mehrere Modelle verglichen werden können; hier ist zoomen etc. möglich. Oder in einer Übersichtsansicht, in der für ein ausgewähltes Modell alle Bundesländer oder Altersgruppen gezeigt werden.
+- **Zeige Übersichtstabelle**: Zeigt eine Übersichtabelle, in der für ein gewähltes Modell und Meldedatum die Nowcasts für alle Bundesländer oder Altersgruppen aufgeführt werden. Die Tabelle zeigt die 7-Tages-Inzidenz gemäß des aktuellsten Datenstandes und des Datenstandes basierend auf dem der Nowcast erstellt wurde, den Nowcast, den resultierenden Korrekturfaktor und die Veränderung zur Vorwoche gemäß des Nowcasts.
 - **Zeitreihe eingefrorener Werte**: Eine weitere Alternative besteht darin, für jedes Meldedatum die 7-Tage-Hospitalisierungsinzidenz gemäß des Datenstandes am jeweiligen Datum zu zeigen. Hierdurch sind alle gezeigten Werte ähnlich unvollständig und somit besser über die Zeit hinweg vergleichbar.
 - **Zeige letzte zwei Tage**: Für die letzten zwei Tage sind Nowcasts wenig zuverlässig, da nur ein kleiner Teil der Hospitalisierungen zu diesem Meldedatum bereits gemeldet ist. Nicht alle Modelle produzieren Nowcasts für diese Tage, und standardmäßig blenden wir sie nicht ein.
-- **Zeige Übersichtstabelle**: Zeigt eine Übersichtabelle, in der für ein gewähltes Modell und Meldedatum die Nowcasts für alle Bundesländer oder Altersgruppen aufgeführt werden. Die Tabelle zeigt die 7-Tages-Inzidenz gemäß des aktuellsten Datenstandes und des Datenstandes basierend auf dem der Nowcast erstellt wurde, den Nowcast, den resultierenden Korrekturfaktor und die Veränderung zur Vorwoche gemäß des Nowcasts.
 
 **Weitere Optionen:**
 

@@ -644,6 +644,178 @@ shinyServer(function(input, output, session) {
         }
     })
     
+    # create overview plot:
+    output$overview_plot <- renderPlot({
+        # run these codes only if plot is displayed:
+        if(input$select_plot_type == "overview"){
+            # the nowcast data to be displayed:
+            nowcast_to_show_all <- subset(forecast_data[[as.character(input$select_date)]],
+                                          model == input$select_model)
+            if(!input$show_retrospective_nowcasts){
+                nowcast_to_show_all <- subset(nowcast_to_show_all, !retrospective)
+            }
+            
+            # the most recent nowcast data (will be added as fine line)
+            current_nowcast_all <- forecast_data[[as.character(current_date)]]
+            
+            # determine whether states or age groups are to be plotted:
+            if(input$select_stratification == "state"){
+                locs_to_show <- sort(unique(nowcast_to_show_all$location))
+                ags_to_show <- "00+"
+            }else{
+                locs_to_show <- "DE"
+                ags_to_show <- sort(unique(nowcast_to_show_all$age_group))
+                if("00+" %in% ags_to_show) ags_to_show <- c("00+", ags_to_show[ags_to_show != "00+"])
+            }
+            
+            # start plotting:
+            par(mfrow = c(6, 3), las = 1)
+            for(loc in locs_to_show){
+                for(ag in ags_to_show){
+                    # scaling factor for population:
+                    pop_factor <-
+                        if(input$select_scale == "per 100.000"){
+                            100000/subset(pop, location == loc & age_group == ag)$population
+                        }else{
+                            1
+                        }
+                    
+                    # current truth data:
+                    current_truth <- truth_as_of(dat_truth, age_group = ag,
+                                             location = loc,
+                                             date = current_date)
+                    current_truth$value <- pop_factor*current_truth$value
+                    # truth data at time of nowcast:
+                    old_truth <- truth_as_of(dat_truth, age_group = ag,
+                                                 location = loc,
+                                                 date = input$select_date)
+                    old_truth$value <- pop_factor*old_truth$value
+                    
+                    # the nowcasts to display:
+                    nowcast_to_show <- subset(nowcast_to_show_all, 
+                                              location == loc & 
+                                                  age_group == ag &
+                                                  model == input$select_model)
+                    # apply population standardization:
+                    cols_quantiles <- c("mean", "q0.025", "q0.25", "q0.5", "q0.75", "q0.975")
+                    nowcast_to_show[, cols_quantiles] <- pop_factor*nowcast_to_show[, cols_quantiles]
+                    
+                    # most recent nowcast
+                    current_nowcast <- subset(current_nowcast_all, 
+                                              location == loc & 
+                                                  age_group == ag &
+                                                  model == input$select_model)
+                    current_nowcast[, cols_quantiles] <- pop_factor*current_nowcast[, cols_quantiles]
+                    
+                    # remove last two days if necessary:
+                    if(!input$show_last_two_days){
+                        nowcast_to_show <- subset(nowcast_to_show, target_end_date <= input$select_date - 2)
+                        current_nowcast <- subset(current_nowcast, target_end_date <= current_date - 2)
+                    }
+                    
+                    # plot:
+                    plot(nowcast_to_show$target_end_date, nowcast_to_show$q0.5,
+                         xlab = "Meldedatum", ylab = "",
+                         xlim = c(current_date - 60, current_date + 10),
+                         ylim = c(0, 1.3*max(c(nowcast_to_show$q0.975, nowcast_to_show$q0.5), na.rm = TRUE)),
+                         type = "l", log = ifelse(input$select_log == "log scale", "y", ""))
+                    # plot title
+                    main <- ifelse(input$select_stratification == "state",
+                                   names(bundeslaender)[bundeslaender == loc],
+                                   ag)
+                    title(main)
+                    
+                    # uncertainty intervals
+                    polygon(c(nowcast_to_show$target_end_date, rev(nowcast_to_show$target_end_date)),
+                            c(nowcast_to_show$q0.025, rev(nowcast_to_show$q0.975)), border = "lightgrey", col = "lightgrey")
+                    polygon(c(nowcast_to_show$target_end_date, rev(nowcast_to_show$target_end_date)),
+                            c(nowcast_to_show$q0.25, rev(nowcast_to_show$q0.75)), border = NA, col = "deepskyblue3")
+                    # point nowcast
+                    if(input$select_point_estimate == "median"){
+                        lines(nowcast_to_show$target_end_date, nowcast_to_show$q0.5, col = "deepskyblue4", lwd = 3)
+                    }else{
+                        lines(nowcast_to_show$target_end_date, nowcast_to_show$mean, col = "deepskyblue4", lwd = 3)
+                    }
+                    
+                    # vertical line at date when nowcast was made:
+                    abline(v = input$select_date, lty = "dashed")
+                    
+                    # most recent point nowcast for comparison
+                    if(input$select_point_estimate == "median"){
+                        lines(current_nowcast$target_end_date, current_nowcast$q0.5, lty = "dotted", col = "darkred")
+                    }else{
+                        lines(current_nowcast$target_end_date, current_nowcast$mean, lty = "dotted", col = "darkred")
+                    }
+                    
+                    # old truth data as of when nowcast was made
+                    lines(old_truth$date, old_truth$value, lwd = 2, col = "darkgrey")
+                    
+                    # current truth data
+                    lines(current_truth$date, current_truth$value, lwd = 2)
+                    
+                    # add truth by reporting date if requested
+                    if(input$show_truth_by_reporting){
+                        truth_by_rep <- truth_by_reporting(dat_truth = dat_truth,
+                                                           age_group = ag,
+                                                           location = loc)
+                        truth_by_rep$value <- pop_factor*truth_by_rep$value
+                        lines(truth_by_rep$date, truth_by_rep$value, lty = "dashed")
+                    }
+                    
+                    # add frozen truth values if requested
+                    if(input$show_truth_frozen){
+                        truth_fr <- truth_frozen(dat_truth = dat_truth,
+                                                 age_group = ag,
+                                                 location = loc)
+                        truth_fr$value <- pop_factor*truth_fr$value
+                        lines(truth_fr$date, truth_fr$value, lty = "dotted")
+                    }
+                }
+            }
+            
+            # separate plot panel with legend
+            plot(NULL, xlim = 0:1, ylim = 0:1, xlab = "", ylab = "", axes = FALSE)
+            # legend for explanation of uncertainty intervals 
+            legend_text1 <- if(input$select_language == "DE"){
+                c("50% Unsicherheitsintervall",
+                  "95% Unsicherheitsintervall")
+            }else{
+                c("50% uncertainty interval",
+                  "95% uncertainty interval")
+            }
+            
+            legend("topright", legend = legend_text1, 
+                   col = c("lightgrey", "deepskyblue3"), pch = 15, bty = "n")
+         
+            # legend explaining the different curves:
+            legend_text2 <- if(input$select_language == "DE"){
+                c(
+                    paste0("Datenstand ", c(input$select_date, current_date)),
+                    paste("Nowcast vom", current_date),
+                    if(input$show_truth_frozen) "Eingefrorene Werte",
+                    if(input$show_truth_by_reporting) "Nach Erscheinen in RKI-Daten"
+                )
+            }else{
+                c(
+                    paste0("Data as of ", c(input$select_date, current_date)),
+                    paste("Nowcast as of", current_date),
+                    if(input$show_truth_frozen) "Frozen values",
+                    if(input$show_truth_by_reporting) "By appearance in RKI data"
+                )
+            }
+            cols2 <- c("darkgrey", "black", "darkred",
+                       if(input$show_truth_frozen) "black",
+                       if(input$show_truth_by_reporting) "black")
+            lty2 <- c("solid", "solid", "dotted",
+                      if(input$show_truth_frozen) "dotted",
+                      if(input$show_truth_by_reporting) "dashed")
+            lwd2 <- c(2, 2, 1, 2, 2)
+            legend("bottomright", legend = legend_text2, 
+                   col = cols2, lty = lty2, bty = "n")
+               
+        }
+    })
+    
     # update calendar input for target_end_date:
     observe({
         # adapt range for calendar input when forecast_date is changed
@@ -821,6 +993,27 @@ shinyServer(function(input, output, session) {
                                 label = label,
                                 value = selected
             )
+            
+            # Graphical display:
+            label <- ifelse(input$select_language == "DE", 
+                            "Grafische Darstellung:", 
+                            "Graphical display")
+            choices <- if(input$select_language == "DE"){
+                c("Interaktiv für mehrere Modelle" = "interactive",
+                  "Überblick für ein Modell" = "overview")
+            }else{
+                c("Interactive for several models" = "interactive",
+                  "Overview for one model" = "overview")
+            }
+            selected <- input$select_plot_type
+            updateRadioButtons(session, "select_plot_type",
+                               label = label,
+                               choices = choices, 
+                               selected = selected,
+                               inline = TRUE
+            )
+            
+            
             
             # Target end date:
             label <- ifelse(input$select_language == "DE", 

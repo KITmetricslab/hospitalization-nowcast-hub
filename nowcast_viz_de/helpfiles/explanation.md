@@ -2,9 +2,10 @@
 
 - **Data version:** Choose a date from the past to see nowcasts as they were made on that date. This enables comparisons between past nowcasts and eventually observed data.
 - **Stratification**: Nowcasts can be shown for the whole of Germany, by Bundesland (federal state) or age group.
+- **Graphical display**: Nowcasts can be displayed in two different ways: Either in an interactive plot which can overlay nowcasts from different models; here zooming etc is possible. Or in an overview plot which shows the nowcasts of one selected model for all states or age groups.
+- **Show summary table**: Shows a table summarizing the nowcasts made by one model for a specific Meldedatum (target date) and all federal states or age groups. The table shows the seven-day hospitalization incidence according to the most recent data version and the data version from the time of nowcasting, the nowcast, the resulting correction factor and the precentage change relative to the previous week (according to the nowcast).
 - **Time series of frozen values**: Another alternative is to display for each *Meldedatum* the seven-day hospitalization incidence according to the data version of the respective date. This way, all values are similarly incomplete and thus comparable across time.
 - **Show last two days**: For the last two days nowcasts are not very reliable as only a small proportion of the hospitalizations for the respective *Meldedatum* have already been reported. Not all models produce nowcasts for these days, and by default they are not diplayed.
-- **Show summary table**: Shows a table summarizing the nowcasts made by one model for a specific Meldedatum (target date) and all federal states or age groups. The table shows the seven-day hospitalization incidence according to the most recent data version and the data version from the time of nowcasting, the nowcast, the resulting correction factor and the precentage change relative to the previous week (according to the nowcast).
 
 
 **Other options:**
