@@ -2,7 +2,7 @@ name: "RKI-data"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "0 4,8,9,10,21 * * *"
+    - cron: "0 4,8,9,10,11,12,13,21 * * *"
   
 
 jobs:
