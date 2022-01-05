@@ -2,7 +2,7 @@ name: "fetch-SZ"
 on:
   workflow_dispatch:
   schedule:
-    - cron: "30 8,9,10,22 * * *"
+    - cron: "30 8,9,10,11,12,13,14,22 * * *"
   
 jobs:
   fetch-SZ:
