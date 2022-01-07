@@ -1,8 +1,8 @@
 name: "run-baseline"
 on:
   workflow_dispatch:
-  schedule:
-    - cron: "50 10 * * *"
+#   schedule:
+#     - cron: "50 10 * * *"
   push:
    branches:
     - main
