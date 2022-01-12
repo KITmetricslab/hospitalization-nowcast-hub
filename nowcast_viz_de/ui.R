@@ -205,6 +205,7 @@ shinyUI(fluidPage(
                              p("- Aufgrund von Verzögerungen sind die für die letzten Tage veröffentlichten rohen Inzidenzwerte stets zu niedrig. Nowcasts helfen, diese Werte zu korrigieren und eine realistischere Einschätzung der aktuellen Entwicklung zu erhalten.", style = style_explanation),
                              p('- Es gibt unterschiedliche Nowcasting-Verfahren. Diese vergleichen wir hier systematisch und kombinieren sie in einem sogenannten Ensemble-Nowcast. Modellbeschreibungen und Details zur Interpretation sind unter "Hintergrund" verfügbar.', style = style_explanation),
                              strong("- Starke Belastung des Gesundheits- und Meldewesens kann dazu führen, dass sich Meldeverzögerungen anders verhalten als in der Vergangenheit. Die Verlässlichkeit von Nowcasts kann hierdurch beeinträchtigt und die wahren Hospitalisierungszahlen tendenziell unterschätzt werden.", style = style_explanation),
+                             p('- Gelegentlich kann es zu Unregelmäßigkeiten im Meldeprozess kommen, die Nowcasts für bestimmte Tage ungültig machen können (z.B. 2022-01-11 in Bremen).', style = style_explanation),
                              br(),
                              br(),
                              strong("Dieses Projekt ist erst kürzlich gestartet worden und die Verlässlichkeit der Echtzeit-Analysen kann noch nicht systematisch evaluiert werden.", style = style_explanation)
@@ -215,6 +216,7 @@ shinyUI(fluidPage(
                              p("- Due to delays, the published raw incidence values for the last few days are biased downward. Nowcasts can help to correct these and obtain a more realistic assessment of recent developments.", style = style_explanation),
                              p('- A variety of nowcasting methods exist. We systematically compile results based on different methods and combine them into so-called ensemble nowcasts. Model descriptions and details on the interpretation are available in the "Background" section.', style = style_explanation),
                              strong("- High burden on the health and reporting system can change delay patterns. Nowcasts may then be less reliable and tend to underestimate the true number of hospitalizations.", style = style_explanation),
+                             p('- Occasionally, data reporting irregularities may occur which can invalidate nowcasts for certain days and quantities (e.g., 2022-01-11 in the state of Bremen).', style = style_explanation),
                              br(),
                              br(),
                              strong("This project has been launched recently reliability of nowcasts made in real time cannot yet be assessed systematically.", style = style_explanation)
