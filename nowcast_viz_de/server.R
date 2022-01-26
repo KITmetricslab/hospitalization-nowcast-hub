@@ -717,7 +717,7 @@ shinyServer(function(input, output, session) {
                     plot(nowcast_to_show$target_end_date, nowcast_to_show$q0.5,
                          xlab = "Meldedatum", ylab = "",
                          xlim = c(current_date - 60, current_date + 10),
-                         ylim = c(0, 1.3*max(c(nowcast_to_show$q0.975, nowcast_to_show$q0.5), na.rm = TRUE)),
+                         ylim = c(ifelse(input$select_log == "log scale", 0.01, 0), 1.3*max(c(nowcast_to_show$q0.975, nowcast_to_show$q0.5), na.rm = TRUE)),
                          type = "l", log = ifelse(input$select_log == "log scale", "y", ""))
                     # plot title
                     main <- ifelse(input$select_stratification == "state",
