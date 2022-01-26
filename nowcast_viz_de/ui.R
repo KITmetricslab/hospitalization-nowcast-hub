@@ -156,10 +156,12 @@ shinyUI(fluidPage(
         mainPanel(
             add_busy_spinner(spin = "fading-circle"),
             conditionalPanel("input.select_language == 'DE'",
-                             p("Diese Plattform vereint Nowcasts der COVID19-7-Tages-Hospitalisierungsinzidenz in Deutschland basierend auf verschiedenen Methoden, mit dem Ziel einer verlässlichen Einschätzung aktueller Trends. Detaillierte Erläuterungen gibt es unter ", a('"Hintergrund".', href="https://covid19nowcasthub.de/hintergrund.html")),
+                             p("Diese Plattform vereint Nowcasts der 7-Tages-Hospitalisierungsinzidenz in Deutschland basierend auf verschiedenen Methoden, mit dem Ziel einer verlässlichen Einschätzung aktueller Trends. Detaillierte Erläuterungen gibt es unter ", a('"Hintergrund".', href="https://covid19nowcasthub.de/hintergrund.html")),
+                             p("Bei Unregelmäßigkeiten im Meldeprozess durch z.B. starke Belastung des Gesundheitssystems oder Feiertage kann die Verlässlichkeit der Nowcasts beeinträchtigt werden.")
             ),
             conditionalPanel("input.select_language == 'EN'",
-                             p("This platform unites nowcasts of the COVID-19 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends. Detailed explanations are given in ", a('"Background".', href="https://covid19nowcasthub.de/background.html")),
+                             p("This platform unites nowcasts of the 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends. Detailed explanations are given in ", a('"Background".', href="https://covid19nowcasthub.de/background.html")),
+                             p("If there are irregularities in the reporting process due to, for example, high burdens on the health care system or holidays, the nowcasts may be less reliable.")
             ),
             
 #             conditionalPanel("input.select_language == 'DE'",
@@ -199,28 +201,28 @@ shinyUI(fluidPage(
             
             
             p(),
-            conditionalPanel("input.select_language == 'DE'",
-                             p('Das Wichtigste in Kürze (siehe', a('"Hintergrund"', href="https://covid19nowcasthub.de/hintergrund.html"), " für Details)"),
-                             p('- Die 7-Tages-Hospitalisierungsinzidenz ist einer der Leitindikatoren für die COVID-19 Pandemie in Deutschland (siehe "Hintergrund" für die Definition).', style = style_explanation),
-                             p("- Aufgrund von Verzögerungen sind die für die letzten Tage veröffentlichten rohen Inzidenzwerte stets zu niedrig. Nowcasts helfen, diese Werte zu korrigieren und eine realistischere Einschätzung der aktuellen Entwicklung zu erhalten.", style = style_explanation),
-                             p('- Es gibt unterschiedliche Nowcasting-Verfahren. Diese vergleichen wir hier systematisch und kombinieren sie in einem sogenannten Ensemble-Nowcast. Modellbeschreibungen und Details zur Interpretation sind unter "Hintergrund" verfügbar.', style = style_explanation),
-                             strong("- Starke Belastung des Gesundheits- und Meldewesens kann dazu führen, dass sich Meldeverzögerungen anders verhalten als in der Vergangenheit. Die Verlässlichkeit von Nowcasts kann hierdurch beeinträchtigt und die wahren Hospitalisierungszahlen tendenziell unterschätzt werden.", style = style_explanation),
-                             p('- Gelegentlich kann es zu Unregelmäßigkeiten im Meldeprozess kommen, die Nowcasts für bestimmte Tage ungültig machen können (z.B. 2022-01-11 in Bremen).', style = style_explanation),
-                             p("- Über den Jahreswechsel kann es zu Verzögerungen bei der Erstellung der Nowcasts kommen. Außerdem ist zu erwarten, dass sich die Verzüge, mit denen Hospitalisierungen gemeldet werden während dieser Zeit anders verhalten als im Rest des Jahres. Dies kann die Verlässlichkeit der Nowcasts vermindern und diese sollten mit besonderer Vorsicht interpretiert werden.", style = style_explanation),
-                             br(),
-                             br()
-            ),
-            conditionalPanel("input.select_language == 'EN'",
-                             p('Short summary (see',  a('"Background"', href="https://covid19nowcasthub.de/background.html"), "for details)"),
-                             p('- The 7-day hospitalization incidence is one of the main indicators for the assessment of the COVID-19 pandemic in Germany (see "Background" for the definition).', style = style_explanation),
-                             p("- Due to delays, the published raw incidence values for the last few days are biased downward. Nowcasts can help to correct these and obtain a more realistic assessment of recent developments.", style = style_explanation),
-                             p('- A variety of nowcasting methods exist. We systematically compile results based on different methods and combine them into so-called ensemble nowcasts. Model descriptions and details on the interpretation are available in the "Background" section.', style = style_explanation),
-                             strong("- High burden on the health and reporting system can change delay patterns. Nowcasts may then be less reliable and tend to underestimate the true number of hospitalizations.", style = style_explanation),
-                             p('- Occasionally, data reporting irregularities may occur which can invalidate nowcasts for certain days and quantities (e.g., 2022-01-11 in the state of Bremen).', style = style_explanation),
-                             p("- During the holiday period delays may occur in the creation of nowcasts. Moreover, the delays with which hospitalizations get reported are expected to behave differently than during the rest of the year. This can reduce the reliability of nowcasts, which should be interpreted with particular care.", style = style_explanation),
-                             br(),
-                             br()
-            ),
+#             conditionalPanel("input.select_language == 'DE'",
+#                              p('Das Wichtigste in Kürze (siehe', a('"Hintergrund"', href="https://covid19nowcasthub.de/hintergrund.html"), " für Details)"),
+#                              p('- Die 7-Tages-Hospitalisierungsinzidenz ist einer der Leitindikatoren für die COVID-19 Pandemie in Deutschland (siehe "Hintergrund" für die Definition).', style = style_explanation),
+#                              p("- Aufgrund von Verzögerungen sind die für die letzten Tage veröffentlichten rohen Inzidenzwerte stets zu niedrig. Nowcasts helfen, diese Werte zu korrigieren und eine realistischere Einschätzung der aktuellen Entwicklung zu erhalten.", style = style_explanation),
+#                              p('- Es gibt unterschiedliche Nowcasting-Verfahren. Diese vergleichen wir hier systematisch und kombinieren sie in einem sogenannten Ensemble-Nowcast. Modellbeschreibungen und Details zur Interpretation sind unter "Hintergrund" verfügbar.', style = style_explanation),
+#                              strong("- Starke Belastung des Gesundheits- und Meldewesens kann dazu führen, dass sich Meldeverzögerungen anders verhalten als in der Vergangenheit. Die Verlässlichkeit von Nowcasts kann hierdurch beeinträchtigt und die wahren Hospitalisierungszahlen tendenziell unterschätzt werden.", style = style_explanation),
+#                              p('- Gelegentlich kann es zu Unregelmäßigkeiten im Meldeprozess kommen, die Nowcasts für bestimmte Tage ungültig machen können (z.B. 2022-01-11 in Bremen).', style = style_explanation),
+#                              p("- Über den Jahreswechsel kann es zu Verzögerungen bei der Erstellung der Nowcasts kommen. Außerdem ist zu erwarten, dass sich die Verzüge, mit denen Hospitalisierungen gemeldet werden während dieser Zeit anders verhalten als im Rest des Jahres. Dies kann die Verlässlichkeit der Nowcasts vermindern und diese sollten mit besonderer Vorsicht interpretiert werden.", style = style_explanation),
+#                              br(),
+#                              br()
+#             ),
+#             conditionalPanel("input.select_language == 'EN'",
+#                              p('Short summary (see',  a('"Background"', href="https://covid19nowcasthub.de/background.html"), "for details)"),
+#                              p('- The 7-day hospitalization incidence is one of the main indicators for the assessment of the COVID-19 pandemic in Germany (see "Background" for the definition).', style = style_explanation),
+#                              p("- Due to delays, the published raw incidence values for the last few days are biased downward. Nowcasts can help to correct these and obtain a more realistic assessment of recent developments.", style = style_explanation),
+#                              p('- A variety of nowcasting methods exist. We systematically compile results based on different methods and combine them into so-called ensemble nowcasts. Model descriptions and details on the interpretation are available in the "Background" section.', style = style_explanation),
+#                              strong("- High burden on the health and reporting system can change delay patterns. Nowcasts may then be less reliable and tend to underestimate the true number of hospitalizations.", style = style_explanation),
+#                              p('- Occasionally, data reporting irregularities may occur which can invalidate nowcasts for certain days and quantities (e.g., 2022-01-11 in the state of Bremen).', style = style_explanation),
+#                              p("- During the holiday period delays may occur in the creation of nowcasts. Moreover, the delays with which hospitalizations get reported are expected to behave differently than during the rest of the year. This can reduce the reliability of nowcasts, which should be interpreted with particular care.", style = style_explanation),
+#                              br(),
+#                              br()
+#             ),
             p(),
             conditionalPanel("input.select_language == 'DE'",
                              p("Die interaktive Visualisierung funktioniert am besten unter Google Chrome und ist nicht für Mobilgeräte optimiert.", style = style_explanation)
