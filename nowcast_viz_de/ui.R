@@ -112,7 +112,7 @@ shinyUI(fluidPage(
             checkboxInput("show_truth_frozen", label = "Zeitreihe eingefrorener Werte", 
                           value = FALSE),
             checkboxInput("show_last_two_days", label = "Zeige letzte zwei Tage (weniger verlässliche Schätzung)", 
-                          value = FALSE),
+                          value = TRUE),
             conditionalPanel("input.select_language == 'DE'", strong("Weitere Optionen")),
             conditionalPanel("input.select_language == 'EN'", strong("More options")),
             strong(checkboxInput("show_additional_controls", label = "Zeige weitere Optionen", 
