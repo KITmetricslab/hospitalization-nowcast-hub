@@ -188,7 +188,7 @@ shinyUI(fluidPage(
                              plotOutput("overview_plot", height = "1300px")),
             conditionalPanel("input.show_table",
                              div(style="display: inline-block;vertical-align:top;width:200px",
-                                 dateInput("select_target_end_date", label = "Meldedatum", value = max(available_dates) - 2,
+                                 dateInput("select_target_end_date", label = "Meldedatum", value = max(available_dates),
                                            min = min(available_dates), max = max(available_dates))),
                              conditionalPanel("input.select_language == 'DE'",
                                               p("Untenstehende Tabelle fasst die Nowcasts eines gewählten Modells für ein bestimmtes Meldedatum (Zieldatum des Nowcasts) und verschiedene Bundesländer oder Altersgruppen zusammen. Der verwendete Datenstand ist der selbe wie für die grafischen Darstellung."),

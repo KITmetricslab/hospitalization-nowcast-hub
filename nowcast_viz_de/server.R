@@ -636,7 +636,7 @@ shinyServer(function(input, output, session) {
                               options = list(dom = 'tB', pageLength = 17, buttons = c('csv')))
                 })
             }else{ # if no data available: show place holder
-                output$table <- DT::renderDT(data.frame("Error" = "Keine Nowcasts verfügbar für das ewählte Meldedatum."))
+                output$table <- DT::renderDT(data.frame("Error" = "Keine Nowcasts verfügbar für das gewählte Meldedatum."))
             }
             
         }else{
