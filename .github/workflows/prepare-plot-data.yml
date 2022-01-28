@@ -8,7 +8,7 @@ on:
     - main
    paths:
 #       - data-truth/COVID-19/**
-      - data-processed/KIT-simple_nowcast/**
+#       - data-processed/KIT-simple_nowcast/**
       - data-processed/NowcastHub-MeanEnsemble/**
 #     - data-processed_retrospective/**
   
