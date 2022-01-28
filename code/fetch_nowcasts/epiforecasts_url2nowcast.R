@@ -1,5 +1,4 @@
-# forecast_date <- Sys.Date()
-forecast_date <- as.Date("2022-01-26")
+forecast_date <- Sys.Date()
 cat("Processing", as.character(forecast_date), "...\n")
 
 url <- paste0("https://raw.githubusercontent.com/epiforecasts/eval-germany-sp-nowcasting/main/data/nowcasts/submission/independent/", 
