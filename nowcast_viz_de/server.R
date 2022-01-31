@@ -37,6 +37,8 @@ if(local){
     pop <- read.csv("plot_data/population_sizes.csv")
     # vector of Mondays available in truth data:
     available_dates <- sort(as.Date(read.csv("plot_data/available_dates.csv")$date))
+    # available plot_data with nowcasts:
+    available_nowcast_dates <- date_from_filename(sort(read.csv("plot_data/list_plot_data.csv")$file))
 }else{
     # check which forecast files are available:
     # via GitHub Api when not local
@@ -51,6 +53,9 @@ if(local){
     pop <- read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/population_sizes.csv")
     # vector of Mondays available in truth data:
     available_dates <- sort(as.Date(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv")$date))
+    # available plot_data with nowcasts:
+    available_nowcast_dates <- date_from_filename(sort(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/list_plot_data.csv")$file))
+    
 }
 
 # map between codes for federal states and their human-readable names
@@ -148,7 +153,6 @@ shinyServer(function(input, output, session) {
     observe({
         input$skip_backward
         isolate({
-            print(input$select_date)
             if(!is.null(input$select_date) & length(input$select_date) > 0 & input$skip_backward > 0){
                 new_date <- as.Date(input$select_date) - 1
                 if(new_date %in% available_dates){
@@ -359,7 +363,6 @@ shinyServer(function(input, output, session) {
             # y axis limit
             plot_data$ylim <- c(0, 1.1*max(c(plot_data$current_truth$y, max_vals), na.rm = TRUE))
         }
-        
     })
     
     # initial plot:
@@ -656,7 +659,7 @@ shinyServer(function(input, output, session) {
             }
             
             # the most recent nowcast data (will be added as fine line)
-            current_nowcast_all <- forecast_data[[as.character(current_date)]]
+            current_nowcast_all <- forecast_data[[as.character(max(available_nowcast_dates))]]
             
             # determine whether states or age groups are to be plotted:
             if(input$select_stratification == "state"){
@@ -670,6 +673,7 @@ shinyServer(function(input, output, session) {
             
             # start plotting:
             par(mfrow = c(6, 3), las = 1)
+            
             for(loc in locs_to_show){
                 for(ag in ags_to_show){
                     # scaling factor for population:
@@ -706,6 +710,7 @@ shinyServer(function(input, output, session) {
                                                   age_group == ag &
                                                   model == input$select_model)
                     current_nowcast[, cols_quantiles] <- pop_factor*current_nowcast[, cols_quantiles]
+
                     
                     # remove last two days if necessary:
                     if(!input$show_last_two_days){
@@ -716,8 +721,8 @@ shinyServer(function(input, output, session) {
                     # plot:
                     plot(nowcast_to_show$target_end_date, nowcast_to_show$q0.5,
                          xlab = "Meldedatum", ylab = "",
-                         xlim = c(current_date - 60, current_date + 10),
-                         ylim = c(ifelse(input$select_log == "log scale", 0.01, 0), 1.3*max(c(nowcast_to_show$q0.975, nowcast_to_show$q0.5), na.rm = TRUE)),
+                         xlim = c(input$select_date - 60, input$select_date + 10),
+                         ylim = c(ifelse(input$select_log == "log scale", 0.01, 0), 1.5*max(c(nowcast_to_show$q0.975, nowcast_to_show$q0.5), na.rm = TRUE)),
                          type = "l", log = ifelse(input$select_log == "log scale", "y", ""))
                     # plot title
                     main <- ifelse(input$select_stratification == "state",
@@ -826,11 +831,16 @@ shinyServer(function(input, output, session) {
             new_max <- input$select_date
             # adapt chosen value if outside of range
             old_value <- input$select_target_end_date
-            if(old_value >= new_min & old_value <= new_max){
-                new_value <- old_value
+            if(length(old_value) > 0){ # can somehow be length 0
+                if(old_value >= new_min & old_value <= new_max){
+                    new_value <- old_value
+                }else{
+                    new_value <- new_max - 2
+                }
             }else{
                 new_value <- new_max - 2
             }
+
             updateDateInput(session, "select_target_end_date",
                             min = new_min,
                             max = new_max,
