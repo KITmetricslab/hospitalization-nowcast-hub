@@ -856,7 +856,7 @@ shinyServer(function(input, output, session) {
                 if(old_value >= new_min & old_value <= new_max){
                     new_value <- old_value
                 }else{
-                    new_value <- new_max - 2
+                    new_value <- new_max
                 }
             }else{
                 new_value <- new_max - 2
