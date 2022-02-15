@@ -51,6 +51,7 @@ if(local){
     dat_models <- read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/list_teams.csv")
     # get population sizes:
     pop <- read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/population_sizes.csv")
+    pop$X <- NULL
     # vector of Mondays available in truth data:
     available_dates <- sort(as.Date(read.csv("https://raw.githubusercontent.com/KITmetricslab/hospitalization-nowcast-hub/main/nowcast_viz_de/plot_data/available_dates.csv")$date))
     # available plot_data with nowcasts:
@@ -654,9 +655,24 @@ shinyServer(function(input, output, session) {
             # the nowcast data to be displayed:
             nowcast_to_show_all <- subset(forecast_data[[as.character(input$select_date)]],
                                           model == input$select_model)
+            if(input$select_stratification == "state"){
+                nowcast_to_show_all <- subset(nowcast_to_show_all, age_group == "00+")
+            }
+            if(input$select_stratification == "age"){
+                nowcast_to_show_all <- subset(nowcast_to_show_all, location == "DE")
+            }
             if(!input$show_retrospective_nowcasts){
                 nowcast_to_show_all <- subset(nowcast_to_show_all, !retrospective)
             }
+            
+            # add population data:
+            nowcast_to_show_all <- merge(nowcast_to_show_all, pop, by = c("location", "age_group"))
+            nowcast_to_show_all$pop_factor <- 1
+            if(input$select_scale == "per 100.000"){
+                nowcast_to_show_all$pop_factor <- 100000/nowcast_to_show_all$population
+            }
+            cols_quantiles <- c("mean", "q0.025", "q0.25", "q0.5", "q0.75", "q0.975")
+            nowcast_to_show_all[, cols_quantiles] <- nowcast_to_show_all$pop_factor*nowcast_to_show_all[, cols_quantiles]
             
             # the most recent nowcast data (will be added as fine line)
             current_nowcast_all <- forecast_data[[as.character(max(available_nowcast_dates))]]
@@ -700,9 +716,7 @@ shinyServer(function(input, output, session) {
                                               location == loc & 
                                                   age_group == ag &
                                                   model == input$select_model)
-                    # apply population standardization:
-                    cols_quantiles <- c("mean", "q0.025", "q0.25", "q0.5", "q0.75", "q0.975")
-                    nowcast_to_show[, cols_quantiles] <- pop_factor*nowcast_to_show[, cols_quantiles]
+                    nowcast_to_show <- nowcast_to_show[order(nowcast_to_show$target_end_date), ]
                     
                     # most recent nowcast
                     current_nowcast <- subset(current_nowcast_all, 
@@ -718,11 +732,18 @@ shinyServer(function(input, output, session) {
                         current_nowcast <- subset(current_nowcast, target_end_date <= current_date - 2)
                     }
                     
+                    # determine ylim:
+                    if(input$use_same_ylim){
+                        ylim <- c(ifelse(input$select_log == "log scale", 0.5, 0), 1.2*max(c(nowcast_to_show_all$q0.975, nowcast_to_show_all$q0.5), na.rm = TRUE))
+                    }else{
+                        ylim <- c(ifelse(input$select_log == "log scale", 0.5, 0), 1.2*max(c(nowcast_to_show$q0.975, nowcast_to_show$q0.5), na.rm = TRUE))
+                    }
+                    
                     # plot:
                     plot(nowcast_to_show$target_end_date, nowcast_to_show$q0.5,
                          xlab = "Meldedatum", ylab = "",
                          xlim = c(input$select_date - 60, input$select_date + 10),
-                         ylim = c(ifelse(input$select_log == "log scale", 0.01, 0), 1.5*max(c(nowcast_to_show$q0.975, nowcast_to_show$q0.5), na.rm = TRUE)),
+                         ylim = ylim,
                          type = "l", log = ifelse(input$select_log == "log scale", "y", ""))
                     # plot title
                     main <- ifelse(input$select_stratification == "state",
@@ -980,6 +1001,16 @@ shinyServer(function(input, output, session) {
                             "Show retrospective nowcasts")
             selected <- input$show_retrospective_nowcasts
             updateCheckboxInput(session, "show_retrospective_nowcasts",
+                                label = label,
+                                value = selected
+            )
+            
+            # Use same ylim in overview
+            label <- ifelse(input$select_language == "DE",
+                            "Einheitliche y-Achsenabschnitte in Übersicht",
+                            "Uniform y-axis ranges in overview")
+            selected <- input$use_same_ylim
+            updateCheckboxInput(session, "use_same_ylim",
                                 label = label,
                                 value = selected
             )
