@@ -1,0 +1,1 @@
+This directory contains nowcasts which have been generated retrospectively for the period July 2021 -- April 2022 using revised models at the state of May 2022. These nowcasts serve to assess the improvement of the employed modelling approaches over the course of the Nowcast Hub.

@@ -1,0 +1,1 @@
+This directory contains only nowcasts created in real time. Each team uploads nowcasts into its own dedicated folder, along with a metadata file. If a team fails to provide a nowcast on a given day, retrospective fill-in nowcasts need to be put in `data-processed_retrospective` instead.
