@@ -35,6 +35,11 @@ duplicated(dates)
 dates_to_load <- as.Date(c("2022-01-01", "2022-01-02"))
 select_commits <- commits
 
+# fill the list:
+# each element contains
+#   - the date at which the respective data version was published
+#   - the data set COVID-19_hospitalizations_preprocessed.csv as of that date
+#   - the commit ID
 for(i in seq_along(dates_to_load)){
   data[[i]] <- list()
   data[[i]]$date <- dates_to_load[i]
