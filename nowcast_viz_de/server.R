@@ -352,7 +352,7 @@ shinyServer(function(input, output, session) {
                         plot_data[[mod]] <- list(points = points, intervals = intervals)
                         
                         # add largest value to max_vals to compute ylim later:
-                        max_vals[mod] <- max(c(1, intervals$y), na.rm = TRUE)
+                        max_vals[mod] <- min(100, max(c(1, intervals$y), na.rm = TRUE))
                     }else{
                         plot_data[[mod]] <- NULL
                         max_vals[mod] <- 1
