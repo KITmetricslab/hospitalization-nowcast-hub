@@ -207,7 +207,7 @@ shinyUI(fluidPage(
                              p('Das Wichtigste in Kürze (siehe', a('"Hintergrund"', href="https://covid19nowcasthub.de/hintergrund.html"), " für Details)"),
                              p('- Die 7-Tages-Hospitalisierungsinzidenz ist einer der Leitindikatoren für die COVID-19 Pandemie in Deutschland (siehe "Hintergrund" für die Definition).', style = style_explanation),
                              p("- Aufgrund von Verzögerungen sind die für die letzten Tage veröffentlichten rohen Inzidenzwerte stets zu niedrig. Nowcasts helfen, diese Werte zu korrigieren. Sie stellen eine Vorhersage dafür dar, um wie viel die Hospitalisierungsinzidenz noch nach oben korrigiert werden wird.", style = style_explanation),
-                             p("- Wir zeigen die Nowcasts gemeinsam mit Unsicherheitsintervallen, die den späteren korrigierten Wert mit einer gegebenen Wahrscheinlichkeit enthalten sollen (Voreinstellung).", style = style_explanation),
+                             p("- Wir zeigen die Nowcasts gemeinsam mit Unsicherheitsintervallen, die den späteren korrigierten Wert mit einer gegebenen Wahrscheinlichkeit enthalten sollen (Voreinstellung: 95%).", style = style_explanation),
                              p('- Es gibt unterschiedliche Nowcasting-Verfahren. Diese vergleichen wir hier systematisch und kombinieren sie in einem sogenannten Ensemble-Nowcast.', style = style_explanation),
                              p('- Unregelmäßigkeiten oder Überlastungen im Meldeprozess können die Zuverlässigkeit der Nowcasts beeinträchtigen.', style = style_explanation),
                              br(),
