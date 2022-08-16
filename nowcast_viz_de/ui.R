@@ -156,12 +156,12 @@ shinyUI(fluidPage(
         mainPanel(
             add_busy_spinner(spin = "fading-circle"),
             conditionalPanel("input.select_language == 'DE'",
-                             p("Diese Plattform vereint Nowcasts der 7-Tages-Hospitalisierungsinzidenz in Deutschland basierend auf verschiedenen Methoden, mit dem Ziel einer verlässlichen Einschätzung aktueller Trends. Detaillierte Erläuterungen gibt es unter ", a('"Hintergrund".', href="https://covid19nowcasthub.de/hintergrund.html")),
-                             p("Bei Unregelmäßigkeiten im Meldeprozess durch z.B. starke Belastung des Gesundheitssystems oder Feiertage kann die Verlässlichkeit der Nowcasts beeinträchtigt werden.")
+                             p("Diese Plattform vereint Nowcasts der 7-Tages-Hospitalisierungsinzidenz in Deutschland basierend auf verschiedenen Methoden, mit dem Ziel einer verlässlichen Einschätzung aktueller Trends. Detaillierte Erläuterungen gibt es unter ", a('"Hintergrund".', href="https://covid19nowcasthub.de/hintergrund.html"))# ,
+                             # p("Bei Unregelmäßigkeiten im Meldeprozess durch z.B. starke Belastung des Gesundheitssystems oder Feiertage kann die Verlässlichkeit der Nowcasts beeinträchtigt werden.")
             ),
             conditionalPanel("input.select_language == 'EN'",
-                             p("This platform unites nowcasts of the 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends. Detailed explanations are given in ", a('"Background".', href="https://covid19nowcasthub.de/background.html")),
-                             p("If there are irregularities in the reporting process due to, for example, high burdens on the health care system or holidays, the nowcasts may be less reliable.")
+                             p("This platform unites nowcasts of the 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends. Detailed explanations are given in ", a('"Background".', href="https://covid19nowcasthub.de/background.html"))# ,
+                             # p("If there are irregularities in the reporting process due to, for example, high burdens on the health care system or holidays, the nowcasts may be less reliable.")
             ),
             
             #             conditionalPanel("input.select_language == 'DE'",
@@ -207,6 +207,7 @@ shinyUI(fluidPage(
                              p('Das Wichtigste in Kürze (siehe', a('"Hintergrund"', href="https://covid19nowcasthub.de/hintergrund.html"), " für Details)"),
                              p('- Die 7-Tages-Hospitalisierungsinzidenz ist einer der Leitindikatoren für die COVID-19 Pandemie in Deutschland (siehe "Hintergrund" für die Definition).', style = style_explanation),
                              p("- Aufgrund von Verzögerungen sind die für die letzten Tage veröffentlichten rohen Inzidenzwerte stets zu niedrig. Nowcasts helfen, diese Werte zu korrigieren. Sie stellen eine Vorhersage dafür dar, um wie viel die Hospitalisierungsinzidenz noch nach oben korrigiert werden wird.", style = style_explanation),
+                             p("- Wir zeigen die Nowcasts gemeinsam mit Unsicherheitsintervallen, die den späteren korrigierten Wert mit einer gegebenen Wahrscheinlichkeit enthalten sollen (Voreinstellung).", style = style_explanation),
                              p('- Es gibt unterschiedliche Nowcasting-Verfahren. Diese vergleichen wir hier systematisch und kombinieren sie in einem sogenannten Ensemble-Nowcast.', style = style_explanation),
                              p('- Unregelmäßigkeiten oder Überlastungen im Meldeprozess können die Zuverlässigkeit der Nowcasts beeinträchtigen.', style = style_explanation),
                              br(),
@@ -216,6 +217,7 @@ shinyUI(fluidPage(
                              p('Short summary (see',  a('"Background"', href="https://covid19nowcasthub.de/background.html"), "for details)"),
                              p('- The 7-day hospitalization incidence is one of the main indicators for the assessment of the COVID-19 pandemic in Germany (see "Background" for the definition).', style = style_explanation),
                              p("- Due to delays, the published raw incidence values for the last few days are biased downward. Nowcasts can help to correct these, predicting by how much the hospitalization incidence will be corrected.", style = style_explanation),
+                             p("- Nowcasts are provided along with uncertainty intervals (shaded areas) which shall contain the final value with a given probability, by default 95%.", style = style_explanation),
                              p('- A variety of nowcasting methods exist. We systematically compile results based on different methods and combine them into so-called ensemble nowcasts.', style = style_explanation),
                              p('- Overstrain of the reporting system and other irregularities and may impair the reliability of the nowcasts.', style = style_explanation),
                              br(),
