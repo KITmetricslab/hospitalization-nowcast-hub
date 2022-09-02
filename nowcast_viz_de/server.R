@@ -362,6 +362,10 @@ shinyServer(function(input, output, session) {
                 }
             }
             # y axis limit
+            # handle cases where one model went off the rails:
+            max_vals <- sort(max_vals, decreasing = TRUE)
+            if(max_vals[1] > 3*max_vals[2]) max_vals <- max_vals[-1]
+            # (removes highest value if too extreme)
             plot_data$ylim <- c(0, 1.1*max(c(plot_data$current_truth$y, max_vals), na.rm = TRUE))
         }
     })
