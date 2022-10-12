@@ -1,0 +1,14 @@
+team_name: NowcastHub
+model_name: meanEnsemble
+model_abbr: NowcastHub-MeanEnsemble 
+model_contributors: Johannes Bracher (Karlsruhe Institute of Technology/Heidelberg Institute of Theoretical Studies) <johannes.bracher@kit.edu>, Daniel Wolffram (KIT/HITS), Melanie Schienle (KIT), Sam Abbott, Jan van de Kassteele, Stefan Heyder, Felix Günther, Thomas Hotz, Helmut Küchenhoff, Sören Müller-Hansen, Maximilian Weigert
+website_url: https://covid19nowcasthub.de/hintergrund.html
+license: cc-by-4.0
+team_model_designation: primary
+methods: This model aggregates the different submissions via quantile-wise means.
+team_funding: See metadata of contributed models.
+institution_affil: Karlsruhe Institute of Technology and Heidelberg Institute for Theoretical Studies, Germany
+repo_url: https://github.com/KITmetricslab/hospitalization-nowcast-hub/tree/main/code/ensemble
+data_inputs: Nowcasts from contributing teams.
+citation: none
+methods_long: This model aggregates the different submissions via quantile-wise means.
