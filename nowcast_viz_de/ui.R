@@ -156,12 +156,12 @@ shinyUI(fluidPage(
         mainPanel(
             add_busy_spinner(spin = "fading-circle"),
             conditionalPanel("input.select_language == 'DE'",
-                             p("Diese Plattform vereint Nowcasts der 7-Tages-Hospitalisierungsinzidenz in Deutschland basierend auf verschiedenen Methoden, mit dem Ziel einer verlässlichen Einschätzung aktueller Trends. Detaillierte Erläuterungen gibt es unter ", a('"Hintergrund".', href="https://covid19nowcasthub.de/hintergrund.html"))# ,
-                             # p("Bei Unregelmäßigkeiten im Meldeprozess durch z.B. starke Belastung des Gesundheitssystems oder Feiertage kann die Verlässlichkeit der Nowcasts beeinträchtigt werden.")
+                             p("Diese Plattform vereint Nowcasts der 7-Tages-Hospitalisierungsinzidenz in Deutschland basierend auf verschiedenen Methoden, mit dem Ziel einer verlässlichen Einschätzung aktueller Trends. Detaillierte Erläuterungen gibt es unter ", a('"Hintergrund".', href="https://covid19nowcasthub.de/hintergrund.html")),
+                             p("Hinweis: In der letzten Zeit sind in den Meldeverzügen einige Unregelmäßigkeiten aufgetreten, wodurch die Qualität der Nowcasts beeinträchtigt werden kann.")
             ),
             conditionalPanel("input.select_language == 'EN'",
-                             p("This platform unites nowcasts of the 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends. Detailed explanations are given in ", a('"Background".', href="https://covid19nowcasthub.de/background.html"))# ,
-                             # p("If there are irregularities in the reporting process due to, for example, high burdens on the health care system or holidays, the nowcasts may be less reliable.")
+                             p("This platform unites nowcasts of the 7-day hospitalization incidence in Germany, with the goal of providing reliable assessments of recent trends. Detailed explanations are given in ", a('"Background".', href="https://covid19nowcasthub.de/background.html")),
+                             p("Note: Recently there have been some irregularities in the delay patterns, which may have a negative impact on the quality of nowcasts.")
             ),
             
             #             conditionalPanel("input.select_language == 'DE'",
