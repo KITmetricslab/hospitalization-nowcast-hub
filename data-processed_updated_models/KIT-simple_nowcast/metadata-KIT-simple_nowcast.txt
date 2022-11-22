@@ -1,0 +1,14 @@
+team_name: KIT
+model_name: simple_nowcast
+model_abbr: KIT-simple_nowcast
+model_contributors: Johannes Bracher (Karlsruhe Institute of Technology/Heidelberg Institute of Theoretical Studies) <johannes.bracher@kit.edu>, Daniel Wolffram (KIT/HITS), Melanie Schienle (KIT)
+website_url: https://statistik.econ.kit.edu/mitarbeiter_2068.php
+license: cc-by-4.0
+team_model_designation: primary
+methods: This is the same as the regular KIT-simple_nowcast submissions, but with a maximum delay of 80 rather than 60 days.
+team_funding: Helmholtz Data Science Pilot Project SIMCARD
+institution_affil: Karlsruhe Institute of Technology and Heidelberg Institute for Theoretical Studies, Germany
+repo_url: https://github.com/KITmetricslab/hospitalization-nowcast-hub/tree/main/code/baseline
+data_inputs: Only past hospitalization incidences and delays. 
+citation: none
+methods_long: This is the same as the regular KIT-simple_nowcast submissions, but with a maximum delay of 80 rather than 60 days.
