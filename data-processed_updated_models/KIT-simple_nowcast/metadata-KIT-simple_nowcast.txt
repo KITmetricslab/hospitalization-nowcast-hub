@@ -11,4 +11,4 @@ institution_affil: Karlsruhe Institute of Technology and Heidelberg Institute fo
 repo_url: https://github.com/KITmetricslab/hospitalization-nowcast-hub/tree/main/code/baseline
 data_inputs: Only past hospitalization incidences and delays. 
 citation: none
-methods_long: This is the same as the regular KIT-simple_nowcast submissions, but with a maximum delay of 80 rather than 60 days.
+methods_long: This is the same as the regular KIT-simple_nowcast submissions, but with a maximum delay of 80 rather than 40 days and a training set of 100 rather than 60.
