@@ -1,11 +1,11 @@
 model
+NowcastHub-MedianEnsemble
+KIT-simple_nowcast
 SU-hier_bayes
-NowcastHub-MeanEnsemble
+LMU_StaBLab-GAM_nowcast
 RIVM-KEW
 SZ-hosp_nowcast
+NowcastHub-MeanEnsemble
 ILM-prop
-LMU_StaBLab-GAM_nowcast
 Epiforecasts-independent
-NowcastHub-MedianEnsemble
 RKI-weekly_report
-KIT-simple_nowcast
