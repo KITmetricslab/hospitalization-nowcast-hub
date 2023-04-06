@@ -6,7 +6,7 @@ df = pd.read_csv('../data-truth/COVID-19/COVID-19_hospitalizations.csv')
 
 for i, row in tqdm(df.iterrows(), total = len(df)):
     to_subtract = 0
-    for j, value in row[:2:-1].iteritems():
+    for j, value in row[:2:-1].items():
         value += to_subtract
         if value < 0:
             to_subtract = value
