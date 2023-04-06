@@ -1,0 +1,45 @@
+name: "RKI-data-processing"
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        persist-credentials: false # otherwise, the token used is the GITHUB_TOKEN, instead of your personal token
+        fetch-depth: 1 # otherwise, you will failed to push refs to dest repo
+
+    - name: Setup Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
+
+    - name: Install requirenments
+      run: |
+        pip3 install -r .github/workflows/python_requirements.txt
+         
+    - name: Process reporting triangle
+      run:  |
+        cd ./code
+        python3 ./preprocess_reporting_triangle.py
+        python3 ./timeseries_by_reporting.py
+        
+    - name: Commit files
+      env:
+        AUTH: ${{ secrets.GITHUBTOKEN }}
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action - RKI Update"
+        git remote rm origin
+        git remote add origin https://${AUTH}@github.com/KITmetricslab/hospitalization-nowcast-hub.git > /dev/null 2>&1
+        git pull origin main
+        git add --all
+        git commit --allow-empty -m "Daily RKI update"
+        
+    - name: Push changes
+      run: |
+        git push --quiet --set-upstream origin HEAD:main
+        echo "pushed to github"
