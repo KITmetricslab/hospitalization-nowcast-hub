@@ -22,7 +22,7 @@ df.rename(columns = {'value': 'value_0d'}, inplace = True)
 for delay in tqdm(range(1, 81), total = 80):
     dfs_delayed = []
     for date in dates:
-        date_delayed = (date + pd.Timedelta(days = delay)).date()
+        date_delayed = date + pd.Timedelta(days = delay)
         if date_delayed <= max(dates):
             df_temp = pd.read_csv(path/f'{date_delayed}_COVID-19_hospitalization_deconvoluted.csv', parse_dates = ['date'])
             df_temp = df_temp[df_temp.date == date]
