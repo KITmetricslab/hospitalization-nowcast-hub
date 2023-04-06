@@ -24,7 +24,7 @@ for delay in tqdm(range(1, 81), total = 80):
     for date in dates:
         date_delayed = date + pd.Timedelta(days = delay)
         if date_delayed <= max(dates):
-            df_temp = pd.read_csv(path/f'{date_delayed}_COVID-19_hospitalization_deconvoluted.csv', parse_dates = ['date'])
+            df_temp = pd.read_csv(path/f'{date_delayed.date()}_COVID-19_hospitalization_deconvoluted.csv', parse_dates = ['date'])
             df_temp = df_temp[df_temp.date == date]
             dfs_delayed.append(df_temp)
     df_delayed = pd.concat(dfs_delayed)
