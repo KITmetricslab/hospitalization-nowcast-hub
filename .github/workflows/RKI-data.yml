@@ -38,8 +38,8 @@ jobs:
       run:  |
         cd ./code
         python3 ./create_reporting_triangle.py
-        python3 ./preprocess_reporting_triangle.py
-        python3 ./timeseries_by_reporting.py
+        # python3 ./preprocess_reporting_triangle.py
+        # python3 ./timeseries_by_reporting.py
         
     - name: Commit files
       env:
