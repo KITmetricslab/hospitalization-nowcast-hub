@@ -54,7 +54,7 @@ for date in dates:
     for m in missing:
         df_old = df_files[(df_files.model == m) & (df_files.date.between(date - pd.Timedelta(days = 7), date))]
         df_old = df_old[df_old.date == df_old.date.max()]
-        df_temp = df_temp.append(df_old)
+        df_temp = pd.concat([df_temp, df_old])
     
     dfs = []
     for _, row in df_temp.iterrows():
