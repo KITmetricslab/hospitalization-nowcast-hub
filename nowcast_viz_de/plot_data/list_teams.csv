@@ -1,11 +1,11 @@
 model
 SZ-hosp_nowcast
 RKI-weekly_report
-Epiforecasts-independent
-NowcastHub-MeanEnsemble
-KIT-simple_nowcast
+ILM-prop
 RIVM-KEW
 LMU_StaBLab-GAM_nowcast
-ILM-prop
-NowcastHub-MedianEnsemble
+NowcastHub-MeanEnsemble
 SU-hier_bayes
+Epiforecasts-independent
+KIT-simple_nowcast
+NowcastHub-MedianEnsemble
