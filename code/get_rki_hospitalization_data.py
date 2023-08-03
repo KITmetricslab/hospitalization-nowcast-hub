@@ -46,7 +46,7 @@ df_files.date = pd.to_datetime(df_files.date)
 # only consider files that have not been downloaded before
 path = Path('../data-truth/COVID-19/rolling-sum')
 existing_dates = pd.unique([f.name[:10] for f in path.glob('**/*') if f.name.endswith('.csv')])
-df_files = df_files[df_files.date > max(existing_dates)]
+df_files = df_files[~df_files.date.isin(existing_dates)]
 
 # download and process new files
 for _, row in tqdm(df_files.iterrows(), total=df_files.shape[0]):
