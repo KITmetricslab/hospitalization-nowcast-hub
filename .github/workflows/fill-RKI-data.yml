@@ -1,4 +1,4 @@
-name: "Fill-RKI-data"
+name: "fill-RKI-data"
 on:
   workflow_dispatch:
   
