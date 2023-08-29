@@ -1,0 +1,36 @@
+name: "Fill-RKI-data"
+on:
+  workflow_dispatch:
+  
+jobs:
+  fill-RKI-data:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@main
+        
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x' 
+        
+    - name: Install dependencies
+      run: python3 -m pip install pandas requests pathlib
+      
+    - name: Fill RKI data
+      run: python3 ./code/fill_missing.py
+
+    - name: Create Pull Request
+      id: cpr
+      uses: peter-evans/create-pull-request@v3
+      with:
+        token: ${{ secrets.GITHUBTOKEN }}
+        commit-message: Update nowcasts (LMU)
+        committer: GitHub <noreply@github.com>
+        author: ${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>
+        signoff: false
+        branch: fill-RKI-data
+        delete-branch: true
+        title: 'Add missing RKI data'
+        body: |
+          Add missing RKI data
