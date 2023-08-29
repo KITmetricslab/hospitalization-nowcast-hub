@@ -1,8 +1,6 @@
 import pandas as pd
 import requests
 from pathlib import Path
-from tqdm.auto import tqdm
-tqdm.pandas()
 
 rki_to_iso = {0: 'DE',
               1: 'DE-SH',
