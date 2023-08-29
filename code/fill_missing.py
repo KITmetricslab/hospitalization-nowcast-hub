@@ -41,7 +41,7 @@ df_files['date'] = df_files.filename.apply(lambda f: f.split('/')[1][:10])
 df_files.date = pd.to_datetime(df_files.date)
 
 # only consider files that have not been downloaded before
-path = Path('../data-truth/COVID-19/rolling-sum')
+path = Path('data-truth/COVID-19/rolling-sum')
 existing_dates = pd.to_datetime(pd.unique([f.name[:10] for f in path.glob('**/*') if f.name.endswith('.csv')]))
 
 available_dates = df_files.date
@@ -70,5 +70,5 @@ for d in dates_to_fill:
     # cut dataframe 
     df = df[df.date <= d.strftime('%Y-%m-%d')]
     
-    df.to_csv(f"../data-truth/COVID-19/rolling-sum/{d.strftime('%Y-%m-%d')}_COVID-19_hospitalization.csv", index = False)
+    # df.to_csv(f"data-truth/COVID-19/rolling-sum/{d.strftime('%Y-%m-%d')}_COVID-19_hospitalization.csv", index = False)
     
