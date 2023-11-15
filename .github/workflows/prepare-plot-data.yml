@@ -1,8 +1,8 @@
 name: "prepare-plot-data"
 on:
   workflow_dispatch:
-#   schedule:
-#     - cron: "0 4,14 * * *"
+  schedule:
+  - cron: "0 14 * * *"
   push:
    branches:
     - main
