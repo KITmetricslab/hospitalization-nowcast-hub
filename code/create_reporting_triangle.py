@@ -4,7 +4,7 @@ from tqdm.auto import tqdm
 tqdm.pandas()
 
 path = Path('../data-truth/COVID-19/deconvoluted/')
-files = sorted([f.name for f in path.glob('**/*')])
+files = sorted([f.name for f in path.glob('**/*')])[100:]
 dates = [f[:10] for f in files]
 
 dfs = []
