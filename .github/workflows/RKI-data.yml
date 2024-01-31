@@ -7,7 +7,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@main
       with:
@@ -15,9 +15,9 @@ jobs:
         fetch-depth: 1 # otherwise, you will failed to push refs to dest repo
 
     - name: Setup Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v4
       with:
-        python-version: '3.x' # Version range or exact version of a Python version to use, using SemVer's version range syntax
+        python-version: '3.12.1' # Version range or exact version of a Python version to use, using SemVer's version range syntax
         architecture: 'x64' # optional x64 or x86. Defaults to x64 if not specified
 
     - name: Install requirenments
