@@ -82,7 +82,7 @@ bundeslaender <- c("Alle (Deutschland)" = "DE",
 models <- sort(dat_models$model)
 
 # which models are to be shown by default?
-default_models <- c("KIT-simple_nowcast", "LMU_StaBLab-GAM_nowcast", "NowcastHub-MeanEnsemble" "RKI-weekly_report", "RIVM-KEW")
+default_models <- c("KIT-simple_nowcast", "LMU_StaBLab-GAM_nowcast", "NowcastHub-MeanEnsemble", "RKI-weekly_report", "RIVM-KEW")
 
 # define a color palette for the models:
 cols <- c('rgb(31, 119, 180)',
