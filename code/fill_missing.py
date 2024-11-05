@@ -46,6 +46,8 @@ existing_dates = pd.to_datetime(pd.unique([f.name[:10] for f in path.glob('**/*'
 
 available_dates = df_files.date
 
+print(available_dates)
+
 today = pd.Timestamp.today(tz = 'Europe/Berlin').date()
 required_dates = pd.date_range(end=today, freq='D', periods=60) # 20 dates leading up to today
 missing_dates = required_dates.difference(available_dates) # some might have been filled already
