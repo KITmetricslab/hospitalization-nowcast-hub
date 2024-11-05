@@ -85,11 +85,10 @@ for d in dates_to_fill:
     print(f"To fill {d.strftime('%Y-%m-%d')} we use {fill_date.strftime('%Y-%m-%d')}.")
     
     # file we use to fill missing date
-    filename = df_files[df_files.date == fill_date].filename.values[0]
+    filename = df_files[df_files.date == fill_date].raw_url.values[0]
     
     # load and reformat file
-    df = pd.read_csv('https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/raw/master/' + 
-                          filename)
+    df = pd.read_csv(filename)
     df = process_data(df)
     
     # cut dataframe 
