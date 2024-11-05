@@ -1,8 +1,7 @@
-import pandas as pd
 import requests
+import pandas as pd
+from tqdm import tqdm
 from pathlib import Path
-from tqdm.auto import tqdm
-tqdm.pandas()
 
 rki_to_iso = {0: 'DE',
               1: 'DE-SH',
@@ -30,32 +29,57 @@ def process_data(df):
     df = df[['date', 'location', 'age_group', 'value']]
     return df
 
+# GitHub repository information
+repo_owner = "robert-koch-institut"
+repo_name = "COVID-19-Hospitalisierungen_in_Deutschland"
+file_path = "Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv"
+commits_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/commits"
 
-# get path of all available files
-url = "https://api.github.com/repos/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/git/trees/master?recursive=1"
-r = requests.get(url)
-res = r.json()
+# Set parameters only for pagination
+params = {"per_page": 100}
 
-files = [file["path"] for file in res["tree"] if (file["path"].startswith('Archiv/') and file["path"].endswith('Deutschland_COVID-19-Hospitalisierungen.csv'))]
-df_files = pd.DataFrame({'filename':files})
+# List to store date and raw file URLs
+commit_dates_urls = []
+while True:
+    response = requests.get(commits_api_url, params=params)
+    response.raise_for_status()
+    commits = response.json()
+    if not commits:
+        break
+    for commit in commits:
+        message = commit["commit"]["message"]
+        if message.startswith("Update"):
+            date = message.replace("Update ", "")
+            commit_hash = commit["sha"]
+            raw_url = f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/{commit_hash}/{file_path}"
+            commit_dates_urls.append({"date": date, "raw_url": raw_url})
+    if 'next' in response.links:
+        params["page"] = params.get("page", 1) + 1
+    else:
+        break
 
-# extract dates from filenames
-df_files['date'] = df_files.filename.apply(lambda f: f.split('/')[1][:10])
-df_files.date = pd.to_datetime(df_files.date)
+# Create DataFrame from commit dates and URLs
+df_files = pd.DataFrame(commit_dates_urls)
+df_files['date'] = pd.to_datetime(df_files['date'])
 
-# only consider files that have not been downloaded before
+# Path for saving downloaded files and checking existing files
 path = Path('../data-truth/COVID-19/rolling-sum')
 existing_dates = pd.unique([f.name[:10] for f in path.glob('**/*') if f.name.endswith('.csv')])
-df_files = df_files[~df_files.date.isin(existing_dates)]
 
-# download and process new files
+df_files = df_files[~df_files.date.dt.strftime('%Y-%m-%d').isin(existing_dates)]
+
+# Download and process files
 for _, row in tqdm(df_files.iterrows(), total=df_files.shape[0]):
-    df = pd.read_csv('https://github.com/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/raw/master/' + 
-                          row['filename'])
-    df = process_data(df)
-    df.to_csv(f'../data-truth/COVID-19/rolling-sum/{row.date.date()}_COVID-19_hospitalization.csv', index = False)
-
-# update available_dates.csv
-available_dates = pd.DataFrame({'date': sorted([f.name[:10] for f in path.glob('**/*.csv')])})
-available_dates.to_csv('../nowcast_viz_de/plot_data/available_dates.csv', index = False)
+    # Read file from the raw URL
+    df = pd.read_csv(row['raw_url'])
     
+    # Process the data (assuming process_data is defined elsewhere)
+    df = process_data(df)
+    
+    # Save processed data with date in filename
+    output_path = path / f"{row.date.date()}_COVID-19_hospitalization.csv"
+    df.to_csv(output_path, index=False)
+
+# Update available_dates.csv
+available_dates = pd.DataFrame({'date': sorted([f.name[:10] for f in path.glob('**/*.csv')])})
+available_dates.to_csv('../nowcast_viz_de/plot_data/available_dates.csv', index=False)

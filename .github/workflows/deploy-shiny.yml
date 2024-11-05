@@ -22,7 +22,7 @@ jobs:
           r-version: 4.1.0
           
     - name: Cache R packages 
-      uses: actions/cache@v1 
+      uses: actions/cache@v4
       with: 
         path: ${{ env.R_LIBS_USER }} 
         key: r-${{ hashFiles('DESCRIPTION') }}
