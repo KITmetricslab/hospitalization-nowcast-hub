@@ -29,16 +29,39 @@ def process_data(df):
     return df
 
 # get path of all available files
-url = "https://api.github.com/repos/robert-koch-institut/COVID-19-Hospitalisierungen_in_Deutschland/git/trees/master?recursive=1"
-r = requests.get(url)
-res = r.json()
 
-files = [file["path"] for file in res["tree"] if (file["path"].startswith('Archiv/') and file["path"].endswith('Deutschland_COVID-19-Hospitalisierungen.csv'))]
-df_files = pd.DataFrame({'filename':files})
+# GitHub repository information
+repo_owner = "robert-koch-institut"
+repo_name = "COVID-19-Hospitalisierungen_in_Deutschland"
+file_path = "Aktuell_Deutschland_COVID-19-Hospitalisierungen.csv"
+commits_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/commits"
 
-# extract dates from filenames
-df_files['date'] = df_files.filename.apply(lambda f: f.split('/')[1][:10])
-df_files.date = pd.to_datetime(df_files.date)
+# Set parameters only for pagination
+params = {"per_page": 100}
+
+# List to store date and raw file URLs
+commit_dates_urls = []
+while True:
+    response = requests.get(commits_api_url, params=params)
+    response.raise_for_status()
+    commits = response.json()
+    if not commits:
+        break
+    for commit in commits:
+        message = commit["commit"]["message"]
+        if message.startswith("Update"):
+            date = message.replace("Update ", "")
+            commit_hash = commit["sha"]
+            raw_url = f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/{commit_hash}/{file_path}"
+            commit_dates_urls.append({"date": date, "raw_url": raw_url})
+    if 'next' in response.links:
+        params["page"] = params.get("page", 1) + 1
+    else:
+        break
+
+# Create DataFrame from commit dates and URLs
+df_files = pd.DataFrame(commit_dates_urls)
+df_files['date'] = pd.to_datetime(df_files['date'])
 
 # only consider files that have not been downloaded before
 path = Path('data-truth/COVID-19/rolling-sum')
