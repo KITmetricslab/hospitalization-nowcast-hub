@@ -1,3 +1,4 @@
+import re
 import requests
 import pandas as pd
 from tqdm import tqdm
@@ -40,19 +41,29 @@ params = {"per_page": 100}
 
 # List to store date and raw file URLs
 commit_dates_urls = []
+
+# Regular expression to match "Update YYYY-MM-DD" format
+date_pattern = re.compile(r"^Update \d{4}-\d{2}-\d{2}$")
+
 while True:
     response = requests.get(commits_api_url, params=params)
     response.raise_for_status()
     commits = response.json()
+    
     if not commits:
         break
+    
     for commit in commits:
         message = commit["commit"]["message"]
-        if message.startswith("Update"):
+        
+        # Only process commits with message format "Update YYYY-MM-DD"
+        if date_pattern.match(message):
             date = message.replace("Update ", "")
             commit_hash = commit["sha"]
             raw_url = f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/{commit_hash}/{file_path}"
             commit_dates_urls.append({"date": date, "raw_url": raw_url})
+    
+    # Check for pagination
     if 'next' in response.links:
         params["page"] = params.get("page", 1) + 1
     else:
