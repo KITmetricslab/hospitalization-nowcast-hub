@@ -1,3 +1,4 @@
+import re
 import pandas as pd
 import requests
 from pathlib import Path
@@ -39,6 +40,9 @@ commits_api_url = f"https://api.github.com/repos/{repo_owner}/{repo_name}/commit
 # Set parameters only for pagination
 params = {"per_page": 100}
 
+# Regular expression to match "Update YYYY-MM-DD" format
+date_pattern = re.compile(r"^Update \d{4}-\d{2}-\d{2}$")
+
 # List to store date and raw file URLs
 commit_dates_urls = []
 while True:
@@ -49,7 +53,7 @@ while True:
         break
     for commit in commits:
         message = commit["commit"]["message"]
-        if message.startswith("Update"):
+        if date_pattern.match(message):
             date = message.replace("Update ", "")
             commit_hash = commit["sha"]
             raw_url = f"https://raw.githubusercontent.com/{repo_owner}/{repo_name}/{commit_hash}/{file_path}"
